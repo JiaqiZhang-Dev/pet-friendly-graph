@@ -1,9 +1,49 @@
-<!--pages/add-place/add-place.wxml — Modern Pet Claymorphism-->
+<!--pages/add-place/add-place.wxml — AI添加地点-->
 <view class="add-page">
-  <view class="upload-section">
-    <text class="section-title">📸 上传截图</text>
-    <text class="tip-text">上传地点截图，AI 将自动识别地点信息</text>
+  <!-- 输入模式切换 -->
+  <view class="mode-tabs">
+    <view class="mode-tab {{inputMode === 'text' ? 'mode-tab-active' : ''}}" bindtap="onSwitchMode" data-mode="text">
+      <van-icon name="edit" size="18px" />
+      <text>文字描述</text>
+    </view>
+    <view class="mode-tab {{inputMode === 'image' ? 'mode-tab-active' : ''}}" bindtap="onSwitchMode" data-mode="image">
+      <van-icon name="photo-o" size="18px" />
+      <text>图片识别</text>
+    </view>
+  </view>
 
+  <!-- 文字输入模式 -->
+  <view wx:if="{{inputMode === 'text'}}" class="input-section">
+    <text class="section-title">描述地点信息</text>
+    <text class="tip-text">输入地点名称、地址等信息，AI 将自动提取结构化数据</text>
+    <textarea
+      class="text-input"
+      value="{{textContent}}"
+      placeholder="例如：安福路322号的Manner咖啡，可以带狗进去，有户外座位，提供宠物水碗"
+      maxlength="500"
+      bindinput="onTextInput"
+      auto-height
+    />
+    <view class="char-count">{{textContent.length}}/500</view>
+    <van-button
+      type="primary"
+      round
+      block
+      size="small"
+      loading="{{isAnalyzing}}"
+      loading-text="AI识别中..."
+      custom-class="analyze-btn"
+      disabled="{{!textContent}}"
+      bind:click="onAnalyzeText"
+    >
+      AI 智能识别
+    </van-button>
+  </view>
+
+  <!-- 图片上传模式 -->
+  <view wx:if="{{inputMode === 'image'}}" class="input-section">
+    <text class="section-title">上传截图</text>
+    <text class="tip-text">上传地点截图或评价截图，AI 将自动识别地点信息</text>
     <view class="upload-area" bindtap="onChooseImage">
       <image
         wx:if="{{imageUrl}}"
@@ -12,24 +52,24 @@
         mode="aspectFill"
       />
       <view wx:else class="upload-placeholder">
-        <text class="upload-icon">📷</text>
+        <van-icon name="photograph" size="64px" color="#94A3B8" />
         <text class="upload-text">点击上传截图</text>
         <text class="upload-hint">支持拍照或从相册选择</text>
       </view>
     </view>
   </view>
 
-  <!-- Analyzing -->
+  <!-- AI 识别中 -->
   <view wx:if="{{isAnalyzing}}" class="analyzing-section">
     <view class="loading-wrapper">
-      <van-loading size="48rpx" color="#3B82F6" />
-      <text class="loading-text">🤖 AI 正在识别中...</text>
+      <van-loading size="48rpx" color="{{colorPrimary}}" />
+      <text class="loading-text">AI 正在识别中...</text>
     </view>
   </view>
 
-  <!-- Results form -->
+  <!-- 识别结果表单 -->
   <view wx:if="{{extractedInfo && !isAnalyzing}}" class="form-section">
-    <text class="section-title">✏️ 确认信息</text>
+    <text class="section-title">确认信息</text>
 
     <view class="form-card">
       <van-field
@@ -71,10 +111,44 @@
       </view>
     </view>
 
-    <view class="form-card" wx:if="{{extractedInfo.tags.length > 0}}">
-      <text class="form-label">标签</text>
-      <view class="place-tags">
-        <text wx:for="{{extractedInfo.tags}}" wx:key="*this" class="tag">{{item}}</text>
+    <!-- 标签选择 -->
+    <view class="form-card tag-card">
+      <text class="form-label">宠物友好标签</text>
+      <text class="tag-hint">选择适用标签，也可自定义添加</text>
+      <view class="preset-tags">
+        <view
+          wx:for="{{presetTags}}"
+          wx:key="*this"
+          class="preset-tag {{selectedTags[item] ? 'preset-tag-active' : ''}}"
+          bindtap="onToggleTag"
+          data-tag="{{item}}"
+        >
+          <text>{{item}}</text>
+        </view>
+      </view>
+      <!-- 自定义标签输入 -->
+      <view class="custom-tag-row">
+        <input
+          class="custom-tag-input"
+          value="{{customTagInput}}"
+          placeholder="自定义标签"
+          bindinput="onCustomTagInput"
+          bindconfirm="onAddCustomTag"
+          maxlength="10"
+        />
+        <view class="custom-tag-add {{customTagInput ? 'custom-tag-add-active' : ''}}" bindtap="onAddCustomTag">
+          <van-icon name="plus" size="16px" />
+        </view>
+      </view>
+      <!-- 已选标签预览 -->
+      <view wx:if="{{selectedTagList.length > 0}}" class="selected-tags-preview">
+        <text class="selected-label">已选 {{selectedTagList.length}} 个标签：</text>
+        <view class="selected-tags-list">
+          <view wx:for="{{selectedTagList}}" wx:key="*this" class="selected-tag-chip">
+            <text>{{item}}</text>
+            <view class="tag-remove" bindtap="onRemoveTag" data-tag="{{item}}">×</view>
+          </view>
+        </view>
       </view>
     </view>
 
