@@ -19,8 +19,47 @@
     </view>
   </view>
 
+  <!-- 宠物 Banner -->
+  <view class="banner-bar" style="top: {{filterTop}}px;">
+    <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots indicator-color="rgba(59,130,246,0.25)" indicator-active-color="#3B82F6">
+      <swiper-item>
+        <view class="banner-card banner-gradient-1">
+          <view class="banner-icon-wrap">
+            <van-icon name="smile-o" size="36px" color="#FFF" />
+          </view>
+          <view class="banner-text">
+            <text class="banner-title">每日宠物小知识</text>
+            <text class="banner-desc">遛狗最佳时间是清晨和傍晚，避免中午暴晒哦~</text>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="banner-card banner-gradient-2">
+          <view class="banner-icon-wrap">
+            <van-icon name="fire-o" size="36px" color="#FFF" />
+          </view>
+          <view class="banner-text">
+            <text class="banner-title">热门推荐</text>
+            <text class="banner-desc">本周新增 3 个宠物友好餐厅，快来探索吧！</text>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="banner-card banner-gradient-3">
+          <view class="banner-icon-wrap">
+            <van-icon name="gem-o" size="36px" color="#FFF" />
+          </view>
+          <view class="banner-text">
+            <text class="banner-title">AI 智能推荐</text>
+            <text class="banner-desc">根据你的位置，为毛孩找到最近的友好地点~</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
   <!-- 分类筛选 -->
-  <scroll-view class="filter-bar" style="top: {{filterTop}}px;" scroll-x enhanced show-scrollbar="{{false}}">
+  <scroll-view class="filter-bar" style="top: {{filterTop + bannerHeight}}px;" scroll-x enhanced show-scrollbar="{{false}}">
     <view
       wx:for="{{placeTypes}}"
       wx:key="key"
