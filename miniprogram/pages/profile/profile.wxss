@@ -317,14 +317,29 @@
 
 /* 添加宠物弹窗 */
 .add-pet-popup {
-  padding: 32rpx 36rpx calc(32rpx + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
 }
 
 .popup-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32rpx;
+  padding: 32rpx 36rpx 20rpx;
+  flex-shrink: 0;
+}
+
+.popup-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 36rpx;
+  max-height: 55vh;
+}
+
+.popup-footer {
+  padding: 20rpx 36rpx calc(20rpx + env(safe-area-inset-bottom));
+  flex-shrink: 0;
 }
 
 .popup-title {

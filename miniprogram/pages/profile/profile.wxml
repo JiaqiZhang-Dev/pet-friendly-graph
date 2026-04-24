@@ -80,7 +80,7 @@
     round
     safe-area-inset-bottom
     bind:close="onCloseAddPet"
-    custom-style="padding: 0;"
+    custom-style="max-height: 80vh;"
   >
     <view class="add-pet-popup">
       <view class="popup-header">
@@ -89,6 +89,8 @@
           <van-icon name="cross" size="18px" color="#94A3B8" />
         </view>
       </view>
+
+      <scroll-view class="popup-scroll" scroll-y enhanced show-scrollbar="{{false}}">
 
       <!-- 昵称 -->
       <view class="popup-field">
@@ -155,17 +157,20 @@
           </view>
         </view>
       </view>
+      </scroll-view>
 
-      <van-button
-        type="primary"
-        round
-        block
-        custom-class="popup-submit"
-        disabled="{{!petForm.name || !petForm.breed}}"
-        bind:click="onConfirmAddPet"
-      >
-        确认添加 🐾
-      </van-button>
+      <view class="popup-footer">
+        <van-button
+          type="primary"
+          round
+          block
+          custom-class="popup-submit"
+          disabled="{{!petForm.name || !petForm.breed}}"
+          bind:click="onConfirmAddPet"
+        >
+          确认添加 🐾
+        </van-button>
+      </view>
     </view>
   </van-popup>
 
