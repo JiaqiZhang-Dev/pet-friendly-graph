@@ -133,6 +133,7 @@
         wx:for="{{filteredPlaces}}"
         wx:key="id"
         class="place-card {{activePlace === item.id ? 'place-card-active' : ''}}"
+        style="{{activePlace === item.id ? 'border-color:' + item.typeColor + '; box-shadow: 0 8rpx 28rpx ' + item.typeColor + '30;' : ''}}"
         data-id="{{item.id}}"
         bindtap="onPlaceTap"
       >
