@@ -7,8 +7,8 @@
     <view class="paw-deco paw-2">🐾</view>
     <view class="paw-deco paw-3">🐾</view>
 
-    <!-- Banner 轮播 — 每张不同渐变色卡片 -->
-    <view class="banner-row" style="height: {{navHeight}}px; margin-right: {{capsuleWidth + capsuleRight + 8}}px;">
+    <!-- Banner 轮播 — 可与胶囊重叠，更大更醒目 -->
+    <view class="banner-row" style="height: {{navHeight + 16}}px; margin-right: {{capsuleRight}}px;">
       <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots="{{false}}">
         <swiper-item>
           <view class="banner-card banner-blue">
@@ -58,21 +58,21 @@
         <van-icon name="photograph" size="20px" color="#FFF" />
       </view>
     </view>
-
-    <!-- 分类筛选 -->
-    <scroll-view class="filter-row" scroll-x enhanced show-scrollbar="{{false}}">
-      <view
-        wx:for="{{placeTypes}}"
-        wx:key="key"
-        class="filter-chip {{selectedType === item.key ? 'active' : ''}}"
-        data-type="{{item.key}}"
-        bindtap="onFilterType"
-      >
-        <van-icon name="{{item.iconName}}" size="16px" color="{{selectedType === item.key ? '#3B82F6' : '#FFF'}}" />
-        <text class="chip-label">{{item.label}}</text>
-      </view>
-    </scroll-view>
   </view>
+
+  <!-- 分类筛选 — 独立浮在地图上方 -->
+  <scroll-view class="filter-bar" style="top: {{headerBottom}}px;" scroll-x enhanced show-scrollbar="{{false}}">
+    <view
+      wx:for="{{placeTypes}}"
+      wx:key="key"
+      class="filter-chip {{selectedType === item.key ? 'active' : ''}}"
+      data-type="{{item.key}}"
+      bindtap="onFilterType"
+    >
+      <van-icon name="{{item.iconName}}" size="16px" color="{{selectedType === item.key ? '#FFF' : '#3B82F6'}}" />
+      <text class="chip-label">{{item.label}}</text>
+    </view>
+  </scroll-view>
 
   <!-- 地图区域 -->
   <view class="map-container">
