@@ -144,10 +144,6 @@
               <view class="type-badge" style="background: {{item.typeColor}}20; border-color: {{item.typeColor}}30;">
                 <van-icon name="{{item.typeIcon}}" size="16px" color="{{item.typeColor}}" />
               </view>
-              <view class="rating-badge">
-                <van-icon name="star" size="12px" color="#F59E0B" />
-                <text class="rating-num">{{item.rating}}</text>
-              </view>
             </view>
             <view class="place-addr-row">
               <van-icon name="location-o" size="13px" color="#94A3B8" />
@@ -159,6 +155,8 @@
               <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
             </view>
             <view class="card-footer">
+              <van-icon name="star" size="13px" color="#F59E0B" />
+              <text class="rating-num">{{item.rating}}</text>
               <van-icon name="chat-o" size="13px" color="#94A3B8" />
               <text class="footer-meta">{{item.reviewCount}} 条评价</text>
               <text class="footer-dot">·</text>
