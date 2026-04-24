@@ -226,5 +226,5 @@ export const typeColorMap: Record<string, string> = {
   park: '#22C55E',
   hotel: '#6366F1',
   'pet-store': '#EC4899',
-  'pet-hospital': '#EF4444',
+  'pet-hospital': '#F472B6',
 }
