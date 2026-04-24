@@ -155,9 +155,7 @@
               <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
             </view>
             <view class="card-footer">
-              <van-icon name="star" size="13px" color="#F59E0B" />
-              <text class="rating-num">{{item.rating}}</text>
-              <van-icon name="chat-o" size="13px" color="#94A3B8" />
+              <van-rate value="{{item.rating}}" size="12" color="#F59E0B" void-color="#E2E8F0" allow-half readonly />
               <text class="footer-meta">{{item.reviewCount}} 条评价</text>
               <text class="footer-dot">·</text>
               <van-icon name="clock-o" size="13px" color="#94A3B8" />
