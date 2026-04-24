@@ -334,8 +334,15 @@
 .card-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12rpx;
   margin-bottom: 8rpx;
+}
+
+.place-name {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: var(--color-text);
+  flex: 1;
 }
 
 .type-badge {
@@ -347,20 +354,6 @@
   justify-content: center;
   flex-shrink: 0;
   border: 2rpx solid;
-}
-
-.card-meta-row {
-  display: flex;
-  align-items: center;
-  gap: 6rpx;
-  margin-bottom: 14rpx;
-}
-
-.place-name {
-  font-size: 32rpx;
-  font-weight: 800;
-  color: var(--color-text);
-  flex: 1;
 }
 
 .rating-badge {

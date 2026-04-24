@@ -144,12 +144,12 @@
               <view class="type-badge" style="background: {{item.typeColor}}20; border-color: {{item.typeColor}}30;">
                 <van-icon name="{{item.typeIcon}}" size="16px" color="{{item.typeColor}}" />
               </view>
-            </view>
-            <view class="card-meta-row">
               <view class="rating-badge">
                 <van-icon name="star" size="12px" color="#F59E0B" />
                 <text class="rating-num">{{item.rating}}</text>
               </view>
+            </view>
+            <view class="place-addr-row">
               <van-icon name="location-o" size="13px" color="#94A3B8" />
               <text class="place-dist">{{item.distanceText}}</text>
               <text class="place-dot">·</text>
