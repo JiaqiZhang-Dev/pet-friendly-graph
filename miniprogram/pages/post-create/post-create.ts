@@ -7,8 +7,6 @@ Page({
     location: '',
     colorPrimary: '#3B82F6',
     isPublishing: false,
-    petTypeOptions: ['柯基', '金毛', '拉布拉多', '泰迪', '哈士奇', '萨摩耶', '柴犬', '边牧',
-      '布偶猫', '英短', '美短', '橘猫', '暹罗猫', '中华田园犬', '中华田园猫', '其他'],
     topicOptions: [
       '宠物日常', '遛弯打卡', '宠物友好探店',
       '养宠经验', '宠物美食', '萌宠瞬间',
@@ -22,8 +20,43 @@ Page({
     wx.getLocation({
       type: 'gcj02',
       success: (res) => {
-        // 逆地理编码获取地名（需要腾讯地图 API，先用经纬度占位）
         this.setData({ location: '当前位置 (' + res.latitude.toFixed(4) + ', ' + res.longitude.toFixed(4) + ')' })
+      },
+    })
+    // 从缓存读取宠物列表，自动选中第一个
+    var pets = wx.getStorageSync('myPets') || []
+    if (pets.length > 0) {
+      this.setData({ petType: pets[0].emoji + ' ' + pets[0].name + '（' + pets[0].breed + '）' })
+    }
+    this._pets = pets
+  },
+
+  _pets: [] as any[],
+
+  onChoosePetType() {
+    var pets = this._pets
+    if (!pets || pets.length === 0) {
+      wx.showModal({
+        title: '还没有添加宠物',
+        content: '去"我的"页面添加你的毛孩子吧~',
+        confirmText: '去添加',
+        success: function(res) {
+          if (res.confirm) {
+            wx.switchTab({ url: '/pages/profile/profile' })
+          }
+        },
+      })
+      return
+    }
+    var names: string[] = []
+    for (var i = 0; i < pets.length; i++) {
+      names.push(pets[i].emoji + ' ' + pets[i].name + '（' + pets[i].breed + '）')
+    }
+    var self = this
+    wx.showActionSheet({
+      itemList: names,
+      success: function(res) {
+        self.setData({ petType: names[res.tapIndex] })
       },
     })
   },
@@ -56,14 +89,7 @@ Page({
     this.setData({ images: images })
   },
 
-  onChoosePetType() {
-    wx.showActionSheet({
-      itemList: this.data.petTypeOptions,
-      success: (res) => {
-        this.setData({ petType: this.data.petTypeOptions[res.tapIndex] })
-      },
-    })
-  },
+
 
   onChooseLocation() {
     wx.chooseLocation({
