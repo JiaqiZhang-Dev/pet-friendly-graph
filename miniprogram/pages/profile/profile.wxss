@@ -42,24 +42,27 @@
 
 .avatar-wrapper {
   margin-bottom: 20rpx;
+  position: relative;
 }
 
-.avatar-btn {
+.avatar-btn-hidden {
+  position: absolute;
+  width: 176rpx;
+  height: 176rpx;
+  opacity: 0;
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+}
+
+.avatar-circle {
   width: 176rpx;
   height: 176rpx;
   border-radius: 50%;
   overflow: hidden;
-  padding: 0;
-  margin: 0;
-  background: none;
   border: 8rpx solid rgba(255,255,255,0.6);
   box-shadow: 6rpx 6rpx 24rpx rgba(59,130,246,0.25), -4rpx -4rpx 12rpx rgba(255,255,255,0.40);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-sizing: border-box;
-  line-height: 1;
-  min-height: 0;
 }
 
 .avatar-btn::after {

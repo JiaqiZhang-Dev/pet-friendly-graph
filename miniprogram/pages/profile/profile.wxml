@@ -3,7 +3,8 @@
   <!-- Header -->
   <view class="profile-header">
     <view class="avatar-wrapper">
-      <button class="avatar-btn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <button class="avatar-btn-hidden" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"></button>
+      <view class="avatar-circle" bindtap="onTapAvatar">
         <image
           wx:if="{{userInfo.avatarUrl}}"
           class="avatar-img"
@@ -13,7 +14,7 @@
         <view wx:else class="avatar-placeholder">
           <van-icon name="friends" size="36px" color="#FFF" />
         </view>
-      </button>
+      </view>
     </view>
     <text class="nick-name">{{userInfo.nickName}}</text>
     <view class="profile-bubble">
