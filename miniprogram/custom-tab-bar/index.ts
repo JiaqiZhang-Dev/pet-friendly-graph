@@ -1,25 +1,37 @@
 // custom-tab-bar/index.ts
-Component({
+interface TabItem {
+  pagePath: string
+  text: string
+  iconName: string
+  activeIconName: string
+}
+
+interface TabBarData {
+  selected: number
+  list: TabItem[]
+}
+
+Component<TabBarData>({
   data: {
     selected: 0,
     list: [
       {
         pagePath: '/pages/map/map',
         text: '地图',
-        icon: '🗺',
-        activeIcon: '🗺️',
+        iconName: 'location-o',
+        activeIconName: 'location',
       },
       {
         pagePath: '/pages/community/community',
         text: '宠物圈',
-        icon: '🐾',
-        activeIcon: '🐕',
+        iconName: 'friends-o',
+        activeIconName: 'friends',
       },
       {
         pagePath: '/pages/profile/profile',
         text: '我的',
-        icon: '😊',
-        activeIcon: '🧡',
+        iconName: 'contact',
+        activeIconName: 'manager',
       },
     ],
   },

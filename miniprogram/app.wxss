@@ -1,38 +1,45 @@
-/**app.wxss — Modern Pet Claymorphism**/
+/**app.wxss — Cute Pet Claymorphism (Blue)**/
 page {
-  /* Warm coral + modern palette */
-  --color-primary: #F97316;
-  --color-primary-dark: #EA580C;
-  --color-primary-light: #FFF1E6;
-  --color-accent: #2563EB;
-  --color-accent-light: #EFF6FF;
+  /* Cool blue + cute palette */
+  --color-primary: #3B82F6;
+  --color-primary-dark: #2563EB;
+  --color-primary-light: #EFF6FF;
+  --color-accent: #F97316;
+  --color-accent-light: #FFF7ED;
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
   --color-pink: #F472B6;
   --color-mint: #34D399;
   --color-lavender: #A78BFA;
-  --color-bg: #FFF7ED;
+  --color-bg: #F0F7FF;
   --color-card: #FFFFFF;
-  --color-text: #7C2D12;
-  --color-text-secondary: #A8774E;
-  --color-text-hint: #C4A882;
-  --color-border: #FDE8D0;
-  /* Claymorphism tokens */
-  --radius-sm: 20rpx;
-  --radius-md: 28rpx;
-  --radius-lg: 40rpx;
-  --radius-xl: 56rpx;
-  --shadow-clay: 6rpx 6rpx 16rpx rgba(249,115,22,0.10), -4rpx -4rpx 12rpx rgba(255,255,255,0.80);
-  --shadow-card: 0 8rpx 28rpx rgba(249,115,22,0.08), 0 2rpx 6rpx rgba(249,115,22,0.04);
-  --shadow-float: 0 12rpx 36rpx rgba(249,115,22,0.14), 0 2rpx 8rpx rgba(249,115,22,0.06);
-  --shadow-inset: inset 2rpx 2rpx 6rpx rgba(249,115,22,0.06), inset -2rpx -2rpx 6rpx rgba(255,255,255,0.70);
-  --border-clay: 3rpx solid rgba(255,255,255,0.50);
+  --color-text: #1E293B;
+  --color-text-secondary: #64748B;
+  --color-text-hint: #94A3B8;
+  --color-border: #DBEAFE;
+  /* Bigger, cuter radius */
+  --radius-sm: 24rpx;
+  --radius-md: 36rpx;
+  --radius-lg: 48rpx;
+  --radius-xl: 60rpx;
+  --radius-full: 999rpx;
+  /* Softer, dreamier shadows */
+  --shadow-clay: 6rpx 6rpx 20rpx rgba(59,130,246,0.10), -4rpx -4rpx 14rpx rgba(255,255,255,0.85);
+  --shadow-card: 0 10rpx 32rpx rgba(59,130,246,0.07), 0 2rpx 8rpx rgba(59,130,246,0.04);
+  --shadow-float: 0 14rpx 40rpx rgba(59,130,246,0.14), 0 4rpx 10rpx rgba(59,130,246,0.06);
+  --shadow-inset: inset 2rpx 2rpx 8rpx rgba(59,130,246,0.05), inset -2rpx -2rpx 8rpx rgba(255,255,255,0.75);
+  --border-clay: 2rpx solid rgba(255,255,255,0.55);
+  /* Gradient presets */
+  --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #60A5FA 50%, #93C5FD 100%);
+  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #F8FBFF 100%);
+  --gradient-page: linear-gradient(180deg, #F0F7FF 0%, #DBEAFE 40%, #F0F7FF 100%);
 
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'SF Rounded', sans-serif;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Hiragino Sans GB', 'SF Rounded', 'Noto Sans SC', sans-serif;
   font-size: 28rpx;
+  letter-spacing: 0.5rpx;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background: var(--gradient-page);
   box-sizing: border-box;
 }
 
@@ -43,7 +50,7 @@ page {
 }
 
 .card {
-  background: var(--color-card);
+  background: var(--gradient-card);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
   border: var(--border-clay);
@@ -52,29 +59,29 @@ page {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+  background: var(--gradient-primary);
   color: #fff;
   border: none;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-full);
   padding: 24rpx 48rpx;
   font-size: 28rpx;
   font-weight: 700;
   text-align: center;
   letter-spacing: 2rpx;
-  box-shadow: 0 6rpx 20rpx rgba(249,115,22,0.30);
+  box-shadow: 0 8rpx 24rpx rgba(59,130,246,0.30);
 }
 
 .btn-primary:active {
   opacity: 0.9;
   transform: scale(0.97);
-  box-shadow: 0 2rpx 8rpx rgba(249,115,22,0.20);
+  box-shadow: 0 2rpx 8rpx rgba(59,130,246,0.20);
 }
 
 .btn-secondary {
   background: var(--color-primary-light);
   color: var(--color-primary);
-  border: 3rpx solid rgba(249,115,22,0.15);
-  border-radius: var(--radius-xl);
+  border: 3rpx solid rgba(59,130,246,0.15);
+  border-radius: var(--radius-full);
   padding: 24rpx 48rpx;
   font-size: 28rpx;
   font-weight: 700;
@@ -87,15 +94,15 @@ page {
 
 .tag {
   display: inline-block;
-  background: var(--color-primary-light);
+  background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
   color: var(--color-primary);
   font-size: 22rpx;
-  padding: 8rpx 22rpx;
-  border-radius: var(--radius-xl);
+  padding: 8rpx 24rpx;
+  border-radius: var(--radius-full);
   margin-right: 12rpx;
   margin-bottom: 10rpx;
   font-weight: 600;
-  border: 2rpx solid rgba(249,115,22,0.08);
+  border: 2rpx solid rgba(59,130,246,0.08);
 }
 
 .section-title {
@@ -104,6 +111,9 @@ page {
   color: var(--color-text);
   margin-bottom: 20rpx;
   letter-spacing: 1rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
 }
 
 .flex-row {
@@ -137,7 +147,7 @@ page {
 }
 
 /* Colorful tag variants */
-.tag-orange  { background: #FFF1E6; color: #EA580C; }
+.tag-orange  { background: #FFF7ED; color: #EA580C; }
 .tag-blue    { background: #EFF6FF; color: #2563EB; }
 .tag-pink    { background: #FDF2F8; color: #DB2777; }
 .tag-mint    { background: #ECFDF5; color: #059669; }
@@ -146,15 +156,15 @@ page {
 
 /* Vant Weapp theme overrides */
 page {
-  --button-primary-background-color: #F97316;
-  --button-primary-border-color: #F97316;
-  --tabs-bottom-bar-color: #F97316;
-  --tabs-default-color: #F97316;
-  --tag-primary-color: #F97316;
-  --rate-icon-full-color: #F97316;
-  --field-input-text-color: #7C2D12;
-  --uploader-upload-background-color: #FFF7ED;
-  --progress-color: linear-gradient(90deg, #F97316, #FB923C);
-  --loading-spinner-color: #F97316;
-  --empty-description-color: #A8774E;
+  --button-primary-background-color: #3B82F6;
+  --button-primary-border-color: #3B82F6;
+  --tabs-bottom-bar-color: #3B82F6;
+  --tabs-default-color: #3B82F6;
+  --tag-primary-color: #3B82F6;
+  --rate-icon-full-color: #3B82F6;
+  --field-input-text-color: #1E293B;
+  --uploader-upload-background-color: #F0F7FF;
+  --progress-color: linear-gradient(90deg, #3B82F6, #60A5FA);
+  --loading-spinner-color: #3B82F6;
+  --empty-description-color: #64748B;
 }

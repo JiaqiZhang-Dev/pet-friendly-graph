@@ -24,7 +24,7 @@ Page({
 
   getTypeLabel(type: string): string {
     const found = placeTypes.find(t => t.key === type)
-    return found ? `${found.icon} ${found.label}` : '📍 其他'
+    return found ? found.label : '其他'
   },
 
   // 拨打电话

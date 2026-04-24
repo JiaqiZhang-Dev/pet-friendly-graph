@@ -30,14 +30,14 @@ export interface Review {
 }
 
 export const placeTypes = [
-  { key: 'all', label: '全部', icon: '📍' },
-  { key: 'mall', label: '商场', icon: '🏬' },
-  { key: 'restaurant', label: '餐厅', icon: '🍽' },
-  { key: 'cafe', label: '咖啡厅', icon: '☕' },
-  { key: 'park', label: '公园', icon: '🌳' },
-  { key: 'hotel', label: '酒店', icon: '🏨' },
-  { key: 'pet-store', label: '宠物店', icon: '🛒' },
-  { key: 'pet-hospital', label: '宠物医院', icon: '🏥' },
+  { key: 'all', label: '全部', iconName: 'apps-o' },
+  { key: 'mall', label: '商场', iconName: 'shop-o' },
+  { key: 'restaurant', label: '餐厅', iconName: 'coupon-o' },
+  { key: 'cafe', label: '咖啡厅', iconName: 'hot-o' },
+  { key: 'park', label: '公园', iconName: 'flower-o' },
+  { key: 'hotel', label: '酒店', iconName: 'hotel-o' },
+  { key: 'pet-store', label: '宠物店', iconName: 'shopping-cart-o' },
+  { key: 'pet-hospital', label: '宠物医院', iconName: 'shield-o' },
 ]
 
 export const mockPlaces: Place[] = [

@@ -28,7 +28,7 @@
       data-type="{{item.key}}"
       bindtap="onFilterType"
     >
-      <text class="chip-icon">{{item.icon}}</text>
+      <van-icon name="{{item.iconName}}" size="16px" color="{{selectedType === item.key ? '#FFF' : '#3B82F6'}}" />
       <text class="chip-label">{{item.label}}</text>
     </view>
   </scroll-view>
@@ -47,6 +47,7 @@
       enable-scroll
       enable-rotate="{{false}}"
       bindmarkertap="onMarkerTap"
+      bindregionchange="onRegionChange"
     />
 
     <!-- 浮动操作按钮组 -->
@@ -62,10 +63,60 @@
       </view>
     </view>
 
-    <!-- 底部提示胶囊 -->
-    <view class="map-hint-pill">
-      <van-icon name="smile-o" size="16px" color="#3B82F6" />
-      <text class="hint-text">发现 {{filteredPlaces.length}} 个宠物友好地点</text>
+    <!-- 底部地点面板 — 按距离排序自动展示 -->
+    <view class="bottom-panel">
+      <view class="panel-header">
+        <view class="panel-indicator"></view>
+        <text class="panel-title">附近宠物友好地点</text>
+        <text class="panel-count">{{filteredPlaces.length}} 个</text>
+      </view>
+      <scroll-view
+        class="panel-scroll"
+        scroll-x
+        enhanced
+        show-scrollbar="{{false}}"
+        scroll-into-view="{{scrollToPlaceId}}"
+        scroll-with-animation
+      >
+        <view
+          wx:for="{{filteredPlaces}}"
+          wx:key="id"
+          id="place-{{item.id}}"
+          class="panel-card {{activePlace === item.id ? 'panel-card-active' : ''}}"
+          data-id="{{item.id}}"
+          data-lat="{{item.latitude}}"
+          data-lng="{{item.longitude}}"
+          bindtap="onPanelCardTap"
+        >
+          <view class="panel-card-top">
+            <text class="panel-card-name">{{item.name}}</text>
+            <view class="panel-card-rating">
+              <van-icon name="star" size="12px" color="#F59E0B" />
+              <text class="panel-rating-num">{{item.rating}}</text>
+            </view>
+          </view>
+          <view class="panel-card-meta">
+            <van-icon name="location-o" size="12px" color="#94A3B8" />
+            <text class="panel-card-dist">{{item.distanceText}}</text>
+            <text class="panel-card-dot">·</text>
+            <text class="panel-card-type">{{item.typeLabel}}</text>
+          </view>
+          <view class="panel-card-tags">
+            <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" wx:if="{{index < 2}}" class="panel-tag">{{tag}}</text>
+          </view>
+          <view class="panel-card-bottom">
+            <van-icon name="chat-o" size="12px" color="#94A3B8" />
+            <text class="panel-card-reviews">{{item.reviewCount}} 评价</text>
+            <text class="panel-card-dot">·</text>
+            <van-icon name="clock-o" size="12px" color="#94A3B8" />
+            <text class="panel-card-time">{{item.openTime}}</text>
+          </view>
+        </view>
+        <view wx:if="{{filteredPlaces.length === 0}}" class="panel-empty">
+          <van-icon name="search" size="32px" color="#DBEAFE" />
+          <text class="panel-empty-text">暂无附近地点</text>
+        </view>
+      </scroll-view>
     </view>
   </view>
 
@@ -74,7 +125,7 @@
     <view class="list-header">
       <view class="list-title-row">
         <text class="list-title">{{filteredPlaces.length}} 个好去处</text>
-        <text class="list-subtitle">带毛孩子出门啦~</text>
+        <text class="list-subtitle">按距离排序 · 带毛孩子出门啦~</text>
       </view>
       <view class="switch-map-btn" bindtap="toggleListView">
         <van-icon name="location-o" size="14px" color="#3B82F6" />
@@ -90,7 +141,6 @@
         data-id="{{item.id}}"
         bindtap="onPlaceTap"
       >
-        <!-- 类型色带 -->
         <view class="card-accent-bar"></view>
         <view class="card-body">
           <view class="card-top flex-between">
@@ -104,7 +154,7 @@
           </view>
           <view class="place-addr-row">
             <van-icon name="location-o" size="13px" color="#94A3B8" />
-            <text class="place-addr">{{item.address}}</text>
+            <text class="place-addr">{{item.distanceText}} · {{item.address}}</text>
           </view>
           <view class="place-tags">
             <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>

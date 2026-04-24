@@ -10,13 +10,13 @@
   "window": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "毛孩友好地图",
-    "navigationBarBackgroundColor": "#F97316"
+    "navigationBarBackgroundColor": "#3B82F6"
   },
   "tabBar": {
     "custom": true,
-    "color": "#A8774E",
-    "selectedColor": "#F97316",
-    "backgroundColor": "#FFFAF5",
+    "color": "#94A3B8",
+    "selectedColor": "#3B82F6",
+    "backgroundColor": "#F8FBFF",
     "list": [
       {
         "pagePath": "pages/map/map",
