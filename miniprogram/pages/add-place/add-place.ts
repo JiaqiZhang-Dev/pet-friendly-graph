@@ -47,7 +47,7 @@ Page({
         isAnalyzing: false,
         extractedInfo: {
           name: '示例宠物友好餐厅',
-          address: '北京市朝阳区某某路123号',
+          address: '上海市徐汇区某某路123号',
           type: 'restaurant',
           tags: ['宠物友好', '户外座位'],
         },

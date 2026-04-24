@@ -25,10 +25,10 @@ App<IAppOption>({
         }
       },
       fail: () => {
-        // 默认位置：北京天安门
+        // 默认位置：上海人民广场
         this.globalData.location = {
-          latitude: 39.9042,
-          longitude: 116.4074,
+          latitude: 31.2304,
+          longitude: 121.4737,
         }
       },
     })

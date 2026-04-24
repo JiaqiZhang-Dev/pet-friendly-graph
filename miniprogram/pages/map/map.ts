@@ -54,8 +54,8 @@ const PANEL_FULL = 1100  // full: scrollable list
 
 Page({
   data: {
-    latitude: 39.9042,
-    longitude: 116.4074,
+    latitude: 31.2304,
+    longitude: 121.4737,
     scale: 14,
     markers: [] as MapMarker[],
     places: [] as PlaceWithDistance[],
