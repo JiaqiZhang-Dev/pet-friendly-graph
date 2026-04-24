@@ -92,8 +92,8 @@ Page({
     const capsuleRight = sysInfo.windowWidth - menuBtn.right
     const capsuleWidth = menuBtn.width
     const rpxRatio = sysInfo.windowWidth / 750
-    // Banner bottom = navTop + bannerHeight(navHeight+16) + 8px gap
-    const bannerBottom = navTop + navHeight + 16 + 8
+    // Banner bottom = navTop + bannerHeight(navHeight+28) + 8px gap
+    const bannerBottom = navTop + navHeight + 28 + 8
     // Search bar height ~76rpx
     const searchH = Math.round(76 * rpxRatio)
     const searchTop = bannerBottom
