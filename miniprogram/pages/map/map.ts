@@ -71,6 +71,8 @@ Page({
     searchTop: 0,
     filterTop: 0,
     activePlace: '',
+    activePlaceData: null as PlaceWithDistance | null,
+    polyline: [] as any[],
     scrollToPlaceId: '',
     panelState: 'half' as 'half' | 'full',
     panelHeight: PANEL_HALF,
@@ -245,22 +247,79 @@ Page({
     this.updateMarkers(filtered)
   },
 
-  // 点击 marker — 高亮对应卡片
+  // 点击 marker — 选中地点并显示路线
   onMarkerTap(e: WechatMiniprogram.MarkerTap) {
     const markerId = e.detail.markerId
     const place = this.data.filteredPlaces[markerId]
     if (place) {
-      this.setData({
-        activePlace: place.id,
-      })
+      this.selectPlace(place)
     }
   },
 
-  // 点击列表卡片 — 跳转详情
+  // 点击列表卡片 — 选中地点，地图定位并显示路线
   onPlaceTap(e: WechatMiniprogram.TouchEvent) {
     const id = e.currentTarget.dataset.id as string
-    wx.navigateTo({
-      url: `/pages/place-detail/place-detail?id=${id}`,
+    const place = this.data.filteredPlaces.find(function(p) { return p.id === id })
+    if (place) {
+      this.selectPlace(place)
+    }
+  },
+
+  /** 选中地点：地图居中、画路线、高亮卡片 */
+  selectPlace(place: PlaceWithDistance) {
+    const userLat = app.globalData.location ? app.globalData.location.latitude : this.data.latitude
+    const userLng = app.globalData.location ? app.globalData.location.longitude : this.data.longitude
+
+    // 画从用户位置到目标地点的路线（直线）
+    const polyline = [{
+      points: [
+        { latitude: userLat, longitude: userLng },
+        { latitude: place.latitude, longitude: place.longitude },
+      ],
+      color: '#3B82F6',
+      width: 6,
+      dottedLine: true,
+      arrowLine: true,
+      borderColor: '#2563EB',
+      borderWidth: 2,
+    }]
+
+    this.setData({
+      activePlace: place.id,
+      activePlaceData: place,
+      polyline: polyline,
+    })
+
+    // 地图包含用户和目标两个点
+    const mapCtx = wx.createMapContext('petMap')
+    mapCtx.includePoints({
+      points: [
+        { latitude: userLat, longitude: userLng },
+        { latitude: place.latitude, longitude: place.longitude },
+      ],
+      padding: [160, 60, 400, 60],
+    })
+  },
+
+  /** 打开微信导航 */
+  onNavigate() {
+    const place = this.data.activePlaceData
+    if (!place) return
+    wx.openLocation({
+      latitude: place.latitude,
+      longitude: place.longitude,
+      name: place.name,
+      address: place.address,
+      scale: 16,
+    })
+  },
+
+  /** 清除路线和选中状态 */
+  onClearRoute() {
+    this.setData({
+      activePlace: '',
+      activePlaceData: null,
+      polyline: [],
     })
   },
 

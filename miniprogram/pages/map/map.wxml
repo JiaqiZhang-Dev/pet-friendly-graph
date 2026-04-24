@@ -81,6 +81,7 @@
       longitude="{{longitude}}"
       scale="{{scale}}"
       markers="{{markers}}"
+      polyline="{{polyline}}"
       show-location
       enable-zoom
       enable-scroll
@@ -91,6 +92,12 @@
 
     <!-- 浮动操作按钮 -->
     <view class="fab-group" style="bottom: calc({{panelHeight}}rpx + 160rpx);">
+      <view wx:if="{{activePlace}}" class="fab-btn fab-nav" bindtap="onNavigate">
+        <van-icon name="guide-o" size="22px" color="#FFF" />
+      </view>
+      <view wx:if="{{activePlace}}" class="fab-btn" bindtap="onClearRoute">
+        <van-icon name="cross" size="20px" color="#EF4444" />
+      </view>
       <view class="fab-btn" bindtap="moveToLocation">
         <van-icon name="aim" size="22px" color="#3B82F6" />
       </view>

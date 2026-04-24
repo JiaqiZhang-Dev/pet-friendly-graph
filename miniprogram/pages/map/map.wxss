@@ -242,6 +242,11 @@
   transform: scale(0.9);
 }
 
+.fab-nav {
+  background: var(--gradient-primary);
+  box-shadow: 0 6rpx 20rpx rgba(59,130,246,0.30);
+}
+
 /* ===== Bottom Sheet ===== */
 .bottom-sheet {
   position: fixed;
