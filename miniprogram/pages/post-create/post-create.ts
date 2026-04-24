@@ -17,6 +17,17 @@ Page({
     selectedTopics: {} as Record<string, boolean>,
   },
 
+  onLoad() {
+    // 默认获取当前位置
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+        // 逆地理编码获取地名（需要腾讯地图 API，先用经纬度占位）
+        this.setData({ location: '当前位置 (' + res.latitude.toFixed(4) + ', ' + res.longitude.toFixed(4) + ')' })
+      },
+    })
+  },
+
   onContentInput(e: WechatMiniprogram.Input) {
     this.setData({ content: e.detail.value })
   },
