@@ -431,13 +431,19 @@
 .paw-rating {
   display: flex;
   align-items: center;
-  gap: 4rpx;
+  gap: 6rpx;
   margin-right: 8rpx;
 }
 
 .paw-icon {
-  width: 28rpx;
-  height: 28rpx;
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.rating-score {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #D97706;
 }
 
 .footer-meta {
