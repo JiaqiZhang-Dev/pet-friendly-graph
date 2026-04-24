@@ -32,7 +32,7 @@ page {
   --shadow-inset: inset 2rpx 2rpx 8rpx rgba(139,92,246,0.05), inset -2rpx -2rpx 8rpx rgba(255,255,255,0.75);
   --border-clay: 2rpx solid rgba(255,255,255,0.55);
   /* Gradient presets — blue to purple */
-  --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
   --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #FAF8FF 100%);
   --gradient-page: linear-gradient(180deg, #F5F3FF 0%, #EDE9FE 40%, #F5F3FF 100%);
 

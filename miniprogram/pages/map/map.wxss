@@ -48,9 +48,9 @@
   overflow: hidden;
 }
 
-.banner-blue   { background: linear-gradient(135deg, #3B82F6, #60A5FA); }
-.banner-purple { background: linear-gradient(135deg, #8B5CF6, #A78BFA); }
-.banner-cyan   { background: linear-gradient(135deg, #6366F1, #818CF8); }
+.banner-blue   { background: linear-gradient(135deg, #2563EB, #60A5FA); }
+.banner-purple { background: linear-gradient(135deg, #7C3AED, #A78BFA); }
+.banner-cyan   { background: linear-gradient(135deg, #4F46E5, #818CF8); }
 
 .banner-icon-wrap {
   width: 64rpx;
