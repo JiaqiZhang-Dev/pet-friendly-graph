@@ -247,31 +247,13 @@ Page({
     this.updateMarkers(filtered)
   },
 
-  // 点击 marker — 选中地点并显示路线
-  onMarkerTap(e: WechatMiniprogram.MarkerTap) {
-    const markerId = e.detail.markerId
-    const place = this.data.filteredPlaces[markerId]
-    if (place) {
-      this.selectPlace(place)
-    }
-  },
+  // 选中地点的通用逻辑：地图居中、画路线、高亮卡片
+  _showRoute(place: PlaceWithDistance) {
+    const loc = app.globalData.location
+    const userLat = loc ? loc.latitude : this.data.latitude
+    const userLng = loc ? loc.longitude : this.data.longitude
 
-  // 点击列表卡片 — 选中地点，地图定位并显示路线
-  onPlaceTap(e: WechatMiniprogram.TouchEvent) {
-    const id = e.currentTarget.dataset.id as string
-    const place = this.data.filteredPlaces.find(function(p) { return p.id === id })
-    if (place) {
-      this.selectPlace(place)
-    }
-  },
-
-  /** 选中地点：地图居中、画路线、高亮卡片 */
-  selectPlace(place: PlaceWithDistance) {
-    const userLat = app.globalData.location ? app.globalData.location.latitude : this.data.latitude
-    const userLng = app.globalData.location ? app.globalData.location.longitude : this.data.longitude
-
-    // 画从用户位置到目标地点的路线（直线）
-    const polyline = [{
+    const line = [{
       points: [
         { latitude: userLat, longitude: userLng },
         { latitude: place.latitude, longitude: place.longitude },
@@ -287,10 +269,9 @@ Page({
     this.setData({
       activePlace: place.id,
       activePlaceData: place,
-      polyline: polyline,
+      polyline: line,
     })
 
-    // 地图包含用户和目标两个点
     const mapCtx = wx.createMapContext('petMap')
     mapCtx.includePoints({
       points: [
@@ -299,6 +280,31 @@ Page({
       ],
       padding: [160, 60, 400, 60],
     })
+  },
+
+  // 点击 marker — 选中地点并显示路线
+  onMarkerTap(e: WechatMiniprogram.MarkerTap) {
+    const markerId = e.detail.markerId
+    const place = this.data.filteredPlaces[markerId]
+    if (place) {
+      this._showRoute(place)
+    }
+  },
+
+  // 点击列表卡片 — 选中地点，地图定位并显示路线
+  onPlaceTap(e: WechatMiniprogram.TouchEvent) {
+    const id = e.currentTarget.dataset.id as string
+    const list = this.data.filteredPlaces
+    var place: PlaceWithDistance | undefined
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        place = list[i]
+        break
+      }
+    }
+    if (place) {
+      this._showRoute(place)
+    }
   },
 
   /** 打开微信导航 */
