@@ -49,9 +49,8 @@ function formatDistance(meters: number): string {
   return `${(meters / 1000).toFixed(1)}km`
 }
 
-const PANEL_PEEK = 140    // collapsed: just handle visible
-const PANEL_HALF = 500   // half: horizontal card scroll
-const PANEL_FULL = 1100  // full: vertical list (≈85vh)
+const PANEL_HALF = 380   // half: shows handle + 1 big card
+const PANEL_FULL = 1100  // full: scrollable list
 
 Page({
   data: {
@@ -67,8 +66,7 @@ Page({
     mapHeight: 0,
     activePlace: '',
     scrollToPlaceId: '',
-    // Bottom sheet states
-    panelState: 'half' as 'peek' | 'half' | 'full',
+    panelState: 'half' as 'half' | 'full',
     panelHeight: PANEL_HALF,
   },
 
@@ -186,46 +184,26 @@ Page({
     this.updateMarkers(filtered)
   },
 
-  // 点击 marker — 高亮底部面板卡片并滚动到该卡片
+  // 点击 marker — 高亮对应卡片
   onMarkerTap(e: WechatMiniprogram.MarkerTap) {
     const markerId = e.detail.markerId
     const place = this.data.filteredPlaces[markerId]
     if (place) {
-      const update: Record<string, any> = {
+      this.setData({
         activePlace: place.id,
-        scrollToPlaceId: `place-${place.id}`,
-      }
-      // Auto-expand to half if peeked
-      if (this.data.panelState === 'peek') {
-        update.panelState = 'half'
-        update.panelHeight = PANEL_HALF
-      }
-      this.setData(update)
+      })
     }
   },
 
-  // 点击底部面板卡片 — 移动地图到该地点并打开详情
-  onPanelCardTap(e: WechatMiniprogram.TouchEvent) {
+  // 点击列表卡片 — 跳转详情
+  onPlaceTap(e: WechatMiniprogram.TouchEvent) {
     const id = e.currentTarget.dataset.id as string
-    const lat = e.currentTarget.dataset.lat as number
-    const lng = e.currentTarget.dataset.lng as number
-
-    this.setData({ activePlace: id })
-
-    // 先移动地图居中到该地点
-    const mapCtx = wx.createMapContext('petMap')
-    mapCtx.moveToLocation({
-      latitude: lat,
-      longitude: lng,
-    })
-
-    // 导航到详情页
     wx.navigateTo({
       url: `/pages/place-detail/place-detail?id=${id}`,
     })
   },
 
-  // 地图区域变化时重新计算距离（基于地图中心点）
+  // 地图区域变化时重新计算距离
   onRegionChange(e: any) {
     if (e.type === 'end' && e.causedBy === 'drag') {
       const mapCtx = wx.createMapContext('petMap')
@@ -243,13 +221,6 @@ Page({
         },
       })
     }
-  },
-
-  onPlaceTap(e: WechatMiniprogram.TouchEvent) {
-    const id = e.currentTarget.dataset.id as string
-    wx.navigateTo({
-      url: `/pages/place-detail/place-detail?id=${id}`,
-    })
   },
 
   moveToLocation() {
@@ -272,36 +243,25 @@ Page({
   },
 
   onSheetTouchMove(e: WechatMiniprogram.TouchEvent) {
-    const dy = this._touchStartY - e.touches[0].clientY // positive = swipe up
-    const ratio = 2 // px → rpx approx
+    const dy = this._touchStartY - e.touches[0].clientY
+    const ratio = 2
     let newHeight = this._touchStartHeight + dy * ratio
-    newHeight = Math.max(PANEL_PEEK, Math.min(PANEL_FULL, newHeight))
+    newHeight = Math.max(PANEL_HALF, Math.min(PANEL_FULL, newHeight))
     this.setData({ panelHeight: newHeight })
   },
 
   onSheetTouchEnd(_e: WechatMiniprogram.TouchEvent) {
     const h = this.data.panelHeight
-    // Snap to nearest state
-    const peekMid = (PANEL_PEEK + PANEL_HALF) / 2
-    const halfMid = (PANEL_HALF + PANEL_FULL) / 2
-    let state: 'peek' | 'half' | 'full'
-    let height: number
-    if (h < peekMid) {
-      state = 'peek'; height = PANEL_PEEK
-    } else if (h < halfMid) {
-      state = 'half'; height = PANEL_HALF
+    const mid = (PANEL_HALF + PANEL_FULL) / 2
+    if (h < mid) {
+      this.setData({ panelState: 'half', panelHeight: PANEL_HALF })
     } else {
-      state = 'full'; height = PANEL_FULL
+      this.setData({ panelState: 'full', panelHeight: PANEL_FULL })
     }
-    this.setData({ panelState: state, panelHeight: height })
   },
 
   onSheetHandleTap() {
-    // Cycle: peek → half → full → half
-    const s = this.data.panelState
-    if (s === 'peek') {
-      this.setData({ panelState: 'half', panelHeight: PANEL_HALF })
-    } else if (s === 'half') {
+    if (this.data.panelState === 'half') {
       this.setData({ panelState: 'full', panelHeight: PANEL_FULL })
     } else {
       this.setData({ panelState: 'half', panelHeight: PANEL_HALF })

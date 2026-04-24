@@ -197,124 +197,7 @@
   border-radius: var(--radius-full);
 }
 
-/* Half state — horizontal card scroll */
-.panel-scroll {
-  white-space: nowrap;
-  padding: 4rpx 24rpx 20rpx;
-  height: 360rpx;
-}
-
-.panel-card {
-  display: inline-block;
-  width: 400rpx;
-  white-space: normal;
-  vertical-align: top;
-  background: var(--gradient-card);
-  border-radius: var(--radius-md);
-  padding: 22rpx 26rpx;
-  margin-right: 18rpx;
-  box-shadow: var(--shadow-card);
-  border: var(--border-clay);
-  transition: all 0.25s ease-out;
-}
-
-.panel-card:last-child {
-  margin-right: 48rpx;
-}
-
-.panel-card-active {
-  border-color: var(--color-primary);
-  box-shadow: 0 8rpx 28rpx rgba(59,130,246,0.20);
-  transform: translateY(-4rpx);
-}
-
-.panel-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8rpx;
-}
-
-.panel-card-name {
-  font-size: 28rpx;
-  font-weight: 800;
-  color: var(--color-text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 260rpx;
-}
-
-.panel-card-rating {
-  display: flex;
-  align-items: center;
-  gap: 4rpx;
-  background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
-  padding: 4rpx 12rpx;
-  border-radius: var(--radius-full);
-}
-
-.panel-rating-num {
-  font-size: 22rpx;
-  font-weight: 800;
-  color: #D97706;
-}
-
-.panel-card-meta {
-  display: flex;
-  align-items: center;
-  gap: 6rpx;
-  margin-bottom: 8rpx;
-}
-
-.panel-card-dist {
-  font-size: 22rpx;
-  color: var(--color-primary);
-  font-weight: 700;
-}
-
-.panel-card-dot {
-  font-size: 18rpx;
-  color: var(--color-border);
-  margin: 0 2rpx;
-}
-
-.panel-card-type {
-  font-size: 22rpx;
-  color: var(--color-text-secondary);
-}
-
-.panel-card-tags {
-  display: flex;
-  gap: 8rpx;
-  flex-wrap: wrap;
-}
-
-.panel-tag {
-  font-size: 20rpx;
-  color: var(--color-primary);
-  background: #EFF6FF;
-  padding: 4rpx 14rpx;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-}
-
-.panel-empty {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 400rpx;
-  height: 200rpx;
-  gap: 8rpx;
-}
-
-.panel-empty-text {
-  font-size: 24rpx;
-  color: var(--color-text-hint);
-}
-
-/* Full state — vertical list inside sheet */
+/* Unified vertical list inside sheet */
 .sheet-list {
   height: calc(100% - 120rpx);
   padding: 0 8rpx;
@@ -324,7 +207,7 @@
 .place-card {
   background: var(--gradient-card);
   border-radius: var(--radius-md);
-  margin: 16rpx 28rpx;
+  margin: 16rpx 24rpx;
   overflow: hidden;
   box-shadow: var(--shadow-card);
   border: var(--border-clay);
@@ -333,6 +216,11 @@
 
 .place-card:active {
   transform: scale(0.98);
+}
+
+.place-card-active {
+  border-color: var(--color-primary);
+  box-shadow: 0 8rpx 28rpx rgba(59,130,246,0.18);
 }
 
 .card-accent-bar {
@@ -346,20 +234,17 @@
 }
 
 .card-top {
-  margin-bottom: 12rpx;
-}
-
-.card-name-row {
   display: flex;
   align-items: center;
-  gap: 10rpx;
-  flex: 1;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
 }
 
 .place-name {
   font-size: 32rpx;
   font-weight: 800;
   color: var(--color-text);
+  flex: 1;
 }
 
 .rating-badge {
@@ -371,6 +256,7 @@
   border-radius: var(--radius-full);
   box-shadow: 2rpx 2rpx 8rpx rgba(245,158,11,0.08);
   border: 2rpx solid rgba(245,158,11,0.08);
+  flex-shrink: 0;
 }
 
 .rating-num {
@@ -386,9 +272,24 @@
   margin-bottom: 14rpx;
 }
 
+.place-dist {
+  font-size: 24rpx;
+  color: var(--color-primary);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.place-dot {
+  font-size: 20rpx;
+  color: var(--color-border);
+}
+
 .place-addr {
   font-size: 24rpx;
   color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .place-tags {

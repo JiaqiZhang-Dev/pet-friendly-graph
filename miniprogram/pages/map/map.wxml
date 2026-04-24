@@ -50,13 +50,10 @@
       bindregionchange="onRegionChange"
     />
 
-    <!-- 浮动操作按钮组 -->
-    <view class="fab-group" style="bottom: calc({{panelHeight}}rpx + 20rpx + env(safe-area-inset-bottom));">
+    <!-- 浮动操作按钮 -->
+    <view class="fab-group" style="bottom: calc({{panelHeight}}rpx + 160rpx);">
       <view class="fab-btn" bindtap="moveToLocation">
         <van-icon name="aim" size="22px" color="#3B82F6" />
-      </view>
-      <view class="fab-btn" bindtap="goNearby">
-        <van-icon name="shop-o" size="22px" color="#3B82F6" />
       </view>
     </view>
   </view>
@@ -79,50 +76,8 @@
       </view>
     </view>
 
-    <!-- 半高：水平卡片滚动 -->
+    <!-- 统一垂直列表 -->
     <scroll-view
-      wx:if="{{panelState === 'half'}}"
-      class="panel-scroll"
-      scroll-x
-      enhanced
-      show-scrollbar="{{false}}"
-      scroll-into-view="{{scrollToPlaceId}}"
-      scroll-with-animation
-    >
-      <view
-        wx:for="{{filteredPlaces}}"
-        wx:key="id"
-        id="place-{{item.id}}"
-        class="panel-card {{activePlace === item.id ? 'panel-card-active' : ''}}"
-        data-id="{{item.id}}"
-        bindtap="onPanelCardTap"
-      >
-        <view class="panel-card-top">
-          <text class="panel-card-name">{{item.name}}</text>
-          <view class="panel-card-rating">
-            <van-icon name="star" size="12px" color="#F59E0B" />
-            <text class="panel-rating-num">{{item.rating}}</text>
-          </view>
-        </view>
-        <view class="panel-card-meta">
-          <van-icon name="location-o" size="12px" color="#94A3B8" />
-          <text class="panel-card-dist">{{item.distanceText}}</text>
-          <text class="panel-card-dot">·</text>
-          <text class="panel-card-type">{{item.typeLabel}}</text>
-        </view>
-        <view class="panel-card-tags">
-          <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" wx:if="{{index < 2}}" class="panel-tag">{{tag}}</text>
-        </view>
-      </view>
-      <view wx:if="{{filteredPlaces.length === 0}}" class="panel-empty">
-        <van-icon name="search" size="32px" color="#DBEAFE" />
-        <text class="panel-empty-text">暂无附近地点</text>
-      </view>
-    </scroll-view>
-
-    <!-- 全高：垂直列表 -->
-    <scroll-view
-      wx:if="{{panelState === 'full'}}"
       class="sheet-list"
       scroll-y
       enhanced
@@ -131,16 +86,14 @@
       <view
         wx:for="{{filteredPlaces}}"
         wx:key="id"
-        class="place-card"
+        class="place-card {{activePlace === item.id ? 'place-card-active' : ''}}"
         data-id="{{item.id}}"
         bindtap="onPlaceTap"
       >
         <view class="card-accent-bar"></view>
         <view class="card-body">
-          <view class="card-top flex-between">
-            <view class="card-name-row">
-              <text class="place-name">{{item.name}}</text>
-            </view>
+          <view class="card-top">
+            <text class="place-name">{{item.name}}</text>
             <view class="rating-badge">
               <van-icon name="star" size="12px" color="#F59E0B" />
               <text class="rating-num">{{item.rating}}</text>
@@ -148,7 +101,9 @@
           </view>
           <view class="place-addr-row">
             <van-icon name="location-o" size="13px" color="#94A3B8" />
-            <text class="place-addr">{{item.distanceText}} · {{item.address}}</text>
+            <text class="place-dist">{{item.distanceText}}</text>
+            <text class="place-dot">·</text>
+            <text class="place-addr">{{item.address}}</text>
           </view>
           <view class="place-tags">
             <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
