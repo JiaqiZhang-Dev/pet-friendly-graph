@@ -432,29 +432,13 @@
 .paw-rating {
   display: flex;
   align-items: center;
-  gap: 2rpx;
-  margin-right: 4rpx;
+  gap: 4rpx;
+  margin-right: 8rpx;
 }
 
-.paw {
-  font-size: 22rpx;
-  line-height: 1;
-  transition: opacity 0.2s;
-}
-
-.paw-filled {
-  opacity: 1;
-  filter: hue-rotate(-30deg) saturate(2) brightness(1.1);
-}
-
-.paw-half {
-  opacity: 0.5;
-  filter: hue-rotate(-30deg) saturate(2) brightness(1.1);
-}
-
-.paw-empty {
-  opacity: 0.2;
-  filter: grayscale(1);
+.paw-icon {
+  width: 28rpx;
+  height: 28rpx;
 }
 
 .footer-meta {

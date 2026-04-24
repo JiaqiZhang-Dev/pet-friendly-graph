@@ -156,11 +156,11 @@
             </view>
             <view class="card-footer">
               <view class="paw-rating">
-                <text class="paw {{item.rating >= 1 ? 'paw-filled' : (item.rating >= 0.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
-                <text class="paw {{item.rating >= 2 ? 'paw-filled' : (item.rating >= 1.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
-                <text class="paw {{item.rating >= 3 ? 'paw-filled' : (item.rating >= 2.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
-                <text class="paw {{item.rating >= 4 ? 'paw-filled' : (item.rating >= 3.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
-                <text class="paw {{item.rating >= 5 ? 'paw-filled' : (item.rating >= 4.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
+                <image class="paw-icon" src="{{item.rating >= 1 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 2 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 3 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 4 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 5 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
               </view>
               <text class="footer-meta">{{item.reviewCount}} 条评价</text>
               <text class="footer-dot">·</text>
