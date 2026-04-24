@@ -220,11 +220,11 @@ export const mockReviews: Review[] = [
 
 // 地图 Marker 的 callout 和 icon 配色
 export const typeColorMap: Record<string, string> = {
-  mall: '#6B9E7A',
-  restaurant: '#D97B6A',
-  cafe: '#8B6F5E',
-  park: '#4E7D5B',
-  hotel: '#9AD5CA',
-  'pet-store': '#B5A8D5',
-  'pet-hospital': '#E8A0BF',
+  mall: '#3B82F6',
+  restaurant: '#F97316',
+  cafe: '#A855F7',
+  park: '#22C55E',
+  hotel: '#6366F1',
+  'pet-store': '#EC4899',
+  'pet-hospital': '#EF4444',
 }

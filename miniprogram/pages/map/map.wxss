@@ -314,21 +314,51 @@
   box-shadow: 0 8rpx 28rpx rgba(139,92,246,0.18);
 }
 
-.card-accent-bar {
-  height: 8rpx;
-  background: var(--gradient-primary);
-  border-radius: 4rpx 4rpx 0 0;
+.card-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-left-bar {
+  width: 10rpx;
+  flex-shrink: 0;
+  border-radius: 36rpx 0 0 36rpx;
 }
 
 .card-body {
-  padding: 28rpx 32rpx;
+  flex: 1;
+  padding: 24rpx 28rpx;
+  min-width: 0;
 }
 
 .card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+
+.type-badge {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2rpx solid;
+}
+
+.card-type-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
   margin-bottom: 12rpx;
+}
+
+.type-label {
+  font-size: 22rpx;
+  font-weight: 700;
 }
 
 .place-name {

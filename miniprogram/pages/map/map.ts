@@ -8,6 +8,8 @@ interface PlaceWithDistance extends Place {
   distance: number
   distanceText: string
   typeLabel: string
+  typeIcon: string
+  typeColor: string
 }
 
 interface MapMarker {
@@ -151,11 +153,14 @@ Page({
     return places
       .map(p => {
         const dist = getDistance(userLat, userLng, p.latitude, p.longitude)
+        const typeInfo = placeTypes.find(function(t) { return t.key === p.type })
         return {
           ...p,
           distance: dist,
           distanceText: formatDistance(dist),
-          typeLabel: this.getTypeLabel(p.type),
+          typeLabel: typeInfo ? typeInfo.label : '其他',
+          typeIcon: typeInfo ? typeInfo.iconName : 'location-o',
+          typeColor: typeColorMap[p.type] || '#3B82F6',
         }
       })
       .sort((a, b) => a.distance - b.distance)

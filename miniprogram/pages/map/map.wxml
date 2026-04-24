@@ -136,34 +136,42 @@
         data-id="{{item.id}}"
         bindtap="onPlaceTap"
       >
-        <view class="card-accent-bar"></view>
-        <view class="card-body">
-          <view class="card-top">
-            <text class="place-name">{{item.name}}</text>
-            <view class="rating-badge">
-              <van-icon name="star" size="12px" color="#F59E0B" />
-              <text class="rating-num">{{item.rating}}</text>
+        <view class="card-layout">
+          <view class="card-left-bar" style="background: {{item.typeColor}};"></view>
+          <view class="card-body">
+            <view class="card-top">
+              <text class="place-name">{{item.name}}</text>
+              <view class="type-badge" style="background: {{item.typeColor}}20; border-color: {{item.typeColor}}30;">
+                <van-icon name="{{item.typeIcon}}" size="16px" color="{{item.typeColor}}" />
+              </view>
             </view>
-          </view>
-          <view class="place-addr-row">
-            <van-icon name="location-o" size="13px" color="#94A3B8" />
-            <text class="place-dist">{{item.distanceText}}</text>
-            <text class="place-dot">·</text>
-            <text class="place-addr">{{item.address}}</text>
-          </view>
-          <view class="place-tags">
-            <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
-          </view>
-          <view class="card-footer">
-            <van-icon name="chat-o" size="13px" color="#94A3B8" />
-            <text class="footer-meta">{{item.reviewCount}} 条评价</text>
-            <text class="footer-dot">·</text>
-            <van-icon name="clock-o" size="13px" color="#94A3B8" />
-            <text class="footer-meta">{{item.openTime}}</text>
-          </view>
-          <view wx:if="{{activePlace === item.id}}" class="tap-hint">
-            <text>再次点击查看详情</text>
-            <van-icon name="arrow" size="12px" color="#8B5CF6" />
+            <view class="card-type-row">
+              <text class="type-label" style="color: {{item.typeColor}};">{{item.typeLabel}}</text>
+              <view class="rating-badge">
+                <van-icon name="star" size="12px" color="#F59E0B" />
+                <text class="rating-num">{{item.rating}}</text>
+              </view>
+            </view>
+            <view class="place-addr-row">
+              <van-icon name="location-o" size="13px" color="#94A3B8" />
+              <text class="place-dist">{{item.distanceText}}</text>
+              <text class="place-dot">·</text>
+              <text class="place-addr">{{item.address}}</text>
+            </view>
+            <view class="place-tags">
+              <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
+            </view>
+            <view class="card-footer">
+              <van-icon name="chat-o" size="13px" color="#94A3B8" />
+              <text class="footer-meta">{{item.reviewCount}} 条评价</text>
+              <text class="footer-dot">·</text>
+              <van-icon name="clock-o" size="13px" color="#94A3B8" />
+              <text class="footer-meta">{{item.openTime}}</text>
+            </view>
+            <view wx:if="{{activePlace === item.id}}" class="tap-hint">
+              <text>再次点击查看详情</text>
+              <van-icon name="arrow" size="12px" color="#8B5CF6" />
+            </view>
           </view>
         </view>
       </view>
