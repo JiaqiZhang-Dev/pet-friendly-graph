@@ -68,7 +68,8 @@ Page({
     navHeight: 32,
     capsuleRight: 10,
     capsuleWidth: 88,
-    headerBottom: 0,
+    searchTop: 0,
+    filterTop: 0,
     activePlace: '',
     scrollToPlaceId: '',
     panelState: 'half' as 'half' | 'full',
@@ -91,8 +92,12 @@ Page({
     const capsuleRight = sysInfo.windowWidth - menuBtn.right
     const capsuleWidth = menuBtn.width
     const rpxRatio = sysInfo.windowWidth / 750
-    // header = navTop + capsule + banner margin(14rpx) + search row(~80rpx) + padding(20rpx)
-    const headerBottom = menuBtn.bottom + Math.round((14 + 80 + 20) * rpxRatio)
+    // Banner bottom = navTop + bannerHeight(navHeight+16) + 8px gap
+    const bannerBottom = navTop + navHeight + 16 + 8
+    // Search bar height ~76rpx
+    const searchH = Math.round(76 * rpxRatio)
+    const searchTop = bannerBottom
+    const filterTop = bannerBottom + searchH + 6
     const placesWithDist = this.computeDistances(mockPlaces)
     this.setData({
       mapHeight: sysInfo.windowHeight,
@@ -100,7 +105,8 @@ Page({
       navHeight: navHeight,
       capsuleRight: capsuleRight,
       capsuleWidth: capsuleWidth,
-      headerBottom: headerBottom,
+      searchTop: searchTop,
+      filterTop: filterTop,
       places: placesWithDist,
       filteredPlaces: placesWithDist,
     })
