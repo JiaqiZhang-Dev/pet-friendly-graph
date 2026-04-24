@@ -254,10 +254,18 @@ Page({
     }
   },
 
-  // 点击列表卡片 — 高亮并缩放到两点
+  // 点击列表卡片 — 第一次缩放地图，第二次进详情
   onPlaceTap(e: WechatMiniprogram.TouchEvent) {
-    const id = e.currentTarget.dataset.id as string
-    const list = this.data.filteredPlaces
+    var id = e.currentTarget.dataset.id as string
+    // 已经高亮的卡片再次点击 → 进详情
+    if (this.data.activePlace === id) {
+      wx.navigateTo({
+        url: '/pages/place-detail/place-detail?id=' + id,
+      })
+      return
+    }
+    // 首次点击 → 缩放地图
+    var list = this.data.filteredPlaces
     for (var i = 0; i < list.length; i++) {
       if (list[i].id === id) {
         this._zoomToPlace(list[i])
@@ -281,14 +289,6 @@ Page({
         { latitude: place.latitude, longitude: place.longitude },
       ],
       padding: [160, 60, 400, 60],
-    })
-  },
-
-  // 点击详情按钮 — 跳转详情页
-  onPlaceDetail(e: WechatMiniprogram.TouchEvent) {
-    var id = e.currentTarget.dataset.id as string
-    wx.navigateTo({
-      url: '/pages/place-detail/place-detail?id=' + id,
     })
   },
 

@@ -155,17 +155,15 @@
             <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
           </view>
           <view class="card-footer">
-            <view class="footer-left">
-              <van-icon name="chat-o" size="13px" color="#94A3B8" />
-              <text class="footer-meta">{{item.reviewCount}} 条评价</text>
-              <text class="footer-dot">·</text>
-              <van-icon name="clock-o" size="13px" color="#94A3B8" />
-              <text class="footer-meta">{{item.openTime}}</text>
-            </view>
-            <view class="detail-btn" data-id="{{item.id}}" catchtap="onPlaceDetail">
-              <text>详情</text>
-              <van-icon name="arrow" size="12px" color="#3B82F6" />
-            </view>
+            <van-icon name="chat-o" size="13px" color="#94A3B8" />
+            <text class="footer-meta">{{item.reviewCount}} 条评价</text>
+            <text class="footer-dot">·</text>
+            <van-icon name="clock-o" size="13px" color="#94A3B8" />
+            <text class="footer-meta">{{item.openTime}}</text>
+          </view>
+          <view wx:if="{{activePlace === item.id}}" class="tap-hint">
+            <text>再次点击查看详情</text>
+            <van-icon name="arrow" size="12px" color="#3B82F6" />
           </view>
         </view>
       </view>
