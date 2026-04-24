@@ -197,11 +197,6 @@
   margin-left: 6rpx;
 }
 
-.filter-chip.active .chip-label {
-  color: #2563EB;
-  font-weight: 700;
-}
-
 /* ===== Map ===== */
 .map-container {
   flex: 1;
