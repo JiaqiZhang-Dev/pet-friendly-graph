@@ -4,7 +4,7 @@
   <view class="top-backdrop" style="height: {{filterTop + 120}}px;"></view>
 
   <!-- 1. Banner 轮播 — 顶部独立区域 -->
-  <view class="banner-bar" style="padding-top: {{navTop}}px; height: {{navHeight + 28}}px; padding-right: {{capsuleRight}}px; box-sizing: content-box;">
+  <view class="banner-bar" style="padding-top: {{navTop}}px; height: {{navHeight + 44}}px; padding-right: {{capsuleRight}}px; box-sizing: content-box;">
     <swiper class="banner-swiper" autoplay circular interval="{{6000}}" duration="{{600}}" indicator-dots="{{false}}">
       <swiper-item>
         <view class="banner-card banner-blue">
