@@ -137,6 +137,120 @@
   border-radius: 1rpx;
 }
 
+/* 我的宠物 */
+.pet-section {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: var(--border-clay);
+  padding: 28rpx 28rpx 24rpx;
+  margin: 24rpx 28rpx;
+}
+
+.pet-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.pet-section-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.pet-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 8rpx 20rpx;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+}
+
+.pet-add-text {
+  font-size: 24rpx;
+  color: #3B82F6;
+  font-weight: 600;
+}
+
+.pet-empty {
+  padding: 32rpx 0;
+  text-align: center;
+}
+
+.pet-empty-text {
+  font-size: 24rpx;
+  color: var(--color-text-hint);
+}
+
+.pet-scroll {
+  white-space: nowrap;
+}
+
+.pet-list {
+  display: inline-flex;
+  gap: 20rpx;
+  padding: 8rpx 4rpx;
+}
+
+.pet-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160rpx;
+  padding: 20rpx 12rpx;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border: 2rpx solid var(--color-border);
+  box-shadow: var(--shadow-inset);
+}
+
+.pet-card-add {
+  border-style: dashed;
+}
+
+.pet-avatar-circle {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+}
+
+.pet-avatar-add {
+  background: var(--color-bg) !important;
+  border: 2rpx dashed var(--color-border);
+}
+
+.pet-avatar-emoji {
+  font-size: 48rpx;
+}
+
+.pet-name {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140rpx;
+}
+
+.pet-breed {
+  font-size: 20rpx;
+  color: var(--color-text-hint);
+  margin-top: 4rpx;
+}
+
+.add-label {
+  color: var(--color-text-hint);
+  font-weight: 500;
+}
+
 /* Menu */
 .menu-section {
   background: var(--color-card);

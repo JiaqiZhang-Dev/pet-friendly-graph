@@ -13,7 +13,7 @@ page {
   --color-mint: #34D399;
   --color-lavender: #A78BFA;
   --color-teal: #14B8A6;
-  --color-bg: #F5F3FF;
+  --color-bg: #F8FAFC;
   --color-card: #FFFFFF;
   --color-text: #1E293B;
   --color-text-secondary: #64748B;

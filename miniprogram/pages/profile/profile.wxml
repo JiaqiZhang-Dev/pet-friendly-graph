@@ -39,6 +39,39 @@
     </view>
   </view>
 
+  <!-- 我的宠物 -->
+  <view class="pet-section">
+    <view class="pet-section-header">
+      <text class="pet-section-title">我的宠物</text>
+      <view class="pet-add-btn" bindtap="onAddPet">
+        <van-icon name="plus" size="14px" color="#3B82F6" />
+        <text class="pet-add-text">添加</text>
+      </view>
+    </view>
+
+    <view wx:if="{{pets.length === 0}}" class="pet-empty">
+      <text class="pet-empty-text">还没有添加宠物，快来添加你的毛孩子吧~</text>
+    </view>
+
+    <scroll-view wx:else class="pet-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="pet-list">
+        <view wx:for="{{pets}}" wx:key="id" class="pet-card" bindtap="onEditPet" data-index="{{index}}">
+          <view class="pet-avatar-circle" style="background: {{item.color}}15;">
+            <text class="pet-avatar-emoji">{{item.emoji}}</text>
+          </view>
+          <text class="pet-name">{{item.name}}</text>
+          <text class="pet-breed">{{item.breed}}</text>
+        </view>
+        <view class="pet-card pet-card-add" bindtap="onAddPet">
+          <view class="pet-avatar-circle pet-avatar-add">
+            <van-icon name="plus" size="28px" color="#94A3B8" />
+          </view>
+          <text class="pet-name add-label">添加宠物</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
   <!-- Menu -->
   <view class="menu-section">
     <view
