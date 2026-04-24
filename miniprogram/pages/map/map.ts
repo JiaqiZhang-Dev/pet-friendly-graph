@@ -112,21 +112,6 @@ Page({
         filteredPlaces: placesWithDist,
       })
       this.updateMarkers(placesWithDist)
-      // 自动移动到最近的地点
-      if (placesWithDist.length > 0) {
-        const nearest = placesWithDist[0]
-        const mapCtx = wx.createMapContext('petMap')
-        mapCtx.moveToLocation({
-          latitude: nearest.latitude,
-          longitude: nearest.longitude,
-        })
-        this.setData({
-          latitude: nearest.latitude,
-          longitude: nearest.longitude,
-          activePlace: nearest.id,
-          scale: 16,
-        })
-      }
     }
 
     // 先检查 app.globalData 是否已有位置
