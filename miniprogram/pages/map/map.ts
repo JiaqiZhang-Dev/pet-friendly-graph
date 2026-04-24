@@ -66,6 +66,8 @@ Page({
     mapHeight: 0,
     navTop: 0,
     navHeight: 32,
+    capsuleRight: 10,
+    capsuleWidth: 88,
     activePlace: '',
     scrollToPlaceId: '',
     panelState: 'half' as 'half' | 'full',
@@ -85,11 +87,16 @@ Page({
     const menuBtn = wx.getMenuButtonBoundingClientRect()
     const navTop = menuBtn.top
     const navHeight = menuBtn.height
+    // capsule right margin from screen edge
+    const capsuleRight = sysInfo.windowWidth - menuBtn.right
+    const capsuleWidth = menuBtn.width
     const placesWithDist = this.computeDistances(mockPlaces)
     this.setData({
       mapHeight: sysInfo.windowHeight,
       navTop: navTop,
       navHeight: navHeight,
+      capsuleRight: capsuleRight,
+      capsuleWidth: capsuleWidth,
       places: placesWithDist,
       filteredPlaces: placesWithDist,
     })

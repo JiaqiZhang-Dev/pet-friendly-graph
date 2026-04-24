@@ -2,25 +2,39 @@
 <view class="map-page">
   <!-- 统一顶部区域：Banner + 搜索 + 筛选 -->
   <view class="top-header" style="padding-top: {{navTop}}px;">
-    <!-- Banner 轮播 — 与胶囊按钮同行 -->
-    <view class="banner-row" style="height: {{navHeight}}px;">
+    <!-- 爪印装饰 -->
+    <view class="paw-deco paw-1">🐾</view>
+    <view class="paw-deco paw-2">🐾</view>
+    <view class="paw-deco paw-3">🐾</view>
+
+    <!-- Banner 轮播 — 避开胶囊按钮 -->
+    <view class="banner-row" style="height: {{navHeight}}px; margin-right: {{capsuleWidth + capsuleRight + 8}}px;">
       <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots="{{false}}">
         <swiper-item>
           <view class="banner-slide">
-            <van-icon name="smile-o" size="18px" color="#FFF" />
-            <text class="banner-tip">每日小知识：遛狗最佳时间是清晨和傍晚哦~</text>
+            <view class="banner-icon-wrap"><van-icon name="smile-o" size="22px" color="#FFF" /></view>
+            <view class="banner-text">
+              <text class="banner-title">每日宠物小知识</text>
+              <text class="banner-desc">遛狗最佳时间是清晨和傍晚哦~</text>
+            </view>
           </view>
         </swiper-item>
         <swiper-item>
           <view class="banner-slide">
-            <van-icon name="fire-o" size="18px" color="#FFF" />
-            <text class="banner-tip">本周新增 3 个宠物友好餐厅，快来探索吧！</text>
+            <view class="banner-icon-wrap"><van-icon name="fire-o" size="22px" color="#FFF" /></view>
+            <view class="banner-text">
+              <text class="banner-title">热门推荐</text>
+              <text class="banner-desc">本周新增 3 个宠物友好餐厅！</text>
+            </view>
           </view>
         </swiper-item>
         <swiper-item>
           <view class="banner-slide">
-            <van-icon name="gem-o" size="18px" color="#FFF" />
-            <text class="banner-tip">AI 智能推荐：为毛孩找到最近的友好地点~</text>
+            <view class="banner-icon-wrap"><van-icon name="gem-o" size="22px" color="#FFF" /></view>
+            <view class="banner-text">
+              <text class="banner-title">AI 智能推荐</text>
+              <text class="banner-desc">为毛孩找到最近友好地点~</text>
+            </view>
           </view>
         </swiper-item>
       </swiper>
@@ -33,7 +47,7 @@
         <input
           class="search-input"
           placeholder="搜索宠物友好地点..."
-          placeholder-style="color:rgba(255,255,255,0.6)"
+          placeholder-style="color:rgba(255,255,255,0.55)"
           value="{{searchValue}}"
           bindinput="onSearchInput"
           confirm-type="search"
