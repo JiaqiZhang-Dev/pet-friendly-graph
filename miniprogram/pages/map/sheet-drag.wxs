@@ -1,5 +1,5 @@
 // sheet-drag.wxs — runs on render thread for smooth dragging
-var PANEL_HALF = 380
+var PANEL_HALF = 520
 var PANEL_FULL = 1100
 var startY = 0
 var startH = 0

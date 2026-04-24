@@ -49,7 +49,7 @@ function formatDistance(meters: number): string {
   return `${(meters / 1000).toFixed(1)}km`
 }
 
-const PANEL_HALF = 380   // half: shows handle + 1 big card
+const PANEL_HALF = 520   // half: shows handle + 1 complete card
 const PANEL_FULL = 1100  // full: scrollable list
 
 Page({
