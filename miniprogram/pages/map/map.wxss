@@ -429,6 +429,32 @@
   border-radius: 12rpx;
 }
 
+.paw-rating {
+  display: flex;
+  align-items: center;
+  gap: 2rpx;
+  margin-right: 4rpx;
+}
+
+.paw {
+  font-size: 22rpx;
+  line-height: 1;
+  transition: opacity 0.2s;
+}
+
+.paw-filled {
+  opacity: 1;
+}
+
+.paw-half {
+  opacity: 0.5;
+}
+
+.paw-empty {
+  opacity: 0.2;
+  filter: grayscale(1);
+}
+
 .footer-meta {
   font-size: 22rpx;
   color: var(--color-text-hint);

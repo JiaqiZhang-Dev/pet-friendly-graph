@@ -155,7 +155,13 @@
               <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
             </view>
             <view class="card-footer">
-              <van-rate value="{{item.rating}}" size="12" color="#F59E0B" void-color="#E2E8F0" allow-half readonly />
+              <view class="paw-rating">
+                <text class="paw {{item.rating >= 1 ? 'paw-filled' : (item.rating >= 0.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
+                <text class="paw {{item.rating >= 2 ? 'paw-filled' : (item.rating >= 1.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
+                <text class="paw {{item.rating >= 3 ? 'paw-filled' : (item.rating >= 2.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
+                <text class="paw {{item.rating >= 4 ? 'paw-filled' : (item.rating >= 3.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
+                <text class="paw {{item.rating >= 5 ? 'paw-filled' : (item.rating >= 4.5 ? 'paw-half' : 'paw-empty')}}">🐾</text>
+              </view>
               <text class="footer-meta">{{item.reviewCount}} 条评价</text>
               <text class="footer-dot">·</text>
               <van-icon name="clock-o" size="13px" color="#94A3B8" />
