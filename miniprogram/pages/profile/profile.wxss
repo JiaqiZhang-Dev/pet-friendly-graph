@@ -337,7 +337,7 @@
 }
 
 .popup-footer {
-  padding: 24rpx 36rpx calc(40rpx + env(safe-area-inset-bottom));
+  padding: 24rpx 36rpx calc(160rpx + env(safe-area-inset-bottom));
   flex-shrink: 0;
   background: #FFF;
 }
