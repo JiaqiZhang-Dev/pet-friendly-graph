@@ -62,62 +62,62 @@
         <van-icon name="bars" size="22px" color="#FFF" />
       </view>
     </view>
+  </view>
 
-    <!-- 底部地点面板 — 按距离排序自动展示 -->
-    <view class="bottom-panel">
-      <view class="panel-header">
-        <view class="panel-indicator"></view>
-        <text class="panel-title">附近宠物友好地点</text>
-        <text class="panel-count">{{filteredPlaces.length}} 个</text>
-      </view>
-      <scroll-view
-        class="panel-scroll"
-        scroll-x
-        enhanced
-        show-scrollbar="{{false}}"
-        scroll-into-view="{{scrollToPlaceId}}"
-        scroll-with-animation
-      >
-        <view
-          wx:for="{{filteredPlaces}}"
-          wx:key="id"
-          id="place-{{item.id}}"
-          class="panel-card {{activePlace === item.id ? 'panel-card-active' : ''}}"
-          data-id="{{item.id}}"
-          data-lat="{{item.latitude}}"
-          data-lng="{{item.longitude}}"
-          bindtap="onPanelCardTap"
-        >
-          <view class="panel-card-top">
-            <text class="panel-card-name">{{item.name}}</text>
-            <view class="panel-card-rating">
-              <van-icon name="star" size="12px" color="#F59E0B" />
-              <text class="panel-rating-num">{{item.rating}}</text>
-            </view>
-          </view>
-          <view class="panel-card-meta">
-            <van-icon name="location-o" size="12px" color="#94A3B8" />
-            <text class="panel-card-dist">{{item.distanceText}}</text>
-            <text class="panel-card-dot">·</text>
-            <text class="panel-card-type">{{item.typeLabel}}</text>
-          </view>
-          <view class="panel-card-tags">
-            <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" wx:if="{{index < 2}}" class="panel-tag">{{tag}}</text>
-          </view>
-          <view class="panel-card-bottom">
-            <van-icon name="chat-o" size="12px" color="#94A3B8" />
-            <text class="panel-card-reviews">{{item.reviewCount}} 评价</text>
-            <text class="panel-card-dot">·</text>
-            <van-icon name="clock-o" size="12px" color="#94A3B8" />
-            <text class="panel-card-time">{{item.openTime}}</text>
-          </view>
-        </view>
-        <view wx:if="{{filteredPlaces.length === 0}}" class="panel-empty">
-          <van-icon name="search" size="32px" color="#DBEAFE" />
-          <text class="panel-empty-text">暂无附近地点</text>
-        </view>
-      </scroll-view>
+  <!-- 底部地点面板 — 按距离排序自动展示（独立于 map-container） -->
+  <view class="bottom-panel" wx:if="{{!showList}}">
+    <view class="panel-header">
+      <view class="panel-indicator"></view>
+      <text class="panel-title">附近宠物友好地点</text>
+      <text class="panel-count">{{filteredPlaces.length}} 个</text>
     </view>
+    <scroll-view
+      class="panel-scroll"
+      scroll-x
+      enhanced
+      show-scrollbar="{{false}}"
+      scroll-into-view="{{scrollToPlaceId}}"
+      scroll-with-animation
+    >
+      <view
+        wx:for="{{filteredPlaces}}"
+        wx:key="id"
+        id="place-{{item.id}}"
+        class="panel-card {{activePlace === item.id ? 'panel-card-active' : ''}}"
+        data-id="{{item.id}}"
+        data-lat="{{item.latitude}}"
+        data-lng="{{item.longitude}}"
+        bindtap="onPanelCardTap"
+      >
+        <view class="panel-card-top">
+          <text class="panel-card-name">{{item.name}}</text>
+          <view class="panel-card-rating">
+            <van-icon name="star" size="12px" color="#F59E0B" />
+            <text class="panel-rating-num">{{item.rating}}</text>
+          </view>
+        </view>
+        <view class="panel-card-meta">
+          <van-icon name="location-o" size="12px" color="#94A3B8" />
+          <text class="panel-card-dist">{{item.distanceText}}</text>
+          <text class="panel-card-dot">·</text>
+          <text class="panel-card-type">{{item.typeLabel}}</text>
+        </view>
+        <view class="panel-card-tags">
+          <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" wx:if="{{index < 2}}" class="panel-tag">{{tag}}</text>
+        </view>
+        <view class="panel-card-bottom">
+          <van-icon name="chat-o" size="12px" color="#94A3B8" />
+          <text class="panel-card-reviews">{{item.reviewCount}} 评价</text>
+          <text class="panel-card-dot">·</text>
+          <van-icon name="clock-o" size="12px" color="#94A3B8" />
+          <text class="panel-card-time">{{item.openTime}}</text>
+        </view>
+      </view>
+      <view wx:if="{{filteredPlaces.length === 0}}" class="panel-empty">
+        <van-icon name="search" size="32px" color="#DBEAFE" />
+        <text class="panel-empty-text">暂无附近地点</text>
+      </view>
+    </scroll-view>
   </view>
 
   <!-- 列表视图 -->

@@ -181,14 +181,20 @@
   bottom: calc(100rpx + env(safe-area-inset-bottom));
   left: 0;
   right: 0;
-  z-index: 99;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 2rpx solid rgba(59,130,246,0.08);
+  border-radius: 32rpx 32rpx 0 0;
   padding: 0 0 16rpx 0;
+  box-shadow: 0 -8rpx 30rpx rgba(59,130,246,0.08);
 }
 
 .panel-header {
   display: flex;
   align-items: center;
-  padding: 12rpx 32rpx 8rpx;
+  padding: 20rpx 32rpx 12rpx;
   gap: 12rpx;
 }
 
@@ -217,7 +223,8 @@
 
 .panel-scroll {
   white-space: nowrap;
-  padding: 8rpx 24rpx 12rpx;
+  padding: 8rpx 24rpx 16rpx;
+  height: 280rpx;
 }
 
 .panel-card {
