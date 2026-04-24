@@ -157,8 +157,11 @@
             </view>
             <view class="card-footer">
               <view class="paw-rating">
-                <image class="paw-icon" src="/images/paw-filled.svg" />
-                <text class="rating-score">{{item.rating}}</text>
+                <image class="paw-icon" src="{{item.rating >= 1 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 2 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 3 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 4 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
+                <image class="paw-icon" src="{{item.rating >= 5 ? '/images/paw-filled.svg' : '/images/paw-empty.svg'}}" />
               </view>
               <text class="footer-meta">{{item.reviewCount}} 条评价</text>
               <text class="footer-dot">·</text>
@@ -167,7 +170,7 @@
             </view>
             <view wx:if="{{activePlace === item.id}}" class="tap-hint">
               <text>再次点击查看详情</text>
-              <van-icon name="arrow" size="12px" color="#8B5CF6" />
+              <van-icon name="arrow" size="12px" color="#94A3B8" />
             </view>
           </view>
         </view>

@@ -310,7 +310,7 @@
 }
 
 .place-card-active {
-  /* border-color and box-shadow set dynamically via inline style */
+  border-width: 4rpx;
 }
 
 .card-layout {
@@ -421,29 +421,23 @@
   gap: 6rpx;
   margin-top: 14rpx;
   padding: 10rpx 0;
-  color: #8B5CF6;
+  color: #94A3B8;
   font-size: 24rpx;
-  font-weight: 600;
-  background: rgba(139,92,246,0.06);
+  font-weight: 500;
+  background: rgba(148,163,184,0.08);
   border-radius: 12rpx;
 }
 
 .paw-rating {
   display: flex;
   align-items: center;
-  gap: 6rpx;
+  gap: 4rpx;
   margin-right: 8rpx;
 }
 
 .paw-icon {
-  width: 26rpx;
-  height: 26rpx;
-}
-
-.rating-score {
-  font-size: 24rpx;
-  font-weight: 600;
-  color: #D97706;
+  width: 28rpx;
+  height: 28rpx;
 }
 
 .footer-meta {
