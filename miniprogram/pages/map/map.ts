@@ -77,14 +77,6 @@ Page({
   },
 
   onLoad() {
-    const loc = app.globalData.location
-    if (loc) {
-      this.setData({
-        latitude: loc.latitude,
-        longitude: loc.longitude,
-      })
-    }
-
     const sysInfo = wx.getSystemInfoSync()
     const menuBtn = wx.getMenuButtonBoundingClientRect()
     const navTop = menuBtn.top
@@ -92,13 +84,10 @@ Page({
     const capsuleRight = sysInfo.windowWidth - menuBtn.right
     const capsuleWidth = menuBtn.width
     const rpxRatio = sysInfo.windowWidth / 750
-    // Banner bottom = navTop + bannerHeight(navHeight+28) + 8px gap
     const bannerBottom = navTop + navHeight + 44 + 8
-    // Search bar height ~76rpx
     const searchH = Math.round(76 * rpxRatio)
     const searchTop = bannerBottom
     const filterTop = bannerBottom + searchH + 6
-    const placesWithDist = this.computeDistances(mockPlaces)
     this.setData({
       mapHeight: sysInfo.windowHeight,
       navTop: navTop,
@@ -107,10 +96,61 @@ Page({
       capsuleWidth: capsuleWidth,
       searchTop: searchTop,
       filterTop: filterTop,
-      places: placesWithDist,
-      filteredPlaces: placesWithDist,
     })
-    this.updateMarkers(placesWithDist)
+
+    // 获取用户位置，定位到最近宠物友好地点
+    this.locateAndZoom()
+  },
+
+  /** 获取位置 → 计算距离 → 移到最近地点 */
+  locateAndZoom() {
+    const initWithLocation = (lat: number, lng: number) => {
+      this.setData({ latitude: lat, longitude: lng })
+      const placesWithDist = this.computeDistances(mockPlaces)
+      this.setData({
+        places: placesWithDist,
+        filteredPlaces: placesWithDist,
+      })
+      this.updateMarkers(placesWithDist)
+      // 自动移动到最近的地点
+      if (placesWithDist.length > 0) {
+        const nearest = placesWithDist[0]
+        const mapCtx = wx.createMapContext('petMap')
+        mapCtx.moveToLocation({
+          latitude: nearest.latitude,
+          longitude: nearest.longitude,
+        })
+        this.setData({
+          latitude: nearest.latitude,
+          longitude: nearest.longitude,
+          activePlace: nearest.id,
+          scale: 16,
+        })
+      }
+    }
+
+    // 先检查 app.globalData 是否已有位置
+    const loc = app.globalData.location
+    if (loc) {
+      initWithLocation(loc.latitude, loc.longitude)
+      return
+    }
+
+    // 主动获取位置
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+        app.globalData.location = {
+          latitude: res.latitude,
+          longitude: res.longitude,
+        }
+        initWithLocation(res.latitude, res.longitude)
+      },
+      fail: () => {
+        // 用户拒绝授权，使用默认位置
+        initWithLocation(this.data.latitude, this.data.longitude)
+      },
+    })
   },
 
   onShow() {
