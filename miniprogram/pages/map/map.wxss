@@ -444,10 +444,12 @@
 
 .paw-filled {
   opacity: 1;
+  filter: hue-rotate(-30deg) saturate(2) brightness(1.1);
 }
 
 .paw-half {
   opacity: 0.5;
+  filter: hue-rotate(-30deg) saturate(2) brightness(1.1);
 }
 
 .paw-empty {
