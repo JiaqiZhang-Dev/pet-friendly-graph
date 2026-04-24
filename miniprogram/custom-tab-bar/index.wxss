@@ -1,20 +1,24 @@
-/* custom-tab-bar/index.wxss */
+/* custom-tab-bar/index.wxss — Modern Pet Claymorphism */
 .tab-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   height: 120rpx;
-  background: #FFFCF7;
+  background: rgba(255,250,245,0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-top: none;
-  box-shadow: 0 -4rpx 24rpx rgba(139,111,94,0.06);
+  box-shadow: 0 -6rpx 28rpx rgba(249,115,22,0.06);
   padding-bottom: env(safe-area-inset-bottom);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 999;
-  border-radius: 36rpx 36rpx 0 0;
+  border-radius: 32rpx 32rpx 0 0;
+  border: 2rpx solid rgba(255,255,255,0.60);
+  border-bottom: none;
 }
 
 .tab-item {
@@ -28,15 +32,30 @@
   position: relative;
 }
 
+.tab-icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tab-item.active .tab-icon-wrap {
+  background: linear-gradient(135deg, #FFF1E6 0%, #FFEDD5 100%);
+  box-shadow: 4rpx 4rpx 12rpx rgba(249,115,22,0.12), -3rpx -3rpx 8rpx rgba(255,255,255,0.80);
+  transform: scale(1.12) translateY(-6rpx);
+}
+
 .tab-icon {
-  font-size: 44rpx;
-  line-height: 52rpx;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 40rpx;
+  line-height: 48rpx;
 }
 
 .tab-label {
   font-size: 20rpx;
-  color: #9E8E7E;
+  color: #A8774E;
   margin-top: 4rpx;
   line-height: 26rpx;
   font-weight: 500;
@@ -45,20 +64,19 @@
 }
 
 .tab-item.active .tab-label {
-  color: #6B9E7A;
+  color: #F97316;
   font-weight: 700;
 }
 
-.tab-item.active .tab-icon {
-  transform: scale(1.15) translateY(-4rpx);
-}
-
+/* Paw print active indicator */
 .tab-item.active::after {
   content: '';
   position: absolute;
-  bottom: 4rpx;
-  width: 8rpx;
-  height: 8rpx;
-  background: #6B9E7A;
+  bottom: 2rpx;
+  width: 10rpx;
+  height: 10rpx;
+  background: #F97316;
   border-radius: 50%;
+  box-shadow: -8rpx -4rpx 0 3rpx #F97316, 8rpx -4rpx 0 3rpx #F97316;
+  transform: scale(0.45);
 }

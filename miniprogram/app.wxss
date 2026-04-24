@@ -1,31 +1,35 @@
-/**app.wxss — 可爱趣味风格**/
+/**app.wxss — Modern Pet Claymorphism**/
 page {
-  /* 柔和绿 + 奶油暖色调 */
-  --color-primary: #6B9E7A;
-  --color-primary-dark: #4E7D5B;
-  --color-primary-light: #EAF4EC;
-  --color-accent: #8B6F5E;
-  --color-accent-light: #F5EDE6;
-  --color-success: #6B9E7A;
-  --color-warning: #E8A856;
-  --color-danger: #D97B6A;
-  --color-pink: #E8A0BF;
-  --color-mint: #9AD5CA;
-  --color-lavender: #B5A8D5;
-  --color-bg: #FFFCF7;
+  /* Warm coral + modern palette */
+  --color-primary: #F97316;
+  --color-primary-dark: #EA580C;
+  --color-primary-light: #FFF1E6;
+  --color-accent: #2563EB;
+  --color-accent-light: #EFF6FF;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-pink: #F472B6;
+  --color-mint: #34D399;
+  --color-lavender: #A78BFA;
+  --color-bg: #FFF7ED;
   --color-card: #FFFFFF;
-  --color-text: #3D2E1F;
-  --color-text-secondary: #9E8E7E;
-  --color-text-hint: #C4B5A5;
-  --color-border: #F0E8DF;
-  --radius-sm: 16rpx;
+  --color-text: #7C2D12;
+  --color-text-secondary: #A8774E;
+  --color-text-hint: #C4A882;
+  --color-border: #FDE8D0;
+  /* Claymorphism tokens */
+  --radius-sm: 20rpx;
   --radius-md: 28rpx;
   --radius-lg: 40rpx;
   --radius-xl: 56rpx;
-  --shadow-card: 0 8rpx 32rpx rgba(139,111,94,0.06);
-  --shadow-float: 0 12rpx 40rpx rgba(139,111,94,0.10);
+  --shadow-clay: 6rpx 6rpx 16rpx rgba(249,115,22,0.10), -4rpx -4rpx 12rpx rgba(255,255,255,0.80);
+  --shadow-card: 0 8rpx 28rpx rgba(249,115,22,0.08), 0 2rpx 6rpx rgba(249,115,22,0.04);
+  --shadow-float: 0 12rpx 36rpx rgba(249,115,22,0.14), 0 2rpx 8rpx rgba(249,115,22,0.06);
+  --shadow-inset: inset 2rpx 2rpx 6rpx rgba(249,115,22,0.06), inset -2rpx -2rpx 6rpx rgba(255,255,255,0.70);
+  --border-clay: 3rpx solid rgba(255,255,255,0.50);
 
-  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'SF Rounded', sans-serif;
   font-size: 28rpx;
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -42,35 +46,38 @@ page {
   background: var(--color-card);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
+  border: var(--border-clay);
   padding: 32rpx;
   margin: 16rpx 28rpx;
 }
 
 .btn-primary {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
   color: #fff;
   border: none;
   border-radius: var(--radius-xl);
   padding: 24rpx 48rpx;
   font-size: 28rpx;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   letter-spacing: 2rpx;
+  box-shadow: 0 6rpx 20rpx rgba(249,115,22,0.30);
 }
 
 .btn-primary:active {
-  opacity: 0.85;
+  opacity: 0.9;
   transform: scale(0.97);
+  box-shadow: 0 2rpx 8rpx rgba(249,115,22,0.20);
 }
 
 .btn-secondary {
   background: var(--color-primary-light);
   color: var(--color-primary);
-  border: none;
+  border: 3rpx solid rgba(249,115,22,0.15);
   border-radius: var(--radius-xl);
   padding: 24rpx 48rpx;
   font-size: 28rpx;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
 }
 
@@ -83,16 +90,17 @@ page {
   background: var(--color-primary-light);
   color: var(--color-primary);
   font-size: 22rpx;
-  padding: 8rpx 20rpx;
+  padding: 8rpx 22rpx;
   border-radius: var(--radius-xl);
   margin-right: 12rpx;
   margin-bottom: 10rpx;
-  font-weight: 500;
+  font-weight: 600;
+  border: 2rpx solid rgba(249,115,22,0.08);
 }
 
 .section-title {
   font-size: 34rpx;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--color-text);
   margin-bottom: 20rpx;
   letter-spacing: 1rpx;
@@ -116,7 +124,7 @@ page {
   white-space: nowrap;
 }
 
-/* 装饰性气泡文字 */
+/* Decorative bubble */
 .bubble {
   display: inline-block;
   background: var(--color-primary-light);
@@ -124,12 +132,14 @@ page {
   padding: 12rpx 28rpx;
   border-radius: 28rpx 28rpx 28rpx 8rpx;
   font-size: 24rpx;
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: var(--shadow-clay);
 }
 
-/* 彩色小标签系列 */
-.tag-green  { background: #EAF4EC; color: #4E7D5B; }
-.tag-brown  { background: #F5EDE6; color: #8B6F5E; }
-.tag-pink   { background: #FDECF3; color: #C87DA0; }
-.tag-mint   { background: #E6F7F4; color: #5AAFA0; }
-.tag-yellow { background: #FFF6E6; color: #C89038; }
+/* Colorful tag variants */
+.tag-orange  { background: #FFF1E6; color: #EA580C; }
+.tag-blue    { background: #EFF6FF; color: #2563EB; }
+.tag-pink    { background: #FDF2F8; color: #DB2777; }
+.tag-mint    { background: #ECFDF5; color: #059669; }
+.tag-yellow  { background: #FFFBEB; color: #D97706; }
+.tag-purple  { background: #F5F3FF; color: #7C3AED; }
