@@ -1,4 +1,4 @@
-/* pages/profile/profile.wxss — 可爱趣味风 */
+/* pages/profile/profile.wxss — Modern Pet Claymorphism */
 .profile-page {
   min-height: 100vh;
   padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
@@ -11,25 +11,33 @@
   flex-direction: column;
   align-items: center;
   padding: 80rpx 0 48rpx;
-  background: linear-gradient(160deg, #6B9E7A 0%, #9AD5CA 50%, #E8F5E9 100%);
+  background: linear-gradient(160deg, #F97316 0%, #FB923C 40%, #FBBF24 80%, #FFF7ED 100%);
   border-radius: 0 0 60rpx 60rpx;
   overflow: hidden;
 }
 
-.header-deco-left {
+.header-deco-1 {
   position: absolute;
   left: 24rpx;
   top: 40rpx;
   font-size: 80rpx;
-  opacity: 0.15;
+  opacity: 0.12;
 }
 
-.header-deco-right {
+.header-deco-2 {
+  position: absolute;
+  right: 40rpx;
+  top: 60rpx;
+  font-size: 56rpx;
+  opacity: 0.12;
+}
+
+.header-deco-3 {
   position: absolute;
   right: 32rpx;
-  bottom: 32rpx;
+  bottom: 24rpx;
   font-size: 64rpx;
-  opacity: 0.15;
+  opacity: 0.12;
 }
 
 .avatar-wrapper {
@@ -44,7 +52,7 @@
   padding: 0;
   background: none;
   border: 8rpx solid rgba(255,255,255,0.6);
-  box-shadow: 0 8rpx 32rpx rgba(107,158,122,0.25);
+  box-shadow: 6rpx 6rpx 24rpx rgba(249,115,22,0.25), -4rpx -4rpx 12rpx rgba(255,255,255,0.40);
 }
 
 .avatar-btn::after {
@@ -83,10 +91,11 @@
   border-radius: 28rpx 28rpx 28rpx 8rpx;
   font-size: 24rpx;
   color: rgba(255,255,255,0.9);
-  font-weight: 500;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
 }
 
-/* 统计 */
+/* Stats */
 .stats-bar {
   display: flex;
   align-items: center;
@@ -95,6 +104,10 @@
   margin-left: 28rpx;
   margin-right: 28rpx;
   padding: 36rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-clay);
+  border: var(--border-clay);
 }
 
 .stat-item {
@@ -105,16 +118,16 @@
 }
 
 .stat-num {
-  font-size: 40rpx;
+  font-size: 42rpx;
   font-weight: 800;
-  color: var(--color-primary);
+  color: #F97316;
 }
 
 .stat-label {
   font-size: 22rpx;
   color: var(--color-text-hint);
   margin-top: 8rpx;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .stat-divider {
@@ -124,9 +137,14 @@
   border-radius: 1rpx;
 }
 
-/* 菜单 */
+/* Menu */
 .menu-section {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: var(--border-clay);
   padding: 12rpx 28rpx;
+  margin: 24rpx 28rpx;
 }
 
 .menu-item {
@@ -134,7 +152,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 28rpx 0;
-  border-bottom: 1rpx solid var(--color-border);
+  border-bottom: 2rpx solid var(--color-border);
   transition: background 0.15s;
 }
 
@@ -154,13 +172,13 @@
 }
 
 .menu-icon-circle {
-  width: 64rpx;
-  height: 64rpx;
-  border-radius: 50%;
-  background: var(--color-primary-light);
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 24rpx;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 3rpx 3rpx 10rpx rgba(249,115,22,0.06), -2rpx -2rpx 6rpx rgba(255,255,255,0.70);
 }
 
 .menu-icon {
@@ -170,11 +188,5 @@
 .menu-label {
   font-size: 28rpx;
   color: var(--color-text);
-  font-weight: 500;
-}
-
-.menu-arrow {
-  font-size: 36rpx;
-  color: var(--color-text-hint);
-  font-weight: 300;
+  font-weight: 600;
 }

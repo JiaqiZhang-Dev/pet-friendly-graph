@@ -1,63 +1,87 @@
-<!--pages/place-detail/place-detail.wxml-->
+<!--pages/place-detail/place-detail.wxml — Modern Pet Claymorphism-->
 <view class="detail-page" wx:if="{{place}}">
-  <!-- 顶部装饰 -->
+  <!-- Hero -->
   <view class="detail-hero">
     <view class="hero-bg"></view>
     <view class="hero-content">
       <text class="hero-name">{{place.name}}</text>
       <view class="hero-rating">
-        <text class="hero-star">⭐</text>
-        <text class="hero-score">{{place.rating}}</text>
+        <van-rate
+          value="{{place.rating}}"
+          size="18"
+          color="#FFF"
+          void-color="rgba(255,255,255,0.3)"
+          allow-half
+          readonly
+        />
         <text class="hero-count">{{place.reviewCount}} 条评价</text>
       </view>
     </view>
-    <view class="hero-deco">🐾</view>
+    <view class="hero-deco-1">🐾</view>
+    <view class="hero-deco-2">🦴</view>
   </view>
 
-  <!-- 宠物友好等级 -->
-  <view class="level-card card">
+  <!-- Pet-friendly level -->
+  <view class="level-card">
     <view class="level-row">
       <text class="level-label">宠物友好指数</text>
-      <text class="level-paws">{{levelStars}}</text>
+      <van-rate
+        value="{{place.petFriendlyLevel}}"
+        size="20"
+        icon="like"
+        void-icon="like-o"
+        color="#F97316"
+        void-color="#FDE8D0"
+        readonly
+      />
     </view>
     <view class="place-tags">
-      <text wx:for="{{place.tags}}" wx:key="*this" class="tag">{{item}}</text>
+      <van-tag
+        wx:for="{{place.tags}}"
+        wx:key="*this"
+        round
+        color="#FFF1E6"
+        text-color="#F97316"
+        custom-class="detail-tag"
+      >{{item}}</van-tag>
     </view>
   </view>
 
-  <!-- 基本信息 -->
-  <view class="info-card card">
+  <!-- Info card -->
+  <view class="info-card">
     <view class="info-item">
       <text class="info-emoji">📍</text>
       <text class="info-text">{{place.address}}</text>
     </view>
+    <van-divider custom-style="margin: 0" />
     <view class="info-item">
       <text class="info-emoji">🕐</text>
       <text class="info-text">{{place.openTime}}</text>
     </view>
+    <van-divider wx:if="{{place.phone}}" custom-style="margin: 0" />
     <view class="info-item" wx:if="{{place.phone}}">
       <text class="info-emoji">📞</text>
       <text class="info-text">{{place.phone}}</text>
     </view>
   </view>
 
-  <!-- 描述 -->
-  <view class="card">
+  <!-- Description -->
+  <view class="desc-card">
     <text class="section-title">📝 详情介绍</text>
     <text class="description">{{place.description}}</text>
   </view>
 
-  <!-- 操作按钮 -->
-  <view class="actions-card card">
+  <!-- Actions -->
+  <view class="actions-card">
     <view class="action-grid">
       <view class="action-item" bindtap="onNavigate">
-        <view class="action-circle action-green">
+        <view class="action-circle action-orange">
           <text class="action-emoji">🧭</text>
         </view>
         <text class="action-label">导航前往</text>
       </view>
       <view class="action-item" bindtap="onCallPhone" wx:if="{{place.phone}}">
-        <view class="action-circle action-brown">
+        <view class="action-circle action-blue">
           <text class="action-emoji">📞</text>
         </view>
         <text class="action-label">电话联系</text>
@@ -71,32 +95,33 @@
     </view>
   </view>
 
-  <!-- 用户评价 -->
-  <view class="reviews-section card">
+  <!-- Reviews -->
+  <view class="reviews-section">
     <text class="section-title">💬 宠主评价 ({{reviews.length}})</text>
 
     <view wx:for="{{reviews}}" wx:key="id" class="review-item">
       <view class="review-header flex-row">
         <view class="review-avatar">
-          <text>🧑</text>
+          <text>🐾</text>
         </view>
         <view class="review-user-info">
           <text class="review-user-name">{{item.userName}}</text>
           <text class="review-date">{{item.createTime}}</text>
         </view>
-        <view class="review-stars">
-          <text wx:for="{{item.rating}}" wx:for-item="s" wx:key="*this" class="mini-star">⭐</text>
-        </view>
+        <van-rate
+          value="{{item.rating}}"
+          size="14"
+          color="#F97316"
+          void-color="#FDE8D0"
+          readonly
+        />
       </view>
       <view class="review-bubble">
         <text class="review-content">{{item.content}}</text>
       </view>
     </view>
 
-    <view wx:if="{{reviews.length === 0}}" class="empty-review">
-      <text class="empty-emoji">💭</text>
-      <text class="empty-text">暂无评价，快来做第一个评价吧~</text>
-    </view>
+    <van-empty wx:if="{{reviews.length === 0}}" description="暂无评价，快来做第一个评价吧~" />
   </view>
 
   <view style="height: 80rpx;"></view>

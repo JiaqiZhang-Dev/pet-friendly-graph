@@ -1,6 +1,6 @@
-<!--pages/nearby/nearby.wxml-->
+<!--pages/nearby/nearby.wxml — Modern Pet Claymorphism-->
 <view class="nearby-page">
-  <!-- 分类切换 -->
+  <!-- Type tabs -->
   <view class="type-tabs">
     <view
       wx:for="{{facilityTypes}}"
@@ -14,13 +14,13 @@
     </view>
   </view>
 
-  <!-- 地图/列表切换 -->
+  <!-- View toggle -->
   <view class="view-toggle" bindtap="toggleView">
     <text wx:if="{{showMap}}">📋 列表模式</text>
     <text wx:else>🗺 地图模式</text>
   </view>
 
-  <!-- 地图视图 -->
+  <!-- Map -->
   <map
     wx:if="{{showMap}}"
     class="nearby-map"
@@ -31,31 +31,40 @@
     show-location
   />
 
-  <!-- 列表视图 -->
-  <scroll-view wx:else class="facility-list" scroll-y>
+  <!-- List -->
+  <scroll-view wx:else class="facility-list" scroll-y enhanced show-scrollbar="{{false}}">
     <view
       wx:for="{{facilities}}"
       wx:key="id"
-      class="facility-card card"
+      class="facility-card"
       data-id="{{item.id}}"
       bindtap="onFacilityTap"
     >
+      <view class="facility-accent"></view>
       <view class="facility-info">
         <view class="flex-between">
           <text class="facility-name">{{item.name}}</text>
-          <text class="facility-rating">⭐ {{item.rating}}</text>
+          <view class="facility-rating">
+            <text class="rating-icon">⭐</text>
+            <text class="rating-val">{{item.rating}}</text>
+          </view>
         </view>
-        <text class="facility-address">{{item.address}}</text>
+        <text class="facility-address">📍 {{item.address}}</text>
         <view class="facility-tags">
-          <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
+          <van-tag
+            wx:for="{{item.tags}}"
+            wx:for-item="tag"
+            wx:key="*this"
+            round
+            size="medium"
+            color="#FFF1E6"
+            text-color="#F97316"
+          >{{tag}}</van-tag>
         </view>
-        <text class="facility-meta">{{item.reviewCount}} 条评价 · {{item.openTime}}</text>
+        <text class="facility-meta">💬 {{item.reviewCount}} 条评价 · 🕐 {{item.openTime}}</text>
       </view>
     </view>
 
-    <view wx:if="{{facilities.length === 0}}" class="empty-state">
-      <text class="empty-icon">🏥</text>
-      <text class="empty-text">附近暂无该类设施</text>
-    </view>
+    <van-empty wx:if="{{facilities.length === 0}}" description="附近暂无该类设施" />
   </scroll-view>
 </view>

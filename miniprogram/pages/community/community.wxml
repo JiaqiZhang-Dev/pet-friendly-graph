@@ -1,99 +1,115 @@
-<!--pages/community/community.wxml-->
+<!--pages/community/community.wxml — Modern Pet Claymorphism-->
 <view class="community-page">
-  <!-- 顶部 Tab -->
-  <view class="tabs">
-    <view
-      wx:for="{{tabs}}"
-      wx:key="key"
-      class="tab-item {{activeTab === item.key ? 'active' : ''}}"
-      data-tab="{{item.key}}"
-      bindtap="onSwitchTab"
-    >
-      <text>{{item.label}}</text>
-      <view wx:if="{{activeTab === item.key}}" class="tab-underline"></view>
-    </view>
-  </view>
+  <!-- Vant Tabs -->
+  <van-tabs
+    active="{{ activeTabIndex }}"
+    bind:change="onTabChange"
+    color="#F97316"
+    title-active-color="#F97316"
+    title-inactive-color="#A8774E"
+    line-width="28px"
+    line-height="4px"
+    custom-class="clay-tabs"
+  >
+    <van-tab title="动态 🐾">
+      <scroll-view class="feed-list" scroll-y enhanced show-scrollbar="{{false}}">
+        <view wx:for="{{posts}}" wx:key="id" class="post-card">
+          <!-- User info -->
+          <view class="post-header flex-row">
+            <view class="user-avatar">
+              <text>🐾</text>
+            </view>
+            <view class="user-meta">
+              <text class="user-name">{{item.userName}}</text>
+              <view class="post-meta-row flex-row">
+                <van-tag round color="#FFF1E6" text-color="#F97316" custom-class="pet-tag">{{item.petType}}</van-tag>
+                <text class="post-time">{{item.createTime}}</text>
+              </view>
+            </view>
+          </view>
 
-  <!-- 动态流 -->
-  <scroll-view wx:if="{{activeTab === 'feed'}}" class="feed-list" scroll-y enhanced show-scrollbar="{{false}}">
-    <view wx:for="{{posts}}" wx:key="id" class="post-card card">
-      <!-- 用户信息 -->
-      <view class="post-header flex-row">
-        <view class="user-avatar">
-          <text>🧑</text>
-        </view>
-        <view class="user-meta">
-          <text class="user-name">{{item.userName}}</text>
-          <view class="post-meta-row flex-row">
-            <text class="pet-type-tag">{{item.petType}}</text>
-            <text class="post-time">{{item.createTime}}</text>
+          <!-- Content -->
+          <text class="post-content">{{item.content}}</text>
+
+          <!-- Images -->
+          <view wx:if="{{item.images.length > 0}}" class="post-images">
+            <image
+              wx:for="{{item.images}}"
+              wx:for-item="img"
+              wx:key="*this"
+              class="post-image"
+              src="{{img}}"
+              mode="aspectFill"
+            />
+          </view>
+
+          <!-- Actions -->
+          <view class="post-actions flex-row">
+            <view
+              class="post-action {{item.isLiked ? 'liked' : ''}}"
+              data-index="{{index}}"
+              bindtap="onLikePost"
+            >
+              <text class="action-emoji">{{item.isLiked ? '🧡' : '🤍'}}</text>
+              <text class="action-count">{{item.likes}}</text>
+            </view>
+            <view class="post-action">
+              <text class="action-emoji">💬</text>
+              <text class="action-count">{{item.comments}}</text>
+            </view>
+            <button class="post-action share-action" open-type="share">
+              <text class="action-emoji">📤</text>
+              <text class="action-count">分享</text>
+            </button>
           </view>
         </view>
-      </view>
+      </scroll-view>
+    </van-tab>
 
-      <!-- 内容 -->
-      <text class="post-content">{{item.content}}</text>
+    <van-tab title="线下活动 🎉">
+      <scroll-view class="activity-list" scroll-y enhanced show-scrollbar="{{false}}">
+        <view wx:for="{{activities}}" wx:key="id" class="activity-card">
+          <view class="activity-badge">🎪</view>
+          <text class="activity-title">{{item.title}}</text>
+          <view class="activity-info">
+            <view class="info-row">
+              <text class="info-icon">📅</text>
+              <text class="info-text">{{item.date}}</text>
+            </view>
+            <view class="info-row">
+              <text class="info-icon">📍</text>
+              <text class="info-text">{{item.location}}</text>
+            </view>
+            <view class="info-row">
+              <text class="info-icon">👥</text>
+              <text class="info-text">{{item.participants}}/{{item.maxParticipants}} 人已报名</text>
+            </view>
+          </view>
+          <text class="activity-desc">{{item.description}}</text>
 
-      <!-- 图片占位 -->
-      <view wx:if="{{item.images.length > 0}}" class="post-images">
-        <image
-          wx:for="{{item.images}}"
-          wx:for-item="img"
-          wx:key="*this"
-          class="post-image"
-          src="{{img}}"
-          mode="aspectFill"
-        />
-      </view>
+          <!-- Progress bar -->
+          <view class="progress-wrap">
+            <view class="progress-bar">
+              <view
+                class="progress-fill"
+                style="width: {{item.participants / item.maxParticipants * 100}}%"
+              ></view>
+            </view>
+            <text class="progress-label">{{item.participants}}/{{item.maxParticipants}}</text>
+          </view>
 
-      <!-- 互动栏 -->
-      <view class="post-actions flex-row">
-        <view
-          class="post-action {{item.isLiked ? 'liked' : ''}}"
-          data-index="{{index}}"
-          bindtap="onLikePost"
-        >
-          <text class="action-emoji">{{item.isLiked ? '❤️' : '🤍'}}</text>
-          <text class="action-count">{{item.likes}}</text>
+          <van-button
+            type="{{item.isJoined ? 'default' : 'primary'}}"
+            round
+            block
+            custom-class="join-btn"
+            data-index="{{index}}"
+            bind:click="onJoinActivity"
+          >
+            {{item.isJoined ? '取消报名' : '立即报名 🐕'}}
+          </van-button>
         </view>
-        <view class="post-action">
-          <text class="action-emoji">💬</text>
-          <text class="action-count">{{item.comments}}</text>
-        </view>
-        <button class="post-action share-action" open-type="share">
-          <text class="action-emoji">📤</text>
-          <text class="action-count">分享</text>
-        </button>
-      </view>
-    </view>
-  </scroll-view>
-
-  <!-- 线下活动 -->
-  <scroll-view wx:if="{{activeTab === 'activity'}}" class="activity-list" scroll-y enhanced show-scrollbar="{{false}}">
-    <view wx:for="{{activities}}" wx:key="id" class="activity-card card">
-      <text class="activity-title">{{item.title}}</text>
-      <view class="activity-info">
-        <text class="info-row">📅 {{item.date}}</text>
-        <text class="info-row">📍 {{item.location}}</text>
-        <text class="info-row">👥 {{item.participants}}/{{item.maxParticipants}} 人已报名</text>
-      </view>
-      <text class="activity-desc">{{item.description}}</text>
-
-      <!-- 进度条 -->
-      <view class="progress-bar">
-        <view
-          class="progress-fill"
-          style="width: {{item.participants / item.maxParticipants * 100}}%"
-        ></view>
-      </view>
-
-      <button
-        class="{{item.isJoined ? 'btn-secondary' : 'btn-primary'}} join-btn"
-        data-index="{{index}}"
-        bindtap="onJoinActivity"
-      >
-        {{item.isJoined ? '取消报名' : '立即报名'}}
-      </button>
-    </view>
-  </scroll-view>
+      </scroll-view>
+    </van-tab>
+  </van-tabs>
 </view>

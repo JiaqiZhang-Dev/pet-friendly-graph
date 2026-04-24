@@ -143,3 +143,18 @@ page {
 .tag-mint    { background: #ECFDF5; color: #059669; }
 .tag-yellow  { background: #FFFBEB; color: #D97706; }
 .tag-purple  { background: #F5F3FF; color: #7C3AED; }
+
+/* Vant Weapp theme overrides */
+page {
+  --button-primary-background-color: #F97316;
+  --button-primary-border-color: #F97316;
+  --tabs-bottom-bar-color: #F97316;
+  --tabs-default-color: #F97316;
+  --tag-primary-color: #F97316;
+  --rate-icon-full-color: #F97316;
+  --field-input-text-color: #7C2D12;
+  --uploader-upload-background-color: #FFF7ED;
+  --progress-color: linear-gradient(90deg, #F97316, #FB923C);
+  --loading-spinner-color: #F97316;
+  --empty-description-color: #A8774E;
+}

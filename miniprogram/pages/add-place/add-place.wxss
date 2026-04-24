@@ -1,8 +1,18 @@
-/* pages/add-place/add-place.wxss — 可爱趣味风 */
+/* pages/add-place/add-place.wxss — Modern Pet Claymorphism */
 .add-page {
   min-height: 100vh;
   padding-bottom: env(safe-area-inset-bottom);
   background: var(--color-bg);
+}
+
+.upload-section,
+.form-section {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: var(--border-clay);
+  padding: 32rpx;
+  margin: 16rpx 28rpx;
 }
 
 .tip-text {
@@ -21,8 +31,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FFFCF7;
+  background: var(--color-bg);
   transition: all 0.2s;
+  box-shadow: var(--shadow-inset);
 }
 
 .upload-area:active {
@@ -49,7 +60,7 @@
 .upload-text {
   font-size: 28rpx;
   color: var(--color-text);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .upload-hint {
@@ -57,8 +68,13 @@
   color: var(--color-text-hint);
 }
 
-/* 加载动画 */
-.analyzing {
+/* Loading */
+.analyzing-section {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: var(--border-clay);
+  margin: 16rpx 28rpx;
   text-align: center;
 }
 
@@ -70,51 +86,47 @@
   padding: 48rpx;
 }
 
-.loading-spinner {
-  width: 56rpx;
-  height: 56rpx;
-  border: 5rpx solid var(--color-border);
-  border-top: 5rpx solid var(--color-primary);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
 .loading-text {
   font-size: 28rpx;
   color: var(--color-text);
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* 表单 */
-.form-group {
-  margin-bottom: 32rpx;
+/* Form */
+.form-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 8rpx 16rpx;
+  margin-bottom: 24rpx;
+  box-shadow: var(--shadow-inset);
+  border: 2rpx solid var(--color-border);
+}
+
+.clay-field {
+  background: transparent !important;
+}
+
+.clay-label {
+  color: var(--color-text) !important;
+  font-weight: 700 !important;
+}
+
+.field-divider {
+  height: 2rpx;
+  background: var(--color-border);
+  margin: 0 16rpx;
+}
+
+.picker-group {
+  padding: 16rpx;
 }
 
 .form-label {
   display: block;
   font-size: 26rpx;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text);
   margin-bottom: 14rpx;
-}
-
-.form-input {
-  width: 100%;
-  padding: 20rpx 24rpx;
-  border: 2rpx solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: 28rpx;
-  box-sizing: border-box;
-  background: #FFFCF7;
-  transition: border-color 0.2s;
-}
-
-.form-input:focus {
-  border-color: var(--color-primary);
 }
 
 .form-picker {
@@ -125,7 +137,7 @@
   border: 2rpx solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 28rpx;
-  background: #FFFCF7;
+  background: #FFF;
 }
 
 .picker-arrow {
@@ -136,10 +148,9 @@
 .place-tags {
   display: flex;
   flex-wrap: wrap;
+  padding: 8rpx 16rpx 16rpx;
 }
 
 .submit-btn {
-  margin-top: 48rpx;
-  width: 100%;
-  border-radius: var(--radius-xl) !important;
+  margin-top: 32rpx;
 }

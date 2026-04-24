@@ -28,6 +28,7 @@ interface Activity {
 Page({
   data: {
     activeTab: 'feed',
+    activeTabIndex: 0,
     tabs: [
       { key: 'feed', label: '动态' },
       { key: 'activity', label: '线下活动' },
@@ -108,6 +109,12 @@ Page({
 
   onSwitchTab(e: WechatMiniprogram.TouchEvent) {
     this.setData({ activeTab: e.currentTarget.dataset.tab as string })
+  },
+
+  onTabChange(e: any) {
+    const index = e.detail.index as number
+    const tabKeys = ['feed', 'activity']
+    this.setData({ activeTabIndex: index, activeTab: tabKeys[index] })
   },
 
   onLikePost(e: WechatMiniprogram.TouchEvent) {

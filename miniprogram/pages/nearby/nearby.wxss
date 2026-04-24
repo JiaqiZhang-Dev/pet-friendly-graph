@@ -1,4 +1,4 @@
-/* pages/nearby/nearby.wxss — 可爱趣味风 */
+/* pages/nearby/nearby.wxss — Modern Pet Claymorphism */
 .nearby-page {
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
 
 .type-tabs {
   display: flex;
-  background: #FFFCF7;
+  background: var(--color-bg);
   padding: 20rpx 28rpx;
   gap: 24rpx;
 }
@@ -22,14 +22,16 @@
   padding: 24rpx;
   border-radius: var(--radius-lg);
   background: #FFF;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-clay);
+  border: var(--border-clay);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .type-tab.active {
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
   color: #fff;
-  box-shadow: 0 8rpx 28rpx rgba(107,158,122,0.3);
+  box-shadow: 4rpx 4rpx 16rpx rgba(249,115,22,0.25), -2rpx -2rpx 8rpx rgba(255,255,255,0.40);
+  border-color: transparent;
   transform: scale(1.03);
 }
 
@@ -39,7 +41,7 @@
 
 .tab-text {
   font-size: 28rpx;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .type-tab.active .tab-text {
@@ -51,8 +53,8 @@
   padding: 16rpx;
   font-size: 24rpx;
   color: var(--color-primary);
-  background: #FFFCF7;
-  font-weight: 600;
+  background: var(--color-bg);
+  font-weight: 700;
 }
 
 .nearby-map {
@@ -62,59 +64,76 @@
 
 .facility-list {
   flex: 1;
+  padding: 8rpx 0;
 }
 
 .facility-card {
-  margin-bottom: 4rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: var(--border-clay);
+  margin: 12rpx 28rpx;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+}
+
+.facility-card:active {
+  transform: scale(0.98);
+}
+
+.facility-accent {
+  height: 6rpx;
+  background: linear-gradient(90deg, #F97316, #FB923C, #FBBF24);
+}
+
+.facility-info {
+  padding: 28rpx 32rpx;
 }
 
 .facility-name {
   font-size: 30rpx;
-  font-weight: 700;
+  font-weight: 800;
   flex: 1;
   color: var(--color-text);
 }
 
 .facility-rating {
-  font-size: 26rpx;
-  color: var(--color-warning);
-  background: #FFF9E6;
-  padding: 6rpx 14rpx;
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+  background: #FFFBEB;
+  padding: 6rpx 16rpx;
   border-radius: var(--radius-xl);
-  font-weight: 600;
+  box-shadow: 2rpx 2rpx 6rpx rgba(245,158,11,0.08);
+  border: 2rpx solid rgba(245,158,11,0.08);
+}
+
+.rating-icon {
+  font-size: 22rpx;
+}
+
+.rating-val {
+  font-size: 26rpx;
+  color: #D97706;
+  font-weight: 800;
 }
 
 .facility-address {
   display: block;
   font-size: 24rpx;
   color: var(--color-text-secondary);
-  margin: 10rpx 0 14rpx;
+  margin: 12rpx 0 14rpx;
 }
 
 .facility-tags {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 10rpx;
+  gap: 10rpx;
+  margin-bottom: 12rpx;
 }
 
 .facility-meta {
   font-size: 22rpx;
   color: var(--color-text-hint);
-}
-
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 120rpx 0;
-}
-
-.empty-icon {
-  font-size: 100rpx;
-  margin-bottom: 24rpx;
-}
-
-.empty-text {
-  font-size: 28rpx;
-  color: var(--color-text-hint);
+  font-weight: 500;
 }

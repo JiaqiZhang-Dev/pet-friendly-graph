@@ -11,12 +11,12 @@ Page({
       activities: 2,
     },
     menuItems: [
-      { icon: '📍', label: '我添加的地点', key: 'my-places' },
-      { icon: '⭐', label: '我的收藏', key: 'favorites' },
-      { icon: '💬', label: '我的评价', key: 'my-reviews' },
-      { icon: '📅', label: '我的活动', key: 'my-activities' },
-      { icon: '⚙️', label: '设置', key: 'settings' },
-      { icon: '❓', label: '帮助与反馈', key: 'help' },
+      { icon: '📍', label: '我添加的地点', key: 'my-places', bgColor: '#FFF1E6' },
+      { icon: '⭐', label: '我的收藏', key: 'favorites', bgColor: '#FFFBEB' },
+      { icon: '💬', label: '我的评价', key: 'my-reviews', bgColor: '#EFF6FF' },
+      { icon: '📅', label: '我的活动', key: 'my-activities', bgColor: '#ECFDF5' },
+      { icon: '⚙️', label: '设置', key: 'settings', bgColor: '#F5F3FF' },
+      { icon: '❓', label: '帮助与反馈', key: 'help', bgColor: '#FDF2F8' },
     ],
   },
 

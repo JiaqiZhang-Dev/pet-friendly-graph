@@ -1,6 +1,6 @@
-<!--pages/add-place/add-place.wxml-->
+<!--pages/add-place/add-place.wxml — Modern Pet Claymorphism-->
 <view class="add-page">
-  <view class="card">
+  <view class="upload-section">
     <text class="section-title">📸 上传截图</text>
     <text class="tip-text">上传地点截图，AI 将自动识别地点信息</text>
 
@@ -19,67 +19,75 @@
     </view>
   </view>
 
-  <!-- 分析中 -->
-  <view wx:if="{{isAnalyzing}}" class="card analyzing">
+  <!-- Analyzing -->
+  <view wx:if="{{isAnalyzing}}" class="analyzing-section">
     <view class="loading-wrapper">
-      <view class="loading-spinner"></view>
+      <van-loading size="48rpx" color="#F97316" />
       <text class="loading-text">🤖 AI 正在识别中...</text>
     </view>
   </view>
 
-  <!-- 识别结果 -->
-  <view wx:if="{{extractedInfo && !isAnalyzing}}" class="card">
+  <!-- Results form -->
+  <view wx:if="{{extractedInfo && !isAnalyzing}}" class="form-section">
     <text class="section-title">✏️ 确认信息</text>
 
-    <view class="form-group">
-      <text class="form-label">地点名称</text>
-      <input
-        class="form-input"
+    <view class="form-card">
+      <van-field
         value="{{extractedInfo.name}}"
-        bindinput="onNameInput"
+        label="地点名称"
         placeholder="请输入地点名称"
+        border="{{false}}"
+        bind:change="onNameInput"
+        custom-class="clay-field"
+        label-class="clay-label"
       />
-    </view>
-
-    <view class="form-group">
-      <text class="form-label">地址</text>
-      <input
-        class="form-input"
+      <view class="field-divider"></view>
+      <van-field
         value="{{extractedInfo.address}}"
-        bindinput="onAddressInput"
+        label="地址"
         placeholder="请输入地址"
+        border="{{false}}"
+        bind:change="onAddressInput"
+        custom-class="clay-field"
+        label-class="clay-label"
       />
     </view>
 
-    <view class="form-group">
-      <text class="form-label">类型</text>
-      <picker
-        mode="selector"
-        range="{{placeTypes}}"
-        range-key="label"
-        value="{{selectedTypeIndex}}"
-        bindchange="onTypeChange"
-      >
-        <view class="form-picker">
-          <text>{{placeTypes[selectedTypeIndex].label}}</text>
-          <text class="picker-arrow">▼</text>
-        </view>
-      </picker>
+    <view class="form-card">
+      <view class="picker-group">
+        <text class="form-label">类型</text>
+        <picker
+          mode="selector"
+          range="{{placeTypes}}"
+          range-key="label"
+          value="{{selectedTypeIndex}}"
+          bindchange="onTypeChange"
+        >
+          <view class="form-picker">
+            <text>{{placeTypes[selectedTypeIndex].label}}</text>
+            <text class="picker-arrow">▼</text>
+          </view>
+        </picker>
+      </view>
     </view>
 
-    <view class="form-group">
+    <view class="form-card" wx:if="{{extractedInfo.tags.length > 0}}">
       <text class="form-label">标签</text>
       <view class="place-tags">
         <text wx:for="{{extractedInfo.tags}}" wx:key="*this" class="tag">{{item}}</text>
       </view>
     </view>
 
-    <button
-      class="btn-primary submit-btn"
-      bindtap="onSubmit"
-      disabled="{{isSubmitting}}"
+    <van-button
+      type="primary"
+      round
+      block
+      loading="{{isSubmitting}}"
+      loading-text="提交中..."
+      custom-class="submit-btn"
+      bind:click="onSubmit"
     >
-      {{isSubmitting ? '提交中...' : '确认添加'}}
-    </button>
+      确认添加 🐾
+    </van-button>
   </view>
 </view>
