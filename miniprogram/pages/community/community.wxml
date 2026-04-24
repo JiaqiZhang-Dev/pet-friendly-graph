@@ -111,4 +111,9 @@
       </scroll-view>
     </van-tab>
   </van-tabs>
+
+  <!-- 发布按钮 FAB -->
+  <view class="fab-publish" bindtap="onPublish">
+    <van-icon name="edit" size="24px" color="#FFF" />
+  </view>
 </view>

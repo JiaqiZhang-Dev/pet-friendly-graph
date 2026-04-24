@@ -1,0 +1,88 @@
+<!--pages/post-create/post-create.wxml-->
+<view class="create-page">
+  <!-- 内容输入 -->
+  <view class="content-section">
+    <textarea
+      class="content-input"
+      value="{{content}}"
+      placeholder="分享你和毛孩子的故事..."
+      maxlength="1000"
+      bindinput="onContentInput"
+      auto-height
+    />
+    <view class="char-count">{{content.length}}/1000</view>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="image-section">
+    <view class="image-grid">
+      <view wx:for="{{images}}" wx:key="*this" class="image-item">
+        <image class="preview-img" src="{{item}}" mode="aspectFill" />
+        <view class="image-remove" bindtap="onRemoveImage" data-index="{{index}}">
+          <van-icon name="cross" size="12px" color="#FFF" />
+        </view>
+      </view>
+      <view wx:if="{{images.length < 9}}" class="image-add" bindtap="onAddImages">
+        <van-icon name="photograph" size="40px" color="#94A3B8" />
+        <text class="add-text">{{images.length}}/9</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 宠物信息 -->
+  <view class="info-section">
+    <view class="info-row" bindtap="onChoosePetType">
+      <view class="info-left">
+        <van-icon name="smile-o" size="20px" color="{{colorPrimary}}" />
+        <text class="info-label">宠物类型</text>
+      </view>
+      <view class="info-right">
+        <text class="info-value">{{petType || '选择宠物类型'}}</text>
+        <van-icon name="arrow" size="14px" color="#94A3B8" />
+      </view>
+    </view>
+
+    <view class="info-row" bindtap="onChooseLocation">
+      <view class="info-left">
+        <van-icon name="location-o" size="20px" color="{{colorPrimary}}" />
+        <text class="info-label">所在位置</text>
+      </view>
+      <view class="info-right">
+        <text class="info-value">{{location || '添加位置'}}</text>
+        <van-icon name="arrow" size="14px" color="#94A3B8" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 话题标签 -->
+  <view class="topic-section">
+    <text class="section-label">添加话题</text>
+    <view class="topic-chips">
+      <view
+        wx:for="{{topicOptions}}"
+        wx:key="*this"
+        class="topic-chip {{selectedTopics[item] ? 'topic-chip-active' : ''}}"
+        bindtap="onToggleTopic"
+        data-topic="{{item}}"
+      >
+        <text>#{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-bar">
+    <van-button
+      type="primary"
+      round
+      block
+      loading="{{isPublishing}}"
+      loading-text="发布中..."
+      custom-class="publish-btn"
+      disabled="{{!content}}"
+      bind:click="onPublish"
+    >
+      发布动态
+    </van-button>
+  </view>
+</view>

@@ -5,7 +5,8 @@
     "pages/profile/profile",
     "pages/place-detail/place-detail",
     "pages/nearby/nearby",
-    "pages/add-place/add-place"
+    "pages/add-place/add-place",
+    "pages/post-create/post-create"
   ],
   "window": {
     "navigationBarTextStyle": "white",

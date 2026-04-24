@@ -208,3 +208,25 @@
 .join-btn {
   margin-top: 8rpx;
 }
+
+/* FAB 发布按钮 */
+.fab-publish {
+  position: fixed;
+  right: 36rpx;
+  bottom: calc(180rpx + env(safe-area-inset-bottom));
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 8rpx 28rpx rgba(59,130,246,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: all 0.2s;
+}
+
+.fab-publish:active {
+  transform: scale(0.9);
+  box-shadow: 0 4rpx 16rpx rgba(59,130,246,0.25);
+}

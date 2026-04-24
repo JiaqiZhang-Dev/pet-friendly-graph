@@ -39,7 +39,7 @@ Page({
         userId: 'u1',
         userName: '柯基妈妈',
         avatar: '',
-        content: '今天带小柯去了太古里，好多人围着拍照，小柯成了明星狗了！🌟',
+        content: '今天带小柯去了新天地，好多人围着拍照，小柯成了明星狗了！🌟',
         images: [],
         petType: '柯基',
         likes: 42,
@@ -53,7 +53,7 @@ Page({
         userId: 'u2',
         userName: '布偶猫主人',
         avatar: '',
-        content: '我家布偶第一次出门，在奥森公园的大草坪上玩得很开心~',
+        content: '我家布偶第一次出门，在世纪公园的大草坪上玩得很开心~',
         images: [],
         petType: '布偶猫',
         likes: 88,
@@ -67,7 +67,7 @@ Page({
         userId: 'u3',
         userName: '金毛爸爸',
         avatar: '',
-        content: '分享一家超棒的宠物友好餐厅，老板还给了狗狗小零食！地址在朝阳区建外SOHO旁边~',
+        content: '分享一家超棒的宠物友好餐厅，老板还给了狗狗小零食！地址在徐汇区安福路旁边~',
         images: [],
         petType: '金毛',
         likes: 156,
@@ -82,7 +82,7 @@ Page({
         id: 'a1',
         title: '🐕 周末宠物社交趴',
         date: '2026年4月26日 14:00',
-        location: '奥林匹克森林公园南门',
+        location: '世纪公园南门',
         participants: 18,
         maxParticipants: 30,
         description: '带上你的毛孩子，一起来公园玩耍、交朋友！我们准备了小零食和玩具~',
@@ -154,5 +154,9 @@ Page({
       title: '来宠物圈看看可爱的毛孩子们~',
       path: '/pages/community/community',
     }
+  },
+
+  onPublish() {
+    wx.navigateTo({ url: '/pages/post-create/post-create' })
   },
 })
