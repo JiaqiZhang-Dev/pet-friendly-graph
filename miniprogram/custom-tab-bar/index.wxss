@@ -1,24 +1,24 @@
-/* custom-tab-bar/index.wxss — Modern Pet Claymorphism */
+/* custom-tab-bar/index.wxss — Cute Simple Tab Bar */
 .tab-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  height: 120rpx;
-  background: rgba(255,250,245,0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  height: 110rpx;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-top: none;
-  box-shadow: 0 -6rpx 28rpx rgba(249,115,22,0.06);
+  box-shadow: 0 -4rpx 20rpx rgba(59,130,246,0.05);
   padding-bottom: env(safe-area-inset-bottom);
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 16rpx;
+  right: 16rpx;
   z-index: 999;
-  border-radius: 32rpx 32rpx 0 0;
-  border: 2rpx solid rgba(255,255,255,0.60);
-  border-bottom: none;
+  border-radius: 36rpx;
+  margin-bottom: 12rpx;
+  border: 2rpx solid rgba(255,255,255,0.70);
 }
 
 .tab-item {
@@ -27,56 +27,37 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding: 10rpx 0;
+  padding: 8rpx 0;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
 }
 
 .tab-icon-wrap {
-  width: 72rpx;
-  height: 72rpx;
+  width: 64rpx;
+  height: 64rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 2rpx;
 }
 
 .tab-item.active .tab-icon-wrap {
-  background: linear-gradient(135deg, #FFF1E6 0%, #FFEDD5 100%);
-  box-shadow: 4rpx 4rpx 12rpx rgba(249,115,22,0.12), -3rpx -3rpx 8rpx rgba(255,255,255,0.80);
-  transform: scale(1.12) translateY(-6rpx);
-}
-
-.tab-icon {
-  font-size: 40rpx;
-  line-height: 48rpx;
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  box-shadow: 0 4rpx 16rpx rgba(59,130,246,0.15);
+  transform: scale(1.15) translateY(-4rpx);
 }
 
 .tab-label {
   font-size: 20rpx;
-  color: #A8774E;
-  margin-top: 4rpx;
-  line-height: 26rpx;
+  color: #94A3B8;
+  line-height: 24rpx;
   font-weight: 500;
   letter-spacing: 1rpx;
   transition: all 0.2s;
 }
 
 .tab-item.active .tab-label {
-  color: #F97316;
+  color: #3B82F6;
   font-weight: 700;
-}
-
-/* Paw print active indicator */
-.tab-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: 2rpx;
-  width: 10rpx;
-  height: 10rpx;
-  background: #F97316;
-  border-radius: 50%;
-  box-shadow: -8rpx -4rpx 0 3rpx #F97316, 8rpx -4rpx 0 3rpx #F97316;
-  transform: scale(0.45);
 }

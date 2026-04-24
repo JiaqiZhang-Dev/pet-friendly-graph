@@ -1,8 +1,8 @@
-/* pages/profile/profile.wxss — Modern Pet Claymorphism */
+/* pages/profile/profile.wxss — Cute Pet Claymorphism */
 .profile-page {
   min-height: 100vh;
-  padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
-  background: var(--color-bg);
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+  background: var(--gradient-page);
 }
 
 .profile-header {
@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   padding: 80rpx 0 48rpx;
-  background: linear-gradient(160deg, #F97316 0%, #FB923C 40%, #FBBF24 80%, #FFF7ED 100%);
+  background: var(--gradient-primary);
   border-radius: 0 0 60rpx 60rpx;
   overflow: hidden;
 }
@@ -52,7 +52,7 @@
   padding: 0;
   background: none;
   border: 8rpx solid rgba(255,255,255,0.6);
-  box-shadow: 6rpx 6rpx 24rpx rgba(249,115,22,0.25), -4rpx -4rpx 12rpx rgba(255,255,255,0.40);
+  box-shadow: 6rpx 6rpx 24rpx rgba(59,130,246,0.25), -4rpx -4rpx 12rpx rgba(255,255,255,0.40);
 }
 
 .avatar-btn::after {
@@ -120,7 +120,7 @@
 .stat-num {
   font-size: 42rpx;
   font-weight: 800;
-  color: #F97316;
+  color: #3B82F6;
 }
 
 .stat-label {
@@ -178,7 +178,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 3rpx 3rpx 10rpx rgba(249,115,22,0.06), -2rpx -2rpx 6rpx rgba(255,255,255,0.70);
+  box-shadow: 3rpx 3rpx 10rpx rgba(59,130,246,0.06), -2rpx -2rpx 6rpx rgba(255,255,255,0.70);
 }
 
 .menu-icon {

@@ -28,9 +28,9 @@
 }
 
 .type-tab.active {
-  background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
   color: #fff;
-  box-shadow: 4rpx 4rpx 16rpx rgba(249,115,22,0.25), -2rpx -2rpx 8rpx rgba(255,255,255,0.40);
+  box-shadow: 4rpx 4rpx 16rpx rgba(59,130,246,0.25), -2rpx -2rpx 8rpx rgba(255,255,255,0.40);
   border-color: transparent;
   transform: scale(1.03);
 }
@@ -83,7 +83,7 @@
 
 .facility-accent {
   height: 6rpx;
-  background: linear-gradient(90deg, #F97316, #FB923C, #FBBF24);
+  background: linear-gradient(90deg, #3B82F6, #60A5FA, #93C5FD);
 }
 
 .facility-info {

@@ -8,7 +8,11 @@
     bindtap="switchTab"
   >
     <view class="tab-icon-wrap">
-      <text class="tab-icon">{{selected === index ? item.activeIcon : item.icon}}</text>
+      <van-icon
+        name="{{selected === index ? item.activeIconName : item.iconName}}"
+        size="22px"
+        color="{{selected === index ? '#3B82F6' : '#94A3B8'}}"
+      />
     </view>
     <text class="tab-label">{{item.text}}</text>
   </view>

@@ -22,7 +22,7 @@
   <!-- Analyzing -->
   <view wx:if="{{isAnalyzing}}" class="analyzing-section">
     <view class="loading-wrapper">
-      <van-loading size="48rpx" color="#F97316" />
+      <van-loading size="48rpx" color="#3B82F6" />
       <text class="loading-text">🤖 AI 正在识别中...</text>
     </view>
   </view>

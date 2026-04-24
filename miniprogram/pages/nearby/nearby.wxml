@@ -57,8 +57,8 @@
             wx:key="*this"
             round
             size="medium"
-            color="#FFF1E6"
-            text-color="#F97316"
+            color="#EFF6FF"
+            text-color="#3B82F6"
           >{{tag}}</van-tag>
         </view>
         <text class="facility-meta">💬 {{item.reviewCount}} 条评价 · 🕐 {{item.openTime}}</text>

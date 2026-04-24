@@ -30,8 +30,8 @@
         size="20"
         icon="like"
         void-icon="like-o"
-        color="#F97316"
-        void-color="#FDE8D0"
+        color="#3B82F6"
+        void-color="#DBEAFE"
         readonly
       />
     </view>
@@ -40,8 +40,8 @@
         wx:for="{{place.tags}}"
         wx:key="*this"
         round
-        color="#FFF1E6"
-        text-color="#F97316"
+        color="#EFF6FF"
+        text-color="#3B82F6"
         custom-class="detail-tag"
       >{{item}}</van-tag>
     </view>
@@ -111,8 +111,8 @@
         <van-rate
           value="{{item.rating}}"
           size="14"
-          color="#F97316"
-          void-color="#FDE8D0"
+          color="#3B82F6"
+          void-color="#DBEAFE"
           readonly
         />
       </view>

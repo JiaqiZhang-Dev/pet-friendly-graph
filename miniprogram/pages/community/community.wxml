@@ -1,28 +1,28 @@
-<!--pages/community/community.wxml — Modern Pet Claymorphism-->
+<!--pages/community/community.wxml — Cute Pet Claymorphism-->
 <view class="community-page">
   <!-- Vant Tabs -->
   <van-tabs
     active="{{ activeTabIndex }}"
     bind:change="onTabChange"
-    color="#F97316"
-    title-active-color="#F97316"
-    title-inactive-color="#A8774E"
+    color="#3B82F6"
+    title-active-color="#3B82F6"
+    title-inactive-color="#94A3B8"
     line-width="28px"
     line-height="4px"
     custom-class="clay-tabs"
   >
-    <van-tab title="动态 🐾">
+    <van-tab title="动态">
       <scroll-view class="feed-list" scroll-y enhanced show-scrollbar="{{false}}">
         <view wx:for="{{posts}}" wx:key="id" class="post-card">
           <!-- User info -->
           <view class="post-header flex-row">
             <view class="user-avatar">
-              <text>🐾</text>
+              <van-icon name="friends" size="22px" color="#3B82F6" />
             </view>
             <view class="user-meta">
               <text class="user-name">{{item.userName}}</text>
               <view class="post-meta-row flex-row">
-                <van-tag round color="#FFF1E6" text-color="#F97316" custom-class="pet-tag">{{item.petType}}</van-tag>
+                <van-tag round color="#EFF6FF" text-color="#3B82F6" custom-class="pet-tag">{{item.petType}}</van-tag>
                 <text class="post-time">{{item.createTime}}</text>
               </view>
             </view>
@@ -50,15 +50,15 @@
               data-index="{{index}}"
               bindtap="onLikePost"
             >
-              <text class="action-emoji">{{item.isLiked ? '🧡' : '🤍'}}</text>
+              <van-icon name="{{item.isLiked ? 'like' : 'like-o'}}" size="18px" color="{{item.isLiked ? '#3B82F6' : '#94A3B8'}}" />
               <text class="action-count">{{item.likes}}</text>
             </view>
             <view class="post-action">
-              <text class="action-emoji">💬</text>
+              <van-icon name="chat-o" size="18px" color="#94A3B8" />
               <text class="action-count">{{item.comments}}</text>
             </view>
             <button class="post-action share-action" open-type="share">
-              <text class="action-emoji">📤</text>
+              <van-icon name="share-o" size="18px" color="#94A3B8" />
               <text class="action-count">分享</text>
             </button>
           </view>
@@ -66,22 +66,21 @@
       </scroll-view>
     </van-tab>
 
-    <van-tab title="线下活动 🎉">
+    <van-tab title="线下活动">
       <scroll-view class="activity-list" scroll-y enhanced show-scrollbar="{{false}}">
         <view wx:for="{{activities}}" wx:key="id" class="activity-card">
-          <view class="activity-badge">🎪</view>
           <text class="activity-title">{{item.title}}</text>
           <view class="activity-info">
             <view class="info-row">
-              <text class="info-icon">📅</text>
+              <van-icon name="calendar-o" size="15px" color="#3B82F6" />
               <text class="info-text">{{item.date}}</text>
             </view>
             <view class="info-row">
-              <text class="info-icon">📍</text>
+              <van-icon name="location-o" size="15px" color="#3B82F6" />
               <text class="info-text">{{item.location}}</text>
             </view>
             <view class="info-row">
-              <text class="info-icon">👥</text>
+              <van-icon name="friends-o" size="15px" color="#3B82F6" />
               <text class="info-text">{{item.participants}}/{{item.maxParticipants}} 人已报名</text>
             </view>
           </view>
@@ -106,7 +105,7 @@
             data-index="{{index}}"
             bind:click="onJoinActivity"
           >
-            {{item.isJoined ? '取消报名' : '立即报名 🐕'}}
+            {{item.isJoined ? '取消报名' : '立即报名'}}
           </van-button>
         </view>
       </scroll-view>

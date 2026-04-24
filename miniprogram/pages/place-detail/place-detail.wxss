@@ -14,7 +14,7 @@
 .hero-bg {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, #F97316 0%, #FB923C 40%, #FBBF24 80%, #FFF7ED 100%);
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 40%, #93C5FD 80%, #F0F7FF 100%);
   border-radius: 0 0 48rpx 48rpx;
 }
 
@@ -192,7 +192,7 @@
   transform: scale(0.9);
 }
 
-.action-orange { background: #FFF1E6; }
+.action-orange { background: #EFF6FF; }
 .action-blue   { background: #EFF6FF; }
 .action-pink   { background: #FDF2F8; }
 
@@ -234,12 +234,12 @@
   width: 72rpx;
   height: 72rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #FFF1E6, #FFEDD5);
+  background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36rpx;
-  box-shadow: 3rpx 3rpx 8rpx rgba(249,115,22,0.08);
+  box-shadow: 3rpx 3rpx 8rpx rgba(59,130,246,0.08);
 }
 
 .review-user-info {
