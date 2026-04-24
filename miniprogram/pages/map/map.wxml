@@ -116,7 +116,10 @@
     >
       <view class="sheet-handle-bar"></view>
       <view class="sheet-handle-row">
-        <text class="panel-title">附近宠物友好地点</text>
+        <view class="panel-title-row">
+          <text class="panel-title-icon">🐾</text>
+          <text class="panel-title">附近宠物友好地点</text>
+        </view>
         <text class="panel-count">{{filteredPlaces.length}} 个</text>
         <van-icon name="{{panelState === 'full' ? 'arrow-down' : 'arrow-up'}}" size="14px" color="#94A3B8" />
       </view>

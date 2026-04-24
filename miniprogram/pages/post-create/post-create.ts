@@ -16,11 +16,38 @@ Page({
   },
 
   onLoad() {
-    // 默认获取当前位置
+    // 获取当前位置并反解地址
     wx.getLocation({
       type: 'gcj02',
       success: (res) => {
-        this.setData({ location: '当前位置 (' + res.latitude.toFixed(4) + ', ' + res.longitude.toFixed(4) + ')' })
+        this.setData({ location: '定位中...' })
+        // 用腾讯地图 WebService API 反解地址
+        var lat = res.latitude
+        var lng = res.longitude
+        wx.request({
+          url: 'https://apis.map.qq.com/ws/geocoder/v1/',
+          data: {
+            location: lat + ',' + lng,
+            key: 'IXHBZ-BFNWU-JDVVJ-4FQBT-FXT2T-OABQS',
+            get_poi: 0,
+          },
+          success: (apiRes: any) => {
+            var data = apiRes.data
+            if (data && data.status === 0 && data.result) {
+              var addr = data.result.formatted_addresses
+              var name = (addr && addr.recommend) || data.result.address || ''
+              this.setData({ location: name })
+            } else {
+              this.setData({ location: '上海市' })
+            }
+          },
+          fail: () => {
+            this.setData({ location: '上海市' })
+          },
+        })
+      },
+      fail: () => {
+        this.setData({ location: '点击选择位置' })
       },
     })
     // 从缓存读取宠物列表，自动选中第一个

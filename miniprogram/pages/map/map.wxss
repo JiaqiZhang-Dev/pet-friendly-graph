@@ -256,13 +256,15 @@
   padding: 20rpx 32rpx 16rpx;
   cursor: pointer;
   min-height: 80rpx;
+  background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 100%);
+  border-radius: 24rpx 24rpx 0 0;
 }
 
 .sheet-handle-bar {
   width: 64rpx;
   height: 8rpx;
   border-radius: 4rpx;
-  background: #E0D8F5;
+  background: #93C5FD;
   margin: 0 auto 16rpx;
 }
 
@@ -272,18 +274,30 @@
   gap: 12rpx;
 }
 
-.panel-title {
-  font-size: 26rpx;
-  font-weight: 700;
-  color: var(--color-text);
+.panel-title-row {
   flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.panel-title-icon {
+  font-size: 32rpx;
+}
+
+.panel-title {
+  font-size: 34rpx;
+  font-weight: 800;
+  background: linear-gradient(135deg, #60A5FA, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .panel-count {
   font-size: 22rpx;
-  color: var(--color-primary);
+  color: #3B82F6;
   font-weight: 700;
-  background: #F5F3FF;
+  background: #EFF6FF;
   padding: 4rpx 16rpx;
   border-radius: var(--radius-full);
 }
