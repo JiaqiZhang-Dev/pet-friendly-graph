@@ -242,11 +242,6 @@
   transform: scale(0.9);
 }
 
-.fab-nav {
-  background: var(--gradient-primary);
-  box-shadow: 0 6rpx 20rpx rgba(59,130,246,0.30);
-}
-
 /* ===== Bottom Sheet ===== */
 .bottom-sheet {
   position: fixed;
@@ -403,9 +398,27 @@
 .card-footer {
   display: flex;
   align-items: center;
-  gap: 8rpx;
+  justify-content: space-between;
   padding-top: 14rpx;
   border-top: 2rpx solid var(--color-border);
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.detail-btn {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+  color: #3B82F6;
+  font-size: 24rpx;
+  font-weight: 600;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  background: rgba(59,130,246,0.08);
 }
 
 .footer-meta {

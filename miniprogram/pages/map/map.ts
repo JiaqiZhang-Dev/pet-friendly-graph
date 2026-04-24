@@ -71,8 +71,6 @@ Page({
     searchTop: 0,
     filterTop: 0,
     activePlace: '',
-    activePlaceData: null as PlaceWithDistance | null,
-    polyline: [] as any[],
     scrollToPlaceId: '',
     panelState: 'half' as 'half' | 'full',
     panelHeight: PANEL_HALF,
@@ -247,32 +245,36 @@ Page({
     this.updateMarkers(filtered)
   },
 
-  // 选中地点的通用逻辑：地图居中、画路线、高亮卡片
-  _showRoute(place: PlaceWithDistance) {
-    const loc = app.globalData.location
-    const userLat = loc ? loc.latitude : this.data.latitude
-    const userLng = loc ? loc.longitude : this.data.longitude
+  // 点击 marker — 高亮并缩放到两点
+  onMarkerTap(e: WechatMiniprogram.MarkerTap) {
+    const markerId = e.detail.markerId
+    const place = this.data.filteredPlaces[markerId]
+    if (place) {
+      this._zoomToPlace(place)
+    }
+  },
 
-    const line = [{
-      points: [
-        { latitude: userLat, longitude: userLng },
-        { latitude: place.latitude, longitude: place.longitude },
-      ],
-      color: '#3B82F6',
-      width: 6,
-      dottedLine: true,
-      arrowLine: true,
-      borderColor: '#2563EB',
-      borderWidth: 2,
-    }]
+  // 点击列表卡片 — 高亮并缩放到两点
+  onPlaceTap(e: WechatMiniprogram.TouchEvent) {
+    const id = e.currentTarget.dataset.id as string
+    const list = this.data.filteredPlaces
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        this._zoomToPlace(list[i])
+        break
+      }
+    }
+  },
 
-    this.setData({
-      activePlace: place.id,
-      activePlaceData: place,
-      polyline: line,
-    })
+  // 缩放地图包含用户和目标两点
+  _zoomToPlace(place: PlaceWithDistance) {
+    var loc = app.globalData.location
+    var userLat = loc ? loc.latitude : this.data.latitude
+    var userLng = loc ? loc.longitude : this.data.longitude
 
-    const mapCtx = wx.createMapContext('petMap')
+    this.setData({ activePlace: place.id })
+
+    var mapCtx = wx.createMapContext('petMap')
     mapCtx.includePoints({
       points: [
         { latitude: userLat, longitude: userLng },
@@ -282,50 +284,11 @@ Page({
     })
   },
 
-  // 点击 marker — 选中地点并显示路线
-  onMarkerTap(e: WechatMiniprogram.MarkerTap) {
-    const markerId = e.detail.markerId
-    const place = this.data.filteredPlaces[markerId]
-    if (place) {
-      this._showRoute(place)
-    }
-  },
-
-  // 点击列表卡片 — 选中地点，地图定位并显示路线
-  onPlaceTap(e: WechatMiniprogram.TouchEvent) {
-    const id = e.currentTarget.dataset.id as string
-    const list = this.data.filteredPlaces
-    var place: PlaceWithDistance | undefined
-    for (var i = 0; i < list.length; i++) {
-      if (list[i].id === id) {
-        place = list[i]
-        break
-      }
-    }
-    if (place) {
-      this._showRoute(place)
-    }
-  },
-
-  /** 打开微信导航 */
-  onNavigate() {
-    const place = this.data.activePlaceData
-    if (!place) return
-    wx.openLocation({
-      latitude: place.latitude,
-      longitude: place.longitude,
-      name: place.name,
-      address: place.address,
-      scale: 16,
-    })
-  },
-
-  /** 清除路线和选中状态 */
-  onClearRoute() {
-    this.setData({
-      activePlace: '',
-      activePlaceData: null,
-      polyline: [],
+  // 点击详情按钮 — 跳转详情页
+  onPlaceDetail(e: WechatMiniprogram.TouchEvent) {
+    var id = e.currentTarget.dataset.id as string
+    wx.navigateTo({
+      url: '/pages/place-detail/place-detail?id=' + id,
     })
   },
 
