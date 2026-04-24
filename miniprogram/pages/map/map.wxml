@@ -1,27 +1,8 @@
 <!--pages/map/map.wxml-->
 <view class="map-page">
-  <!-- 顶部搜索栏 — 对齐胶囊按钮 -->
-  <view class="search-bar" style="padding-top: {{navTop}}px; height: {{navHeight}}px; box-sizing: content-box;">
-    <view class="search-box">
-      <van-icon name="search" size="16px" color="#94A3B8" custom-class="search-vicon" />
-      <input
-        class="search-input"
-        placeholder="搜索宠物友好地点..."
-        placeholder-style="color:#94A3B8"
-        value="{{searchValue}}"
-        bindinput="onSearchInput"
-        confirm-type="search"
-      />
-      <van-icon wx:if="{{searchValue}}" name="clear" size="16px" color="#94A3B8" bindtap="onSearchClear" />
-    </view>
-    <view class="add-btn" bindtap="goAddPlace">
-      <van-icon name="photograph" size="22px" color="#FFF" />
-    </view>
-  </view>
-
-  <!-- 宠物 Banner -->
-  <view class="banner-bar" style="top: {{filterTop}}px;">
-    <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots indicator-color="rgba(59,130,246,0.25)" indicator-active-color="#3B82F6">
+  <!-- 顶部 Banner — 在系统胶囊按钮区域 -->
+  <view class="banner-bar" style="height: {{navTop + navHeight + 8}}px;">
+    <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#FFF">
       <swiper-item>
         <view class="banner-card banner-gradient-1">
           <view class="banner-icon-wrap">
@@ -58,8 +39,27 @@
     </swiper>
   </view>
 
+  <!-- 搜索栏 — 紧贴 Banner 下方 -->
+  <view class="search-bar" style="top: {{navTop + navHeight + 8}}px;">
+    <view class="search-box">
+      <van-icon name="search" size="16px" color="#94A3B8" custom-class="search-vicon" />
+      <input
+        class="search-input"
+        placeholder="搜索宠物友好地点..."
+        placeholder-style="color:#94A3B8"
+        value="{{searchValue}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+      />
+      <van-icon wx:if="{{searchValue}}" name="clear" size="16px" color="#94A3B8" bindtap="onSearchClear" />
+    </view>
+    <view class="add-btn" bindtap="goAddPlace">
+      <van-icon name="photograph" size="22px" color="#FFF" />
+    </view>
+  </view>
+
   <!-- 分类筛选 -->
-  <scroll-view class="filter-bar" style="top: {{filterTop + bannerHeight}}px;" scroll-x enhanced show-scrollbar="{{false}}">
+  <scroll-view class="filter-bar" style="top: {{filterTop}}px;" scroll-x enhanced show-scrollbar="{{false}}">
     <view
       wx:for="{{placeTypes}}"
       wx:key="key"

@@ -67,7 +67,6 @@ Page({
     navTop: 0,
     navHeight: 32,
     filterTop: 0,
-    bannerHeight: 0,
     activePlace: '',
     scrollToPlaceId: '',
     panelState: 'half' as 'half' | 'full',
@@ -87,16 +86,18 @@ Page({
     const menuBtn = wx.getMenuButtonBoundingClientRect()
     const navTop = menuBtn.top
     const navHeight = menuBtn.height
-    // banner height in px (140rpx converted)
     const rpxRatio = sysInfo.windowWidth / 750
-    const bannerH = Math.round(140 * rpxRatio)
+    // Banner fills top area (height = capsule bottom + 8px)
+    const bannerBottom = navTop + navHeight + 8
+    // Search bar height ~80rpx + 16rpx padding
+    const searchBarH = Math.round(96 * rpxRatio)
     const placesWithDist = this.computeDistances(mockPlaces)
     this.setData({
       mapHeight: sysInfo.windowHeight,
       navTop: navTop,
       navHeight: navHeight,
-      filterTop: menuBtn.bottom + 8,
-      bannerHeight: bannerH,
+      // filterBar below banner + search bar
+      filterTop: bannerBottom + searchBarH,
       places: placesWithDist,
       filteredPlaces: placesWithDist,
     })
