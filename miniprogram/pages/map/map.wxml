@@ -7,12 +7,12 @@
     <view class="paw-deco paw-2">🐾</view>
     <view class="paw-deco paw-3">🐾</view>
 
-    <!-- Banner 轮播 — 避开胶囊按钮 -->
+    <!-- Banner 轮播 — 每张不同渐变色卡片 -->
     <view class="banner-row" style="height: {{navHeight}}px; margin-right: {{capsuleWidth + capsuleRight + 8}}px;">
       <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots="{{false}}">
         <swiper-item>
-          <view class="banner-slide">
-            <view class="banner-icon-wrap"><van-icon name="smile-o" size="22px" color="#2563EB" /></view>
+          <view class="banner-card banner-blue">
+            <view class="banner-icon-wrap"><van-icon name="smile-o" size="20px" color="#FFF" /></view>
             <view class="banner-text">
               <text class="banner-title">每日宠物小知识</text>
               <text class="banner-desc">遛狗最佳时间是清晨和傍晚哦~</text>
@@ -20,8 +20,8 @@
           </view>
         </swiper-item>
         <swiper-item>
-          <view class="banner-slide">
-            <view class="banner-icon-wrap"><van-icon name="fire-o" size="22px" color="#2563EB" /></view>
+          <view class="banner-card banner-purple">
+            <view class="banner-icon-wrap"><van-icon name="fire-o" size="20px" color="#FFF" /></view>
             <view class="banner-text">
               <text class="banner-title">热门推荐</text>
               <text class="banner-desc">本周新增 3 个宠物友好餐厅！</text>
@@ -29,8 +29,8 @@
           </view>
         </swiper-item>
         <swiper-item>
-          <view class="banner-slide">
-            <view class="banner-icon-wrap"><van-icon name="gem-o" size="22px" color="#2563EB" /></view>
+          <view class="banner-card banner-cyan">
+            <view class="banner-icon-wrap"><van-icon name="gem-o" size="20px" color="#FFF" /></view>
             <view class="banner-text">
               <text class="banner-title">AI 智能推荐</text>
               <text class="banner-desc">为毛孩找到最近友好地点~</text>
@@ -43,19 +43,19 @@
     <!-- 搜索栏 -->
     <view class="search-row">
       <view class="search-box">
-        <van-icon name="search" size="16px" color="#94A3B8" custom-class="search-vicon" />
+        <van-icon name="search" size="16px" color="rgba(255,255,255,0.6)" custom-class="search-vicon" />
         <input
           class="search-input"
           placeholder="搜索宠物友好地点..."
-          placeholder-style="color:#94A3B8"
+          placeholder-style="color:rgba(255,255,255,0.5)"
           value="{{searchValue}}"
           bindinput="onSearchInput"
           confirm-type="search"
         />
-        <van-icon wx:if="{{searchValue}}" name="clear" size="16px" color="#94A3B8" bindtap="onSearchClear" />
+        <van-icon wx:if="{{searchValue}}" name="clear" size="16px" color="rgba(255,255,255,0.6)" bindtap="onSearchClear" />
       </view>
       <view class="add-btn" bindtap="goAddPlace">
-        <van-icon name="photograph" size="20px" color="#3B82F6" />
+        <van-icon name="photograph" size="20px" color="#FFF" />
       </view>
     </view>
 
@@ -68,7 +68,7 @@
         data-type="{{item.key}}"
         bindtap="onFilterType"
       >
-        <van-icon name="{{item.iconName}}" size="16px" color="{{selectedType === item.key ? '#2563EB' : '#1E3A5F'}}" />
+        <van-icon name="{{item.iconName}}" size="16px" color="{{selectedType === item.key ? '#3B82F6' : '#FFF'}}" />
         <text class="chip-label">{{item.label}}</text>
       </view>
     </scroll-view>
