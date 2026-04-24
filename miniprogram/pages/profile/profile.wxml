@@ -78,6 +78,7 @@
     show="{{showAddPet}}"
     position="bottom"
     round
+    custom-style="height: 65vh;"
     bind:close="onCloseAddPet"
   >
     <view class="add-pet-popup">
@@ -155,9 +156,9 @@
           </view>
         </view>
       </view>
-      </scroll-view>
 
-      <view class="popup-footer">
+      <!-- 确认按钮 -->
+      <view class="popup-footer-inner">
         <van-button
           type="primary"
           round
@@ -169,6 +170,8 @@
           确认添加 🐾
         </van-button>
       </view>
+      </scroll-view>
+
     </view>
   </van-popup>
 

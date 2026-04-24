@@ -317,9 +317,8 @@
 
 /* 添加宠物弹窗 */
 .add-pet-popup {
-  display: flex;
-  flex-direction: column;
-  height: 75vh;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .popup-header {
@@ -331,15 +330,14 @@
 }
 
 .popup-scroll {
-  flex: 1;
-  overflow-y: auto;
+  height: 750rpx;
   padding: 0 36rpx;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.popup-footer {
-  padding: 24rpx 36rpx calc(160rpx + env(safe-area-inset-bottom));
-  flex-shrink: 0;
-  background: #FFF;
+.popup-footer-inner {
+  padding: 32rpx 0 48rpx;
 }
 
 .popup-title {
@@ -411,6 +409,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16rpx;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .breed-chip {
