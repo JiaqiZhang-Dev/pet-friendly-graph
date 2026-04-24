@@ -49,6 +49,10 @@ function formatDistance(meters: number): string {
   return `${(meters / 1000).toFixed(1)}km`
 }
 
+const PANEL_PEEK = 120    // collapsed: just handle visible
+const PANEL_HALF = 380   // half: horizontal card scroll
+const PANEL_FULL = 1100  // full: vertical list (≈85vh)
+
 Page({
   data: {
     latitude: 39.9042,
@@ -60,11 +64,16 @@ Page({
     placeTypes: placeTypes,
     selectedType: 'all',
     searchValue: '',
-    showList: false,
     mapHeight: 0,
     activePlace: '',
     scrollToPlaceId: '',
+    // Bottom sheet states
+    panelState: 'half' as 'peek' | 'half' | 'full',
+    panelHeight: PANEL_HALF,
   },
+
+  _touchStartY: 0,
+  _touchStartHeight: 0,
 
   onLoad() {
     const loc = app.globalData.location
@@ -177,19 +186,21 @@ Page({
     this.updateMarkers(filtered)
   },
 
-  toggleListView() {
-    this.setData({ showList: !this.data.showList })
-  },
-
   // 点击 marker — 高亮底部面板卡片并滚动到该卡片
   onMarkerTap(e: WechatMiniprogram.MarkerTap) {
     const markerId = e.detail.markerId
     const place = this.data.filteredPlaces[markerId]
     if (place) {
-      this.setData({
+      const update: Record<string, any> = {
         activePlace: place.id,
         scrollToPlaceId: `place-${place.id}`,
-      })
+      }
+      // Auto-expand to half if peeked
+      if (this.data.panelState === 'peek') {
+        update.panelState = 'half'
+        update.panelHeight = PANEL_HALF
+      }
+      this.setData(update)
     }
   },
 
@@ -252,5 +263,48 @@ Page({
 
   goAddPlace() {
     wx.navigateTo({ url: '/pages/add-place/add-place' })
+  },
+
+  // ===== Bottom Sheet Gestures =====
+  onSheetTouchStart(e: WechatMiniprogram.TouchEvent) {
+    this._touchStartY = e.touches[0].clientY
+    this._touchStartHeight = this.data.panelHeight
+  },
+
+  onSheetTouchMove(e: WechatMiniprogram.TouchEvent) {
+    const dy = this._touchStartY - e.touches[0].clientY // positive = swipe up
+    const ratio = 2 // px → rpx approx
+    let newHeight = this._touchStartHeight + dy * ratio
+    newHeight = Math.max(PANEL_PEEK, Math.min(PANEL_FULL, newHeight))
+    this.setData({ panelHeight: newHeight })
+  },
+
+  onSheetTouchEnd(_e: WechatMiniprogram.TouchEvent) {
+    const h = this.data.panelHeight
+    // Snap to nearest state
+    const peekMid = (PANEL_PEEK + PANEL_HALF) / 2
+    const halfMid = (PANEL_HALF + PANEL_FULL) / 2
+    let state: 'peek' | 'half' | 'full'
+    let height: number
+    if (h < peekMid) {
+      state = 'peek'; height = PANEL_PEEK
+    } else if (h < halfMid) {
+      state = 'half'; height = PANEL_HALF
+    } else {
+      state = 'full'; height = PANEL_FULL
+    }
+    this.setData({ panelState: state, panelHeight: height })
+  },
+
+  onSheetHandleTap() {
+    // Cycle: peek → half → full → half
+    const s = this.data.panelState
+    if (s === 'peek') {
+      this.setData({ panelState: 'half', panelHeight: PANEL_HALF })
+    } else if (s === 'half') {
+      this.setData({ panelState: 'full', panelHeight: PANEL_FULL })
+    } else {
+      this.setData({ panelState: 'half', panelHeight: PANEL_HALF })
+    }
   },
 })

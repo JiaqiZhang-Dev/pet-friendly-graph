@@ -34,7 +34,7 @@
   </scroll-view>
 
   <!-- 地图区域 -->
-  <view class="map-container" wx:if="{{!showList}}">
+  <view class="map-container">
     <map
       id="petMap"
       class="pet-map"
@@ -51,27 +51,37 @@
     />
 
     <!-- 浮动操作按钮组 -->
-    <view class="fab-group">
+    <view class="fab-group" style="bottom: calc({{panelHeight}}rpx + 20rpx + env(safe-area-inset-bottom));">
       <view class="fab-btn" bindtap="moveToLocation">
         <van-icon name="aim" size="22px" color="#3B82F6" />
       </view>
       <view class="fab-btn" bindtap="goNearby">
         <van-icon name="shop-o" size="22px" color="#3B82F6" />
       </view>
-      <view class="fab-btn fab-accent" bindtap="toggleListView">
-        <van-icon name="bars" size="22px" color="#FFF" />
-      </view>
     </view>
   </view>
 
-  <!-- 底部地点面板 — 按距离排序自动展示（独立于 map-container） -->
-  <view class="bottom-panel" wx:if="{{!showList}}">
-    <view class="panel-header">
-      <view class="panel-indicator"></view>
-      <text class="panel-title">附近宠物友好地点</text>
-      <text class="panel-count">{{filteredPlaces.length}} 个</text>
+  <!-- 底部可拉起面板 -->
+  <view
+    class="bottom-sheet sheet-{{panelState}}"
+    style="height: {{panelHeight}}rpx;"
+    catchtouchstart="onSheetTouchStart"
+    catchtouchmove="onSheetTouchMove"
+    catchtouchend="onSheetTouchEnd"
+  >
+    <!-- 拖拽把手 -->
+    <view class="sheet-handle" bindtap="onSheetHandleTap">
+      <view class="sheet-handle-bar"></view>
+      <view class="sheet-handle-row">
+        <text class="panel-title">附近宠物友好地点</text>
+        <text class="panel-count">{{filteredPlaces.length}} 个</text>
+        <van-icon name="{{panelState === 'full' ? 'arrow-down' : 'arrow-up'}}" size="14px" color="#94A3B8" />
+      </view>
     </view>
+
+    <!-- 半高：水平卡片滚动 -->
     <scroll-view
+      wx:if="{{panelState === 'half'}}"
       class="panel-scroll"
       scroll-x
       enhanced
@@ -85,8 +95,6 @@
         id="place-{{item.id}}"
         class="panel-card {{activePlace === item.id ? 'panel-card-active' : ''}}"
         data-id="{{item.id}}"
-        data-lat="{{item.latitude}}"
-        data-lng="{{item.longitude}}"
         bindtap="onPanelCardTap"
       >
         <view class="panel-card-top">
@@ -105,35 +113,21 @@
         <view class="panel-card-tags">
           <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" wx:if="{{index < 2}}" class="panel-tag">{{tag}}</text>
         </view>
-        <view class="panel-card-bottom">
-          <van-icon name="chat-o" size="12px" color="#94A3B8" />
-          <text class="panel-card-reviews">{{item.reviewCount}} 评价</text>
-          <text class="panel-card-dot">·</text>
-          <van-icon name="clock-o" size="12px" color="#94A3B8" />
-          <text class="panel-card-time">{{item.openTime}}</text>
-        </view>
       </view>
       <view wx:if="{{filteredPlaces.length === 0}}" class="panel-empty">
         <van-icon name="search" size="32px" color="#DBEAFE" />
         <text class="panel-empty-text">暂无附近地点</text>
       </view>
     </scroll-view>
-  </view>
 
-  <!-- 列表视图 -->
-  <view class="list-container" wx:else>
-    <view class="list-header">
-      <view class="list-title-row">
-        <text class="list-title">{{filteredPlaces.length}} 个好去处</text>
-        <text class="list-subtitle">按距离排序 · 带毛孩子出门啦~</text>
-      </view>
-      <view class="switch-map-btn" bindtap="toggleListView">
-        <van-icon name="location-o" size="14px" color="#3B82F6" />
-        <text>地图</text>
-      </view>
-    </view>
-
-    <scroll-view class="place-list" scroll-y enhanced show-scrollbar="{{false}}">
+    <!-- 全高：垂直列表 -->
+    <scroll-view
+      wx:if="{{panelState === 'full'}}"
+      class="sheet-list"
+      scroll-y
+      enhanced
+      show-scrollbar="{{false}}"
+    >
       <view
         wx:for="{{filteredPlaces}}"
         wx:key="id"
@@ -174,6 +168,7 @@
         <text class="empty-title">暂无符合条件的地点</text>
         <text class="empty-hint">试试换个筛选条件吧~</text>
       </view>
+      <view class="list-bottom-spacer"></view>
     </scroll-view>
   </view>
 </view>
