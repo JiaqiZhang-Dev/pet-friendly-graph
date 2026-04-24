@@ -349,16 +349,11 @@
   border: 2rpx solid;
 }
 
-.card-type-row {
+.card-meta-row {
   display: flex;
   align-items: center;
-  gap: 12rpx;
-  margin-bottom: 12rpx;
-}
-
-.type-label {
-  font-size: 22rpx;
-  font-weight: 700;
+  gap: 6rpx;
+  margin-bottom: 14rpx;
 }
 
 .place-name {
