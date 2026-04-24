@@ -29,9 +29,9 @@ Page({
 
   // 拨打电话
   onCallPhone() {
-    const phone = this.data.place?.phone
-    if (phone) {
-      wx.makePhoneCall({ phoneNumber: phone })
+    const place = this.data.place
+    if (place && place.phone) {
+      wx.makePhoneCall({ phoneNumber: place.phone })
     }
   },
 
@@ -52,8 +52,8 @@ Page({
   onShareAppMessage() {
     const place = this.data.place
     return {
-      title: `${place?.name} - 宠物友好地点推荐`,
-      path: `/pages/place-detail/place-detail?id=${place?.id}`,
+      title: (place ? place.name : '') + ' - 宠物友好地点推荐',
+      path: '/pages/place-detail/place-detail?id=' + (place ? place.id : ''),
     }
   },
 })
