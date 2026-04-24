@@ -10,18 +10,21 @@ interface Pet {
   birthday: string
 }
 
-const petBreedOptions: Record<string, { breeds: string[], emoji: string, color: string }> = {
+var speciesConfig: Record<string, { breeds: string[], emoji: string, color: string, label: string }> = {
   '狗': {
+    label: '狗狗',
     breeds: ['柯基', '金毛', '拉布拉多', '泰迪', '哈士奇', '萨摩耶', '柴犬', '边牧', '博美', '法斗', '中华田园犬', '其他'],
     emoji: '🐕',
     color: '#F97316',
   },
   '猫': {
+    label: '猫咪',
     breeds: ['布偶猫', '英短', '美短', '橘猫', '暹罗猫', '加菲猫', '缅因猫', '中华田园猫', '其他'],
     emoji: '🐱',
     color: '#A855F7',
   },
   '其他': {
+    label: '其他',
     breeds: ['兔子', '仓鼠', '鹦鹉', '乌龟', '其他'],
     emoji: '🐾',
     color: '#3B82F6',
@@ -40,6 +43,19 @@ Page({
       activities: 2,
     },
     pets: [] as Pet[],
+    showAddPet: false,
+    petForm: {
+      name: '',
+      species: '',
+      breed: '',
+      gender: '公' as '公' | '母',
+    },
+    speciesList: [
+      { key: '狗', label: '狗狗', emoji: '🐕' },
+      { key: '猫', label: '猫咪', emoji: '🐱' },
+      { key: '其他', label: '其他', emoji: '🐾' },
+    ],
+    breedOptions: [] as string[],
     menuItems: [
       { iconName: 'location-o', label: '我添加的地点', key: 'my-places', bgColor: '#EFF6FF', iconColor: '#3B82F6' },
       { iconName: 'star-o', label: '我的收藏', key: 'favorites', bgColor: '#FFFBEB', iconColor: '#F59E0B' },
@@ -51,7 +67,6 @@ Page({
   },
 
   onLoad() {
-    // 从本地缓存读取宠物列表
     var pets = wx.getStorageSync('myPets')
     if (pets) {
       this.setData({ pets: pets })
@@ -62,62 +77,73 @@ Page({
     if (typeof this.getTabBar === 'function') {
       this.getTabBar().setData({ selected: 2 })
     }
-    // 刷新宠物列表（从其他页面返回时）
     var pets = wx.getStorageSync('myPets')
     if (pets) {
       this.setData({ pets: pets })
     }
   },
 
+  // === 添加宠物 ===
   onAddPet() {
-    var speciesKeys = Object.keys(petBreedOptions)
-    wx.showActionSheet({
-      itemList: speciesKeys,
-      success: (res) => {
-        var species = speciesKeys[res.tapIndex]
-        var info = petBreedOptions[species]
-        this._selectBreed(species, info)
-      },
+    this.setData({
+      showAddPet: true,
+      petForm: { name: '', species: '', breed: '', gender: '公' },
+      breedOptions: [],
     })
   },
 
-  _selectBreed(species: string, info: { breeds: string[], emoji: string, color: string }) {
-    wx.showActionSheet({
-      itemList: info.breeds,
-      success: (res) => {
-        var breed = info.breeds[res.tapIndex]
-        this._inputPetName(breed, info.emoji, info.color)
-      },
+  onCloseAddPet() {
+    this.setData({ showAddPet: false })
+  },
+
+  onPetNameInput(e: WechatMiniprogram.Input) {
+    this.setData({ 'petForm.name': e.detail.value })
+  },
+
+  onSelectSpecies(e: WechatMiniprogram.TouchEvent) {
+    var key = e.currentTarget.dataset.key as string
+    var config = speciesConfig[key]
+    this.setData({
+      'petForm.species': key,
+      'petForm.breed': '',
+      breedOptions: config ? config.breeds : [],
     })
   },
 
-  _inputPetName(breed: string, emoji: string, color: string) {
-    var self = this
-    wx.showModal({
-      title: '给你的' + breed + '取个名字',
-      editable: true,
-      placeholderText: '宠物昵称',
-      success: function(res) {
-        if (res.confirm && res.content) {
-          var pet: Pet = {
-            id: 'pet_' + Date.now(),
-            name: res.content,
-            breed: breed,
-            emoji: emoji,
-            color: color,
-            gender: '公',
-            birthday: '',
-          }
-          var pets = self.data.pets.slice()
-          pets.push(pet)
-          self.setData({ pets: pets })
-          wx.setStorageSync('myPets', pets)
-          wx.showToast({ title: '添加成功', icon: 'success' })
-        }
-      },
-    })
+  onSelectBreed(e: WechatMiniprogram.TouchEvent) {
+    var breed = e.currentTarget.dataset.breed as string
+    this.setData({ 'petForm.breed': breed })
   },
 
+  onSelectGender(e: WechatMiniprogram.TouchEvent) {
+    var gender = e.currentTarget.dataset.gender as '公' | '母'
+    this.setData({ 'petForm.gender': gender })
+  },
+
+  onConfirmAddPet() {
+    var form = this.data.petForm
+    if (!form.name || !form.breed) {
+      wx.showToast({ title: '请填写完整信息', icon: 'none' })
+      return
+    }
+    var config = speciesConfig[form.species]
+    var pet: Pet = {
+      id: 'pet_' + Date.now(),
+      name: form.name,
+      breed: form.breed,
+      emoji: config ? config.emoji : '🐾',
+      color: config ? config.color : '#3B82F6',
+      gender: form.gender,
+      birthday: '',
+    }
+    var pets = this.data.pets.slice()
+    pets.push(pet)
+    this.setData({ pets: pets, showAddPet: false })
+    wx.setStorageSync('myPets', pets)
+    wx.showToast({ title: '添加成功', icon: 'success' })
+  },
+
+  // === 编辑/删除宠物 ===
   onEditPet(e: WechatMiniprogram.TouchEvent) {
     var idx = e.currentTarget.dataset.index as number
     var pet = this.data.pets[idx]
@@ -167,10 +193,7 @@ Page({
 
   onMenuTap(e: WechatMiniprogram.TouchEvent) {
     var key = e.currentTarget.dataset.key as string
-    wx.showToast({
-      title: key + ' 功能开发中',
-      icon: 'none',
-    })
+    wx.showToast({ title: key + ' 功能开发中', icon: 'none' })
   },
 
   onChooseAvatar(e: any) {

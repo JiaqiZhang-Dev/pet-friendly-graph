@@ -3,7 +3,10 @@
     "van-image": "@vant/weapp/image/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index"
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index"
   },
   "navigationBarTitleText": "我的",
   "navigationStyle": "custom"

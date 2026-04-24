@@ -72,6 +72,102 @@
     </scroll-view>
   </view>
 
+  <!-- 添加宠物弹窗 -->
+  <van-popup
+    show="{{showAddPet}}"
+    position="bottom"
+    round
+    safe-area-inset-bottom
+    bind:close="onCloseAddPet"
+    custom-style="padding: 0;"
+  >
+    <view class="add-pet-popup">
+      <view class="popup-header">
+        <text class="popup-title">添加宠物</text>
+        <view class="popup-close" bindtap="onCloseAddPet">
+          <van-icon name="cross" size="18px" color="#94A3B8" />
+        </view>
+      </view>
+
+      <!-- 昵称 -->
+      <view class="popup-field">
+        <text class="popup-label">宠物昵称</text>
+        <input
+          class="popup-input"
+          value="{{petForm.name}}"
+          placeholder="给你的毛孩子取个名字"
+          bindinput="onPetNameInput"
+          maxlength="10"
+        />
+      </view>
+
+      <!-- 类型 -->
+      <view class="popup-field">
+        <text class="popup-label">宠物类型</text>
+        <view class="species-chips">
+          <view
+            wx:for="{{speciesList}}"
+            wx:key="key"
+            class="species-chip {{petForm.species === item.key ? 'species-chip-active' : ''}}"
+            bindtap="onSelectSpecies"
+            data-key="{{item.key}}"
+          >
+            <text class="species-emoji">{{item.emoji}}</text>
+            <text>{{item.label}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 品种 -->
+      <view wx:if="{{petForm.species}}" class="popup-field">
+        <text class="popup-label">品种</text>
+        <view class="breed-chips">
+          <view
+            wx:for="{{breedOptions}}"
+            wx:key="*this"
+            class="breed-chip {{petForm.breed === item ? 'breed-chip-active' : ''}}"
+            bindtap="onSelectBreed"
+            data-breed="{{item}}"
+          >
+            <text>{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 性别 -->
+      <view class="popup-field">
+        <text class="popup-label">性别</text>
+        <view class="gender-chips">
+          <view
+            class="gender-chip {{petForm.gender === '公' ? 'gender-chip-active gender-male' : ''}}"
+            bindtap="onSelectGender"
+            data-gender="公"
+          >
+            <text>♂ 弟弟</text>
+          </view>
+          <view
+            class="gender-chip {{petForm.gender === '母' ? 'gender-chip-active gender-female' : ''}}"
+            bindtap="onSelectGender"
+            data-gender="母"
+          >
+            <text>♀ 妹妹</text>
+          </view>
+        </view>
+      </view>
+
+      <van-button
+        type="primary"
+        round
+        block
+        custom-class="popup-submit"
+        disabled="{{!petForm.name || !petForm.breed}}"
+        bind:click="onConfirmAddPet"
+      >
+        确认添加 🐾
+      </van-button>
+    </view>
+  </van-popup>
+
   <!-- Menu -->
   <view class="menu-section">
     <view
