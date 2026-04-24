@@ -14,30 +14,29 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: linear-gradient(135deg, #1D4ED8 0%, #3B82F6 35%, #60A5FA 65%, #7C3AED 100%);
-  padding-bottom: 16rpx;
+  background: linear-gradient(180deg, #DBEAFE 0%, #93C5FD 50%, #60A5FA 100%);
+  padding-bottom: 20rpx;
   border-radius: 0 0 36rpx 36rpx;
-  box-shadow: 0 8rpx 32rpx rgba(37,99,235,0.3);
-  overflow: hidden;
+  box-shadow: 0 6rpx 24rpx rgba(59,130,246,0.15);
 }
 
 /* Paw print decorations */
 .paw-deco {
   position: absolute;
   font-size: 60rpx;
-  opacity: 0.12;
+  opacity: 0.15;
   pointer-events: none;
   z-index: 0;
 }
 .paw-1 { top: 12rpx; right: 180rpx; transform: rotate(-25deg); }
 .paw-2 { bottom: 40rpx; left: 20rpx; transform: rotate(15deg); font-size: 48rpx; }
-.paw-3 { bottom: 8rpx; right: 60rpx; transform: rotate(-40deg); font-size: 40rpx; opacity: 0.08; }
+.paw-3 { bottom: 8rpx; right: 60rpx; transform: rotate(-40deg); font-size: 40rpx; opacity: 0.10; }
 
 /* Banner row — same line as capsule */
 .banner-row {
   overflow: hidden;
   margin-bottom: 12rpx;
-  margin-left: 24rpx;
+  padding-left: 24rpx;
   position: relative;
   z-index: 1;
 }
@@ -58,7 +57,7 @@
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
-  background: rgba(255,255,255,0.22);
+  background: rgba(37,99,235,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,13 +74,13 @@
 .banner-title {
   font-size: 22rpx;
   font-weight: 800;
-  color: #FFF;
+  color: #1E3A5F;
   line-height: 1.2;
 }
 
 .banner-desc {
   font-size: 20rpx;
-  color: rgba(255,255,255,0.8);
+  color: #2563EB;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -101,10 +100,10 @@
   flex: 1;
   display: flex;
   align-items: center;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.65);
   border-radius: var(--radius-full);
   padding: 16rpx 24rpx;
-  border: 2rpx solid rgba(255,255,255,0.2);
+  border: 2rpx solid rgba(255,255,255,0.8);
   gap: 12rpx;
   backdrop-filter: blur(8px);
 }
@@ -116,7 +115,7 @@
 .search-input {
   flex: 1;
   font-size: 26rpx;
-  color: #FFF;
+  color: #1E3A5F;
 }
 
 .add-btn {
@@ -148,22 +147,22 @@
   padding: 12rpx 24rpx;
   margin-right: 12rpx;
   border-radius: var(--radius-full);
-  background: rgba(255,255,255,0.15);
-  border: 2rpx solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.5);
+  border: 2rpx solid rgba(255,255,255,0.6);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .filter-chip.active {
-  background: rgba(255,255,255,0.95);
+  background: #FFF;
   border-color: transparent;
-  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
+  box-shadow: 0 4rpx 16rpx rgba(37,99,235,0.15);
   transform: scale(1.05);
 }
 
 .chip-label {
   font-size: 24rpx;
   font-weight: 600;
-  color: rgba(255,255,255,0.9);
+  color: #1E3A5F;
   margin-left: 6rpx;
 }
 
