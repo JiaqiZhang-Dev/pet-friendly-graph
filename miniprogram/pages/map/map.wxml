@@ -1,76 +1,64 @@
 <!--pages/map/map.wxml-->
 <view class="map-page">
-  <!-- 顶部 Banner — 在系统胶囊按钮区域 -->
-  <view class="banner-bar" style="height: {{navTop + navHeight + 8}}px;">
-    <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#FFF">
-      <swiper-item>
-        <view class="banner-card banner-gradient-1">
-          <view class="banner-icon-wrap">
-            <van-icon name="smile-o" size="36px" color="#FFF" />
+  <!-- 统一顶部区域：Banner + 搜索 + 筛选 -->
+  <view class="top-header" style="padding-top: {{navTop}}px;">
+    <!-- Banner 轮播 — 与胶囊按钮同行 -->
+    <view class="banner-row" style="height: {{navHeight}}px;">
+      <swiper class="banner-swiper" autoplay circular interval="{{4000}}" duration="{{500}}" indicator-dots="{{false}}">
+        <swiper-item>
+          <view class="banner-slide">
+            <van-icon name="smile-o" size="18px" color="#FFF" />
+            <text class="banner-tip">每日小知识：遛狗最佳时间是清晨和傍晚哦~</text>
           </view>
-          <view class="banner-text">
-            <text class="banner-title">每日宠物小知识</text>
-            <text class="banner-desc">遛狗最佳时间是清晨和傍晚，避免中午暴晒哦~</text>
+        </swiper-item>
+        <swiper-item>
+          <view class="banner-slide">
+            <van-icon name="fire-o" size="18px" color="#FFF" />
+            <text class="banner-tip">本周新增 3 个宠物友好餐厅，快来探索吧！</text>
           </view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class="banner-card banner-gradient-2">
-          <view class="banner-icon-wrap">
-            <van-icon name="fire-o" size="36px" color="#FFF" />
+        </swiper-item>
+        <swiper-item>
+          <view class="banner-slide">
+            <van-icon name="gem-o" size="18px" color="#FFF" />
+            <text class="banner-tip">AI 智能推荐：为毛孩找到最近的友好地点~</text>
           </view>
-          <view class="banner-text">
-            <text class="banner-title">热门推荐</text>
-            <text class="banner-desc">本周新增 3 个宠物友好餐厅，快来探索吧！</text>
-          </view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class="banner-card banner-gradient-3">
-          <view class="banner-icon-wrap">
-            <van-icon name="gem-o" size="36px" color="#FFF" />
-          </view>
-          <view class="banner-text">
-            <text class="banner-title">AI 智能推荐</text>
-            <text class="banner-desc">根据你的位置，为毛孩找到最近的友好地点~</text>
-          </view>
-        </view>
-      </swiper-item>
-    </swiper>
-  </view>
+        </swiper-item>
+      </swiper>
+    </view>
 
-  <!-- 搜索栏 — 紧贴 Banner 下方 -->
-  <view class="search-bar" style="top: {{navTop + navHeight + 8}}px;">
-    <view class="search-box">
-      <van-icon name="search" size="16px" color="#94A3B8" custom-class="search-vicon" />
-      <input
-        class="search-input"
-        placeholder="搜索宠物友好地点..."
-        placeholder-style="color:#94A3B8"
-        value="{{searchValue}}"
-        bindinput="onSearchInput"
-        confirm-type="search"
-      />
-      <van-icon wx:if="{{searchValue}}" name="clear" size="16px" color="#94A3B8" bindtap="onSearchClear" />
+    <!-- 搜索栏 -->
+    <view class="search-row">
+      <view class="search-box">
+        <van-icon name="search" size="16px" color="rgba(255,255,255,0.7)" custom-class="search-vicon" />
+        <input
+          class="search-input"
+          placeholder="搜索宠物友好地点..."
+          placeholder-style="color:rgba(255,255,255,0.6)"
+          value="{{searchValue}}"
+          bindinput="onSearchInput"
+          confirm-type="search"
+        />
+        <van-icon wx:if="{{searchValue}}" name="clear" size="16px" color="rgba(255,255,255,0.7)" bindtap="onSearchClear" />
+      </view>
+      <view class="add-btn" bindtap="goAddPlace">
+        <van-icon name="photograph" size="20px" color="#3B82F6" />
+      </view>
     </view>
-    <view class="add-btn" bindtap="goAddPlace">
-      <van-icon name="photograph" size="22px" color="#FFF" />
-    </view>
-  </view>
 
-  <!-- 分类筛选 -->
-  <scroll-view class="filter-bar" style="top: {{filterTop}}px;" scroll-x enhanced show-scrollbar="{{false}}">
-    <view
-      wx:for="{{placeTypes}}"
-      wx:key="key"
-      class="filter-chip {{selectedType === item.key ? 'active' : ''}}"
-      data-type="{{item.key}}"
-      bindtap="onFilterType"
-    >
-      <van-icon name="{{item.iconName}}" size="16px" color="{{selectedType === item.key ? '#FFF' : '#3B82F6'}}" />
-      <text class="chip-label">{{item.label}}</text>
-    </view>
-  </scroll-view>
+    <!-- 分类筛选 -->
+    <scroll-view class="filter-row" scroll-x enhanced show-scrollbar="{{false}}">
+      <view
+        wx:for="{{placeTypes}}"
+        wx:key="key"
+        class="filter-chip {{selectedType === item.key ? 'active' : ''}}"
+        data-type="{{item.key}}"
+        bindtap="onFilterType"
+      >
+        <van-icon name="{{item.iconName}}" size="16px" color="{{selectedType === item.key ? '#FFF' : 'rgba(255,255,255,0.85)'}}" />
+        <text class="chip-label">{{item.label}}</text>
+      </view>
+    </scroll-view>
+  </view>
 
   <!-- 地图区域 -->
   <view class="map-container">
