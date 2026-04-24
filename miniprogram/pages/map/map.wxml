@@ -163,7 +163,7 @@
           </view>
           <view wx:if="{{activePlace === item.id}}" class="tap-hint">
             <text>再次点击查看详情</text>
-            <van-icon name="arrow" size="12px" color="#3B82F6" />
+            <van-icon name="arrow" size="12px" color="#8B5CF6" />
           </view>
         </view>
       </view>

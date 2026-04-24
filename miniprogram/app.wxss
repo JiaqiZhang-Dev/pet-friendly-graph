@@ -1,39 +1,40 @@
-/**app.wxss — Cute Pet Claymorphism (Blue)**/
+/**app.wxss — Cute Pet Claymorphism (Blue-Purple)**/
 page {
-  /* Cool blue + cute palette */
+  /* Blue primary + purple accent palette */
   --color-primary: #3B82F6;
   --color-primary-dark: #2563EB;
   --color-primary-light: #EFF6FF;
-  --color-accent: #F97316;
-  --color-accent-light: #FFF7ED;
+  --color-accent: #8B5CF6;
+  --color-accent-light: #F5F3FF;
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
   --color-pink: #F472B6;
   --color-mint: #34D399;
   --color-lavender: #A78BFA;
-  --color-bg: #F0F7FF;
+  --color-teal: #14B8A6;
+  --color-bg: #F5F3FF;
   --color-card: #FFFFFF;
   --color-text: #1E293B;
   --color-text-secondary: #64748B;
   --color-text-hint: #94A3B8;
-  --color-border: #DBEAFE;
+  --color-border: #E0D8F5;
   /* Bigger, cuter radius */
   --radius-sm: 24rpx;
   --radius-md: 36rpx;
   --radius-lg: 48rpx;
   --radius-xl: 60rpx;
   --radius-full: 999rpx;
-  /* Softer, dreamier shadows */
-  --shadow-clay: 6rpx 6rpx 20rpx rgba(59,130,246,0.10), -4rpx -4rpx 14rpx rgba(255,255,255,0.85);
-  --shadow-card: 0 10rpx 32rpx rgba(59,130,246,0.07), 0 2rpx 8rpx rgba(59,130,246,0.04);
-  --shadow-float: 0 14rpx 40rpx rgba(59,130,246,0.14), 0 4rpx 10rpx rgba(59,130,246,0.06);
-  --shadow-inset: inset 2rpx 2rpx 8rpx rgba(59,130,246,0.05), inset -2rpx -2rpx 8rpx rgba(255,255,255,0.75);
+  /* Dreamy blue-purple shadows */
+  --shadow-clay: 6rpx 6rpx 20rpx rgba(139,92,246,0.08), -4rpx -4rpx 14rpx rgba(255,255,255,0.85);
+  --shadow-card: 0 10rpx 32rpx rgba(59,130,246,0.06), 0 2rpx 8rpx rgba(139,92,246,0.05);
+  --shadow-float: 0 14rpx 40rpx rgba(59,130,246,0.10), 0 4rpx 10rpx rgba(139,92,246,0.08);
+  --shadow-inset: inset 2rpx 2rpx 8rpx rgba(139,92,246,0.05), inset -2rpx -2rpx 8rpx rgba(255,255,255,0.75);
   --border-clay: 2rpx solid rgba(255,255,255,0.55);
-  /* Gradient presets */
-  --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #60A5FA 50%, #93C5FD 100%);
-  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #F8FBFF 100%);
-  --gradient-page: linear-gradient(180deg, #F0F7FF 0%, #DBEAFE 40%, #F0F7FF 100%);
+  /* Gradient presets — blue to purple */
+  --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #FAF8FF 100%);
+  --gradient-page: linear-gradient(180deg, #F5F3FF 0%, #EDE9FE 40%, #F5F3FF 100%);
 
   font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Hiragino Sans GB', 'SF Rounded', 'Noto Sans SC', sans-serif;
   font-size: 28rpx;
@@ -94,7 +95,7 @@ page {
 
 .tag {
   display: inline-block;
-  background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+  background: linear-gradient(135deg, #EFF6FF, #EDE9FE);
   color: var(--color-primary);
   font-size: 22rpx;
   padding: 8rpx 24rpx;
@@ -102,7 +103,7 @@ page {
   margin-right: 12rpx;
   margin-bottom: 10rpx;
   font-weight: 600;
-  border: 2rpx solid rgba(59,130,246,0.08);
+  border: 2rpx solid rgba(139,92,246,0.08);
 }
 
 .section-title {
