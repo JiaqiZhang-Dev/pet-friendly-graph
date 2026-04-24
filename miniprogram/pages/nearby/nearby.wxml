@@ -1,0 +1,61 @@
+<!--pages/nearby/nearby.wxml-->
+<view class="nearby-page">
+  <!-- 分类切换 -->
+  <view class="type-tabs">
+    <view
+      wx:for="{{facilityTypes}}"
+      wx:key="key"
+      class="type-tab {{selectedType === item.key ? 'active' : ''}}"
+      data-type="{{item.key}}"
+      bindtap="onSwitchType"
+    >
+      <text class="tab-icon">{{item.icon}}</text>
+      <text class="tab-text">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 地图/列表切换 -->
+  <view class="view-toggle" bindtap="toggleView">
+    <text wx:if="{{showMap}}">📋 列表模式</text>
+    <text wx:else>🗺 地图模式</text>
+  </view>
+
+  <!-- 地图视图 -->
+  <map
+    wx:if="{{showMap}}"
+    class="nearby-map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="13"
+    markers="{{markers}}"
+    show-location
+  />
+
+  <!-- 列表视图 -->
+  <scroll-view wx:else class="facility-list" scroll-y>
+    <view
+      wx:for="{{facilities}}"
+      wx:key="id"
+      class="facility-card card"
+      data-id="{{item.id}}"
+      bindtap="onFacilityTap"
+    >
+      <view class="facility-info">
+        <view class="flex-between">
+          <text class="facility-name">{{item.name}}</text>
+          <text class="facility-rating">⭐ {{item.rating}}</text>
+        </view>
+        <text class="facility-address">{{item.address}}</text>
+        <view class="facility-tags">
+          <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
+        </view>
+        <text class="facility-meta">{{item.reviewCount}} 条评价 · {{item.openTime}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{facilities.length === 0}}" class="empty-state">
+      <text class="empty-icon">🏥</text>
+      <text class="empty-text">附近暂无该类设施</text>
+    </view>
+  </scroll-view>
+</view>

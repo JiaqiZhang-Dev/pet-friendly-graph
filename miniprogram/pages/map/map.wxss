@@ -1,0 +1,355 @@
+/* pages/map/map.wxss — 可爱趣味风 */
+.map-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--color-bg);
+}
+
+/* ===== 搜索栏 ===== */
+.search-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 16rpx 28rpx;
+  padding-top: calc(16rpx + env(safe-area-inset-top));
+  background: rgba(255,252,247,0.92);
+  backdrop-filter: blur(20px);
+  gap: 16rpx;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #FFF;
+  border-radius: var(--radius-xl);
+  padding: 18rpx 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(139,111,94,0.06);
+}
+
+.search-icon {
+  font-size: 28rpx;
+  margin-right: 14rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 26rpx;
+  color: var(--color-text);
+}
+
+.search-clear {
+  font-size: 24rpx;
+  color: var(--color-text-hint);
+  padding: 8rpx 12rpx;
+}
+
+.add-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 20rpx rgba(107,158,122,0.3);
+  transition: transform 0.2s;
+}
+
+.add-btn:active {
+  transform: scale(0.92);
+}
+
+.add-btn-icon {
+  font-size: 36rpx;
+  filter: brightness(10);
+}
+
+/* ===== 分类筛选栏 ===== */
+.filter-bar {
+  position: fixed;
+  top: calc(108rpx + env(safe-area-inset-top));
+  left: 0;
+  right: 0;
+  z-index: 99;
+  white-space: nowrap;
+  padding: 12rpx 20rpx;
+  background: rgba(255,252,247,0.88);
+  backdrop-filter: blur(16px);
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 14rpx 28rpx;
+  margin-right: 14rpx;
+  border-radius: var(--radius-xl);
+  background: #FFF;
+  box-shadow: 0 2rpx 10rpx rgba(139,111,94,0.05);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.filter-chip.active {
+  background: var(--color-primary);
+  box-shadow: 0 6rpx 20rpx rgba(107,158,122,0.25);
+  transform: scale(1.05);
+}
+
+.chip-icon {
+  font-size: 24rpx;
+  margin-right: 8rpx;
+}
+
+.chip-label {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.filter-chip.active .chip-label {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== 地图 ===== */
+.map-container {
+  flex: 1;
+  position: relative;
+}
+
+.pet-map {
+  width: 100%;
+  height: 100vh;
+}
+
+/* ===== 浮动按钮 ===== */
+.fab-group {
+  position: fixed;
+  right: 28rpx;
+  bottom: calc(200rpx + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  z-index: 98;
+}
+
+.fab-btn {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-float);
+  transition: transform 0.2s;
+}
+
+.fab-btn:active {
+  transform: scale(0.9);
+}
+
+.fab-emoji {
+  font-size: 40rpx;
+}
+
+.fab-accent {
+  background: var(--color-primary);
+  box-shadow: 0 8rpx 28rpx rgba(107,158,122,0.35);
+}
+
+/* ===== 底部胶囊提示 ===== */
+.map-hint-pill {
+  position: fixed;
+  bottom: calc(140rpx + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  background: #FFF;
+  padding: 14rpx 32rpx;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-float);
+  z-index: 98;
+}
+
+.hint-paw {
+  font-size: 26rpx;
+}
+
+.hint-text {
+  font-size: 24rpx;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* ===== 列表视图 ===== */
+.list-container {
+  flex: 1;
+  padding-top: calc(190rpx + env(safe-area-inset-top));
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 16rpx 32rpx;
+}
+
+.list-title-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.list-subtitle {
+  font-size: 22rpx;
+  color: var(--color-text-hint);
+  margin-top: 4rpx;
+}
+
+.switch-map-btn {
+  font-size: 24rpx;
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  padding: 10rpx 24rpx;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+}
+
+.place-list {
+  height: calc(100vh - 350rpx - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  padding-bottom: 160rpx;
+}
+
+/* ===== 地点卡片 ===== */
+.place-card {
+  background: #FFF;
+  border-radius: var(--radius-md);
+  margin: 14rpx 28rpx;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s;
+}
+
+.place-card:active {
+  transform: scale(0.98);
+}
+
+.card-accent-bar {
+  height: 6rpx;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-mint));
+  border-radius: 3rpx 3rpx 0 0;
+}
+
+.card-body {
+  padding: 28rpx 32rpx;
+}
+
+.card-top {
+  margin-bottom: 12rpx;
+}
+
+.card-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  flex: 1;
+}
+
+.place-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.place-type-badge {
+  font-size: 24rpx;
+}
+
+.rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  background: #FFF9E6;
+  padding: 8rpx 16rpx;
+  border-radius: var(--radius-xl);
+}
+
+.rating-star {
+  font-size: 22rpx;
+}
+
+.rating-num {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--color-warning);
+}
+
+.place-addr {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 14rpx;
+  display: block;
+}
+
+.place-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12rpx;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding-top: 14rpx;
+  border-top: 1rpx solid var(--color-border);
+}
+
+.footer-meta {
+  font-size: 22rpx;
+  color: var(--color-text-hint);
+}
+
+.footer-dot {
+  font-size: 18rpx;
+  color: var(--color-border);
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  font-size: 100rpx;
+  margin-bottom: 24rpx;
+}
+
+.empty-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 8rpx;
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: var(--color-text-hint);
+}

@@ -1,0 +1,135 @@
+/**app.wxss — 可爱趣味风格**/
+page {
+  /* 柔和绿 + 奶油暖色调 */
+  --color-primary: #6B9E7A;
+  --color-primary-dark: #4E7D5B;
+  --color-primary-light: #EAF4EC;
+  --color-accent: #8B6F5E;
+  --color-accent-light: #F5EDE6;
+  --color-success: #6B9E7A;
+  --color-warning: #E8A856;
+  --color-danger: #D97B6A;
+  --color-pink: #E8A0BF;
+  --color-mint: #9AD5CA;
+  --color-lavender: #B5A8D5;
+  --color-bg: #FFFCF7;
+  --color-card: #FFFFFF;
+  --color-text: #3D2E1F;
+  --color-text-secondary: #9E8E7E;
+  --color-text-hint: #C4B5A5;
+  --color-border: #F0E8DF;
+  --radius-sm: 16rpx;
+  --radius-md: 28rpx;
+  --radius-lg: 40rpx;
+  --radius-xl: 56rpx;
+  --shadow-card: 0 8rpx 32rpx rgba(139,111,94,0.06);
+  --shadow-float: 0 12rpx 40rpx rgba(139,111,94,0.10);
+
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  font-size: 28rpx;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 32rpx;
+  margin: 16rpx 28rpx;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 24rpx 48rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 2rpx;
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+  transform: scale(0.97);
+}
+
+.btn-secondary {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding: 24rpx 48rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  text-align: center;
+}
+
+.btn-secondary:active {
+  opacity: 0.85;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 22rpx;
+  padding: 8rpx 20rpx;
+  border-radius: var(--radius-xl);
+  margin-right: 12rpx;
+  margin-bottom: 10rpx;
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 20rpx;
+  letter-spacing: 1rpx;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 装饰性气泡文字 */
+.bubble {
+  display: inline-block;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  padding: 12rpx 28rpx;
+  border-radius: 28rpx 28rpx 28rpx 8rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+/* 彩色小标签系列 */
+.tag-green  { background: #EAF4EC; color: #4E7D5B; }
+.tag-brown  { background: #F5EDE6; color: #8B6F5E; }
+.tag-pink   { background: #FDECF3; color: #C87DA0; }
+.tag-mint   { background: #E6F7F4; color: #5AAFA0; }
+.tag-yellow { background: #FFF6E6; color: #C89038; }

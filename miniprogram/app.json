@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/map/map",
+    "pages/community/community",
+    "pages/profile/profile",
+    "pages/place-detail/place-detail",
+    "pages/nearby/nearby",
+    "pages/add-place/add-place"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "毛孩友好地图",
+    "navigationBarBackgroundColor": "#6B9E7A"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#6B9E7A",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/map/map",
+        "text": "地图"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "宠物圈"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于显示附近的宠物友好地点"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents"
+}

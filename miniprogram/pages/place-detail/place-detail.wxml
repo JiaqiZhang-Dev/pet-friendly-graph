@@ -1,0 +1,103 @@
+<!--pages/place-detail/place-detail.wxml-->
+<view class="detail-page" wx:if="{{place}}">
+  <!-- 顶部装饰 -->
+  <view class="detail-hero">
+    <view class="hero-bg"></view>
+    <view class="hero-content">
+      <text class="hero-name">{{place.name}}</text>
+      <view class="hero-rating">
+        <text class="hero-star">⭐</text>
+        <text class="hero-score">{{place.rating}}</text>
+        <text class="hero-count">{{place.reviewCount}} 条评价</text>
+      </view>
+    </view>
+    <view class="hero-deco">🐾</view>
+  </view>
+
+  <!-- 宠物友好等级 -->
+  <view class="level-card card">
+    <view class="level-row">
+      <text class="level-label">宠物友好指数</text>
+      <text class="level-paws">{{levelStars}}</text>
+    </view>
+    <view class="place-tags">
+      <text wx:for="{{place.tags}}" wx:key="*this" class="tag">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="info-card card">
+    <view class="info-item">
+      <text class="info-emoji">📍</text>
+      <text class="info-text">{{place.address}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-emoji">🕐</text>
+      <text class="info-text">{{place.openTime}}</text>
+    </view>
+    <view class="info-item" wx:if="{{place.phone}}">
+      <text class="info-emoji">📞</text>
+      <text class="info-text">{{place.phone}}</text>
+    </view>
+  </view>
+
+  <!-- 描述 -->
+  <view class="card">
+    <text class="section-title">📝 详情介绍</text>
+    <text class="description">{{place.description}}</text>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions-card card">
+    <view class="action-grid">
+      <view class="action-item" bindtap="onNavigate">
+        <view class="action-circle action-green">
+          <text class="action-emoji">🧭</text>
+        </view>
+        <text class="action-label">导航前往</text>
+      </view>
+      <view class="action-item" bindtap="onCallPhone" wx:if="{{place.phone}}">
+        <view class="action-circle action-brown">
+          <text class="action-emoji">📞</text>
+        </view>
+        <text class="action-label">电话联系</text>
+      </view>
+      <button class="action-item share-btn" open-type="share">
+        <view class="action-circle action-pink">
+          <text class="action-emoji">📤</text>
+        </view>
+        <text class="action-label">分享好友</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 用户评价 -->
+  <view class="reviews-section card">
+    <text class="section-title">💬 宠主评价 ({{reviews.length}})</text>
+
+    <view wx:for="{{reviews}}" wx:key="id" class="review-item">
+      <view class="review-header flex-row">
+        <view class="review-avatar">
+          <text>🧑</text>
+        </view>
+        <view class="review-user-info">
+          <text class="review-user-name">{{item.userName}}</text>
+          <text class="review-date">{{item.createTime}}</text>
+        </view>
+        <view class="review-stars">
+          <text wx:for="{{item.rating}}" wx:for-item="s" wx:key="*this" class="mini-star">⭐</text>
+        </view>
+      </view>
+      <view class="review-bubble">
+        <text class="review-content">{{item.content}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{reviews.length === 0}}" class="empty-review">
+      <text class="empty-emoji">💭</text>
+      <text class="empty-text">暂无评价，快来做第一个评价吧~</text>
+    </view>
+  </view>
+
+  <view style="height: 80rpx;"></view>
+</view>
