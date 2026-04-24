@@ -65,12 +65,15 @@
   <view
     class="bottom-sheet sheet-{{panelState}}"
     style="height: {{panelHeight}}rpx;"
-    catchtouchstart="{{drag.touchstart}}"
-    catchtouchmove="{{drag.touchmove}}"
-    catchtouchend="{{drag.touchend}}"
   >
-    <!-- 拖拽把手 -->
-    <view class="sheet-handle" bindtap="onSheetHandleTap">
+    <!-- 拖拽把手 — 只在这里拦截触摸做拖拽 -->
+    <view
+      class="sheet-handle"
+      bindtap="onSheetHandleTap"
+      catchtouchstart="{{drag.touchstart}}"
+      catchtouchmove="{{drag.touchmove}}"
+      catchtouchend="{{drag.touchend}}"
+    >
       <view class="sheet-handle-bar"></view>
       <view class="sheet-handle-row">
         <text class="panel-title">附近宠物友好地点</text>

@@ -163,8 +163,9 @@
 }
 
 .sheet-handle {
-  padding: 16rpx 32rpx 12rpx;
+  padding: 20rpx 32rpx 16rpx;
   cursor: pointer;
+  min-height: 80rpx;
 }
 
 .sheet-handle-bar {
