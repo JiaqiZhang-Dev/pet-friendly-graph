@@ -78,9 +78,7 @@
     show="{{showAddPet}}"
     position="bottom"
     round
-    safe-area-inset-bottom
     bind:close="onCloseAddPet"
-    custom-style="max-height: 85vh;"
   >
     <view class="add-pet-popup">
       <view class="popup-header">
