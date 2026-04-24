@@ -149,7 +149,7 @@
 /* ===== Bottom Sheet ===== */
 .bottom-sheet {
   position: fixed;
-  bottom: 0;
+  bottom: calc(130rpx + env(safe-area-inset-bottom));
   left: 0;
   right: 0;
   z-index: 100;
@@ -201,7 +201,7 @@
 .panel-scroll {
   white-space: nowrap;
   padding: 4rpx 24rpx 20rpx;
-  height: 260rpx;
+  height: 360rpx;
 }
 
 .panel-card {

@@ -49,8 +49,8 @@ function formatDistance(meters: number): string {
   return `${(meters / 1000).toFixed(1)}km`
 }
 
-const PANEL_PEEK = 120    // collapsed: just handle visible
-const PANEL_HALF = 380   // half: horizontal card scroll
+const PANEL_PEEK = 140    // collapsed: just handle visible
+const PANEL_HALF = 500   // half: horizontal card scroll
 const PANEL_FULL = 1100  // full: vertical list (≈85vh)
 
 Page({
