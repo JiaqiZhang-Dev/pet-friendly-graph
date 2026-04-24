@@ -16,8 +16,9 @@
   z-index: 100;
   display: flex;
   align-items: center;
-  padding: 16rpx 24rpx;
-  padding-top: calc(16rpx + env(safe-area-inset-top));
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  padding-bottom: 8rpx;
   background: rgba(240,247,255,0.88);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
@@ -47,8 +48,8 @@
 }
 
 .add-btn {
-  width: 84rpx;
-  height: 84rpx;
+  width: 64rpx;
+  height: 64rpx;
   background: var(--gradient-primary);
   border-radius: var(--radius-lg);
   display: flex;
@@ -56,6 +57,7 @@
   justify-content: center;
   box-shadow: 0 6rpx 20rpx rgba(59,130,246,0.30);
   transition: all 0.2s ease-out;
+  flex-shrink: 0;
 }
 
 .add-btn:active {
@@ -65,7 +67,6 @@
 /* ===== Filter Bar ===== */
 .filter-bar {
   position: fixed;
-  top: calc(108rpx + env(safe-area-inset-top));
   left: 0;
   right: 0;
   z-index: 99;

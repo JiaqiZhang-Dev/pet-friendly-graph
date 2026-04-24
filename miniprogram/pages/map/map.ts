@@ -64,6 +64,9 @@ Page({
     selectedType: 'all',
     searchValue: '',
     mapHeight: 0,
+    navTop: 0,
+    navHeight: 32,
+    filterTop: 0,
     activePlace: '',
     scrollToPlaceId: '',
     panelState: 'half' as 'half' | 'full',
@@ -80,9 +83,17 @@ Page({
     }
 
     const sysInfo = wx.getSystemInfoSync()
+    const menuBtn = wx.getMenuButtonBoundingClientRect()
+    // searchBar top = menuBtn.top, height aligns with capsule
+    const navTop = menuBtn.top
+    const navHeight = menuBtn.height
     const placesWithDist = this.computeDistances(mockPlaces)
     this.setData({
       mapHeight: sysInfo.windowHeight,
+      navTop: navTop,
+      navHeight: navHeight,
+      // filterBar top = capsule bottom + small gap
+      filterTop: menuBtn.bottom + 8,
       places: placesWithDist,
       filteredPlaces: placesWithDist,
     })

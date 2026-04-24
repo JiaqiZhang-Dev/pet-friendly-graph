@@ -1,7 +1,7 @@
 <!--pages/map/map.wxml-->
 <view class="map-page">
-  <!-- 顶部搜索栏 -->
-  <view class="search-bar">
+  <!-- 顶部搜索栏 — 对齐胶囊按钮 -->
+  <view class="search-bar" style="padding-top: {{navTop}}px; height: {{navHeight}}px; box-sizing: content-box;">
     <view class="search-box">
       <van-icon name="search" size="16px" color="#94A3B8" custom-class="search-vicon" />
       <input
@@ -20,7 +20,7 @@
   </view>
 
   <!-- 分类筛选 -->
-  <scroll-view class="filter-bar" scroll-x enhanced show-scrollbar="{{false}}">
+  <scroll-view class="filter-bar" style="top: {{filterTop}}px;" scroll-x enhanced show-scrollbar="{{false}}">
     <view
       wx:for="{{placeTypes}}"
       wx:key="key"
