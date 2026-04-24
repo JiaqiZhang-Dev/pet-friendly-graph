@@ -1,0 +1,52 @@
+// sheet-drag.wxs — runs on render thread for smooth dragging
+var PANEL_HALF = 380
+var PANEL_FULL = 1100
+var startY = 0
+var startH = 0
+
+function touchstart(e, ownerInstance) {
+  startY = e.touches[0].clientY
+  var sheet = ownerInstance.selectComponent('.bottom-sheet')
+  var style = sheet.getComputedStyle(['height'])
+  // Parse current height (px), convert to rpx (approx * 2)
+  var hPx = parseFloat(style.height) || 0
+  startH = hPx * 2
+  // Remove transition during drag for instant response
+  sheet.setStyle({ transition: 'none' })
+}
+
+function touchmove(e, ownerInstance) {
+  var dy = startY - e.touches[0].clientY // positive = swipe up
+  var ratio = 2
+  var newH = startH + dy * ratio
+  if (newH < PANEL_HALF) newH = PANEL_HALF
+  if (newH > PANEL_FULL) newH = PANEL_FULL
+  var sheet = ownerInstance.selectComponent('.bottom-sheet')
+  sheet.setStyle({ height: newH + 'rpx' })
+}
+
+function touchend(e, ownerInstance) {
+  var dy = startY - e.changedTouches[0].clientY
+  var ratio = 2
+  var newH = startH + dy * ratio
+  if (newH < PANEL_HALF) newH = PANEL_HALF
+  if (newH > PANEL_FULL) newH = PANEL_FULL
+  // Restore transition for snap animation
+  var sheet = ownerInstance.selectComponent('.bottom-sheet')
+  sheet.setStyle({ transition: 'height 0.3s cubic-bezier(0.25, 1, 0.5, 1)' })
+  // Snap to nearest state
+  var mid = (PANEL_HALF + PANEL_FULL) / 2
+  var snapH = newH < mid ? PANEL_HALF : PANEL_FULL
+  sheet.setStyle({ height: snapH + 'rpx' })
+  // Notify JS layer of final state
+  ownerInstance.callMethod('onSheetSnap', {
+    state: snapH === PANEL_HALF ? 'half' : 'full',
+    height: snapH,
+  })
+}
+
+module.exports = {
+  touchstart: touchstart,
+  touchmove: touchmove,
+  touchend: touchend,
+}

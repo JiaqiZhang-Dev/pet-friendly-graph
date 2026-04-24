@@ -58,13 +58,16 @@
     </view>
   </view>
 
+  <!-- WXS for smooth drag on render thread -->
+  <wxs src="./sheet-drag.wxs" module="drag" />
+
   <!-- 底部可拉起面板 -->
   <view
     class="bottom-sheet sheet-{{panelState}}"
     style="height: {{panelHeight}}rpx;"
-    catchtouchstart="onSheetTouchStart"
-    catchtouchmove="onSheetTouchMove"
-    catchtouchend="onSheetTouchEnd"
+    catchtouchstart="{{drag.touchstart}}"
+    catchtouchmove="{{drag.touchmove}}"
+    catchtouchend="{{drag.touchend}}"
   >
     <!-- 拖拽把手 -->
     <view class="sheet-handle" bindtap="onSheetHandleTap">

@@ -70,9 +70,6 @@ Page({
     panelHeight: PANEL_HALF,
   },
 
-  _touchStartY: 0,
-  _touchStartHeight: 0,
-
   onLoad() {
     const loc = app.globalData.location
     if (loc) {
@@ -236,28 +233,13 @@ Page({
     wx.navigateTo({ url: '/pages/add-place/add-place' })
   },
 
-  // ===== Bottom Sheet Gestures =====
-  onSheetTouchStart(e: WechatMiniprogram.TouchEvent) {
-    this._touchStartY = e.touches[0].clientY
-    this._touchStartHeight = this.data.panelHeight
-  },
-
-  onSheetTouchMove(e: WechatMiniprogram.TouchEvent) {
-    const dy = this._touchStartY - e.touches[0].clientY
-    const ratio = 2
-    let newHeight = this._touchStartHeight + dy * ratio
-    newHeight = Math.max(PANEL_HALF, Math.min(PANEL_FULL, newHeight))
-    this.setData({ panelHeight: newHeight })
-  },
-
-  onSheetTouchEnd(_e: WechatMiniprogram.TouchEvent) {
-    const h = this.data.panelHeight
-    const mid = (PANEL_HALF + PANEL_FULL) / 2
-    if (h < mid) {
-      this.setData({ panelState: 'half', panelHeight: PANEL_HALF })
-    } else {
-      this.setData({ panelState: 'full', panelHeight: PANEL_FULL })
-    }
+  // ===== Bottom Sheet =====
+  // Called by WXS after drag snap
+  onSheetSnap(e: { state: 'half' | 'full'; height: number }) {
+    this.setData({
+      panelState: e.state,
+      panelHeight: e.height,
+    })
   },
 
   onSheetHandleTap() {
