@@ -1,0 +1,104 @@
+<!--pages/activity-create/activity-create.wxml-->
+<view class="create-page">
+  <!-- 活动标题 -->
+  <view class="form-section">
+    <text class="section-label">活动标题</text>
+    <input
+      class="form-input"
+      value="{{title}}"
+      placeholder="例如：周末宠物社交趴"
+      bindinput="onTitleInput"
+      maxlength="30"
+    />
+  </view>
+
+  <!-- 活动描述 -->
+  <view class="form-section">
+    <text class="section-label">活动介绍</text>
+    <textarea
+      class="form-textarea"
+      value="{{description}}"
+      placeholder="详细描述活动内容、注意事项等..."
+      bindinput="onDescInput"
+      maxlength="500"
+      auto-height
+    />
+    <view class="char-count">{{description.length}}/500</view>
+  </view>
+
+  <!-- 时间 & 地点 -->
+  <view class="form-section">
+    <view class="info-row" bindtap="onPickDate">
+      <view class="info-left">
+        <van-icon name="calendar-o" size="20px" color="#3B82F6" />
+        <text class="info-label">活动时间</text>
+      </view>
+      <view class="info-right">
+        <text class="info-value">{{dateDisplay || '选择日期时间'}}</text>
+        <van-icon name="arrow" size="14px" color="#94A3B8" />
+      </view>
+    </view>
+
+    <view class="info-divider"></view>
+
+    <view class="info-row" bindtap="onPickLocation">
+      <view class="info-left">
+        <van-icon name="location-o" size="20px" color="#3B82F6" />
+        <text class="info-label">活动地点</text>
+      </view>
+      <view class="info-right">
+        <text class="info-value">{{location || '选择地点'}}</text>
+        <van-icon name="arrow" size="14px" color="#94A3B8" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 人数上限 -->
+  <view class="form-section">
+    <view class="stepper-row">
+      <view class="info-left">
+        <van-icon name="friends-o" size="20px" color="#3B82F6" />
+        <text class="info-label">人数上限</text>
+      </view>
+      <van-stepper
+        value="{{maxParticipants}}"
+        min="2"
+        max="200"
+        step="5"
+        bind:change="onMaxChange"
+      />
+    </view>
+  </view>
+
+  <!-- 宠物类型限制 -->
+  <view class="form-section">
+    <text class="section-label">欢迎宠物类型</text>
+    <view class="pet-type-chips">
+      <view
+        wx:for="{{petTypeOptions}}"
+        wx:key="key"
+        class="pet-type-chip {{selectedPetTypes[item.key] ? 'pet-type-chip-active' : ''}}"
+        bindtap="onTogglePetType"
+        data-key="{{item.key}}"
+      >
+        <text>{{item.emoji}} {{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 发布 -->
+  <view class="publish-bar">
+    <van-button
+      type="primary"
+      round
+      block
+      loading="{{isPublishing}}"
+      loading-text="发布中..."
+      custom-class="publish-btn"
+      disabled="{{!title || !location || !dateDisplay}}"
+      bind:click="onPublish"
+    >
+      发起活动 🐾
+    </van-button>
+  </view>
+</view>

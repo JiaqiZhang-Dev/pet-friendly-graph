@@ -157,6 +157,10 @@ Page({
   },
 
   onPublish() {
-    wx.navigateTo({ url: '/pages/post-create/post-create' })
+    if (this.data.activeTab === 'activity') {
+      wx.navigateTo({ url: '/pages/activity-create/activity-create' })
+    } else {
+      wx.navigateTo({ url: '/pages/post-create/post-create' })
+    }
   },
 })

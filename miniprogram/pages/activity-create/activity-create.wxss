@@ -1,0 +1,142 @@
+/* pages/activity-create/activity-create.wxss */
+.create-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding-bottom: calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.form-section {
+  background: var(--color-card);
+  padding: 28rpx 32rpx;
+  margin: 16rpx 28rpx;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  border: var(--border-clay);
+}
+
+.section-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 16rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  background: var(--color-bg);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 180rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 2rpx solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 22rpx;
+  color: var(--color-text-hint);
+  margin-top: 8rpx;
+}
+
+/* 信息行 */
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8rpx 0;
+}
+
+.info-divider {
+  height: 2rpx;
+  background: var(--color-border);
+  margin: 16rpx 0;
+}
+
+.info-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.info-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.info-right {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.info-value {
+  font-size: 26rpx;
+  color: var(--color-text-hint);
+  max-width: 380rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Stepper row */
+.stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 宠物类型 */
+.pet-type-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.pet-type-chip {
+  padding: 14rpx 28rpx;
+  border-radius: var(--radius-full);
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  background: var(--color-bg);
+  border: 2rpx solid var(--color-border);
+  transition: all 0.2s;
+}
+
+.pet-type-chip-active {
+  background: var(--color-primary);
+  color: #FFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 4rpx 12rpx rgba(59,130,246,0.2);
+}
+
+/* 底部发布栏 */
+.publish-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 36rpx calc(20rpx + env(safe-area-inset-bottom));
+  background: var(--color-card);
+  box-shadow: 0 -4rpx 16rpx rgba(0,0,0,0.05);
+}
+
+.publish-btn {
+  font-weight: 700;
+}
